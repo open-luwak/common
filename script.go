@@ -1,5 +1,9 @@
 package common
 
+type ScriptRunner interface {
+	RunScrip(globalThis map[string]any, pCtx PersistenceContext, sourceCode string) (any, error)
+}
+
 type GlobalThisReader interface {
 	Input() any
 	Env() map[string]any
