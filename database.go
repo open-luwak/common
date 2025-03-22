@@ -4,6 +4,8 @@ type DatabaseType string
 
 type TableType string
 
+type ColumnDataType string
+
 type QueryType string
 
 type PreparedQuery struct {
