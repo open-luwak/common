@@ -1,5 +1,7 @@
 package common
 
+type DatabaseType string
+
 type QueryType string
 
 type PreparedQuery struct {
