@@ -17,3 +17,11 @@ type PreparedQuery struct {
 	DatabaseUpdater []*PreparedQuery `json:"databaseUpdater"`
 	ResultEnricher  []*PreparedQuery `json:"resultEnricher"`
 }
+
+type QueryResult struct {
+	Row          map[string]any
+	Rows         []map[string]any
+	RowsAffected int64
+	LastInsertId int64
+	Total        int64
+}
