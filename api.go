@@ -1,6 +1,8 @@
 package common
 
-type APIContextKey struct{}
+var ApiCtxKey = ContextKey{}
+
+type ContextKey struct{}
 
 // APIContext combines request and response contexts
 type APIContext interface {
