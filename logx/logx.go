@@ -6,8 +6,7 @@ import (
 )
 
 const (
-	LevelTrace slog.Level = -8
-
+	LevelTrace = slog.LevelDebug - 4
 	LevelDebug = slog.LevelDebug
 	LevelInfo  = slog.LevelInfo
 	LevelWarn  = slog.LevelWarn
