@@ -1,4 +1,4 @@
-package common
+package errx
 
 import "fmt"
 
