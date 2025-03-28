@@ -1,7 +1,7 @@
 package common
 
 type ScriptRunner interface {
-	RunScript(globalThis map[string]any, pCtx PersistenceContext, sourceCode string) (any, error)
+	RunScript(globalThis map[string]any, dalCtx DalContext, sourceCode string) (any, error)
 }
 
 type GlobalThisReader interface {

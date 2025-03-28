@@ -1,5 +1,9 @@
 package common
 
+import (
+	"sync"
+)
+
 type DatabaseType string
 
 type TableType string
@@ -24,4 +28,13 @@ type QueryResult struct {
 	RowsAffected int64
 	LastInsertId int64
 	Total        int64
+}
+
+type DalContext struct {
+	DefaultEntity string
+	Container     sync.Map
+
+	TraceID  string
+	ParentID string
+	SpanID   string
 }
