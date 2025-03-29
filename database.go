@@ -4,18 +4,10 @@ import (
 	"sync"
 )
 
-type DatabaseType string
-
-type TableType string
-
-type ColumnDataType string
-
-type QueryType string
-
 type PreparedQuery struct {
-	Query     string    `json:"query"`
-	Bind      []any     `json:"bind"`
-	QueryType QueryType `json:"queryType"`
+	Query     string `json:"query"`
+	Bind      []any  `json:"bind"`
+	QueryType string `json:"queryType"`
 
 	CheckPoint      []*PreparedQuery `json:"checkPoint"`
 	DatabaseUpdater []*PreparedQuery `json:"databaseUpdater"`
@@ -23,10 +15,11 @@ type PreparedQuery struct {
 }
 
 type QueryResult struct {
+	QueryType    string
+	LastInsertId int64
+	RowsAffected int64
 	Row          map[string]any
 	Rows         []map[string]any
-	RowsAffected int64
-	LastInsertId int64
 	Total        int64
 }
 
