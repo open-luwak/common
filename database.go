@@ -25,7 +25,7 @@ type QueryResult struct {
 
 type DalContext struct {
 	DefaultEntity string
-	Container     sync.Map
+	Container     *sync.Map
 
 	TraceID  string
 	ParentID string
