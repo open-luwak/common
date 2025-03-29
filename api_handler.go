@@ -1,13 +1,13 @@
 package common
 
 type Handler interface {
-	Handle(APIContext)
+	Process(APIContext) error
 }
 
-type HandlerFunc func(APIContext)
+type HandlerFunc func(APIContext) error
 
-func (h HandlerFunc) Handle(ctx APIContext) {
-	h(ctx)
+func (hf HandlerFunc) Process(ctx APIContext) error {
+	return hf(ctx)
 }
 
 type Chain struct {
