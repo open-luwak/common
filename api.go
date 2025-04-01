@@ -1,34 +1,44 @@
 package common
 
+import "time"
+
 var ApiCtxKey = ContextKey{}
 
 type ContextKey struct{}
 
-// APIContext combines request and response contexts
-type APIContext interface {
-	RequestContext
-	ResponseContext
-	MutableRequestContext
-	MutableResponseContext
+type RequestContext struct {
+	ApiName     string
+	RemoteAddr  string
+	RemoteHost  string
+	RequestTime time.Time
 }
 
-// RequestContext contains request-related information
-type RequestContext interface {
+// APIContext combines request and response contexts
+type APIContext interface {
+	RequestReader
+	ResponseReader
+	RequestWriter
+	ResponseWriter
+}
+
+// RequestReader contains request-related information
+type RequestReader interface {
 	RequestID() string
+	RequestContext() *RequestContext
 	Method() string
 	Params() any
 	RawParams() []byte
 	Metas() map[string]any
 }
 
-// ResponseContext contains response-related information
-type ResponseContext interface {
+// ResponseReader contains response-related information
+type ResponseReader interface {
 	Result() any
 	Err() error
 }
 
-// MutableRequestContext allows modification of request context
-type MutableRequestContext interface {
+// RequestWriter allows modification of request-related information
+type RequestWriter interface {
 	SetRequestID(string)
 	SetMethod(string)
 	SetParams(any)
@@ -36,8 +46,8 @@ type MutableRequestContext interface {
 	SetMetas(map[string]any)
 }
 
-// MutableResponseContext allows modification of response context
-type MutableResponseContext interface {
+// ResponseWriter allows modification of response-related information
+type ResponseWriter interface {
 	SetResult(any)
 	SetErr(error)
 }
