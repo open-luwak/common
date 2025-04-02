@@ -1,8 +1,10 @@
 package errx
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type ErrorCode string
+type Code string
 
 type Error interface {
 	Code() string
@@ -11,7 +13,19 @@ type Error interface {
 	error
 }
 
-func NewError(code ErrorCode, message string, opts ...any) Error {
+// New creates a new Error instance.
+//
+// Parameters:
+//   - code: The error code.
+//   - message: The error message.
+//   - opts: A variadic list of optional parameters for providing additional data or an error cause.
+//
+// Note:
+//   - `opts` can accept at most two elements.
+//   - The first element can be of any type and is used to provide additional data.
+//   - The second element (if provided) must be of type `error` and is used to specify the cause.
+//   - If more than two elements are provided, only the first two will be used.
+func New(code Code, message string, opts ...any) Error {
 	var data any
 	var cause error
 
@@ -37,7 +51,7 @@ func NewError(code ErrorCode, message string, opts ...any) Error {
 }
 
 type defaultError struct {
-	code    ErrorCode
+	code    Code
 	message string
 	data    any
 	cause   error

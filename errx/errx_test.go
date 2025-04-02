@@ -10,7 +10,7 @@ var underlyingError = fmt.Errorf("underlying error")
 
 var testCases = []struct {
 	name     string
-	code     ErrorCode
+	code     Code
 	message  string
 	opts     []any
 	expected *defaultError
@@ -48,31 +48,31 @@ var testCases = []struct {
 func TestNewError(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			result, _ := NewError(tc.code, tc.message, tc.opts...).(*defaultError)
+			result, _ := New(tc.code, tc.message, tc.opts...).(*defaultError)
 			if result.code != tc.expected.code ||
 				result.message != tc.expected.message ||
 				result.data != tc.expected.data ||
 				result.cause != tc.expected.cause {
-				t.Errorf("NewError(%v, %v, %v) = %v; want %v", tc.code, tc.message, tc.opts, result, tc.expected)
+				t.Errorf("New(%v, %v, %v) = %v; want %v", tc.code, tc.message, tc.opts, result, tc.expected)
 			}
 		})
 	}
 }
 
 func TestErrorMessage(t *testing.T) {
-	err := NewError("E001", "An error occurred")
+	err := New("E001", "An error occurred")
 	if err.Error() != "An error occurred" {
 		t.Errorf("Error.Error() = %v; want %v", err, "An error occurred")
 	}
 
-	err = NewError("E003", "An error occurred", nil, underlyingError)
+	err = New("E003", "An error occurred", nil, underlyingError)
 	if err.Error() != "An error occurred, cause: underlying error" {
 		t.Errorf("Error.Unwrap() = %v; want %v", err, underlyingError)
 	}
 }
 
 func TestErrorDataCause(t *testing.T) {
-	err := NewError("E003", "Error with cause", "data")
+	err := New("E003", "Error with cause", "data")
 	if err.Data() != "data" {
 		t.Errorf("Error.Data() = %v; want %v", err, "data")
 	}
@@ -80,7 +80,7 @@ func TestErrorDataCause(t *testing.T) {
 		t.Errorf("Unwrap did not return the expected underlying error")
 	}
 
-	err = NewError("E003", "Error with cause", underlyingError)
+	err = New("E003", "Error with cause", underlyingError)
 	if err.Data() != nil {
 		t.Errorf("Error.Data() = %v; want %v", err, nil)
 	}
@@ -90,7 +90,7 @@ func TestErrorDataCause(t *testing.T) {
 }
 
 func TestErrorUnwrap(t *testing.T) {
-	err := NewError("E003", "Error with cause", "data", underlyingError)
+	err := New("E003", "Error with cause", "data", underlyingError)
 	if !errors.Is(err, underlyingError) {
 		t.Errorf("Error does not unwrap to the underlying error")
 	}
@@ -99,13 +99,13 @@ func TestErrorUnwrap(t *testing.T) {
 	}
 }
 
-func ExampleNewError() {
-	err := NewError("E001", "An error occurred", "data")
+func ExampleNew() {
+	err := New("E001", "An error occurred", "data")
 	fmt.Println(err)
 	fmt.Println(err.Code())
 	fmt.Println(err.Data())
 
-	err = NewError("E005", "An error occurred", underlyingError)
+	err = New("E005", "An error occurred", underlyingError)
 	fmt.Println(err)
 
 	// Output:
