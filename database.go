@@ -4,6 +4,13 @@ import (
 	"sync"
 )
 
+type AsmParam struct {
+	Api           string
+	Param         []any
+	SessionFilter map[string]string
+	SessionValues map[string]string
+}
+
 type PreparedQuery struct {
 	Query     string `json:"query"`
 	Bind      []any  `json:"bind"`
