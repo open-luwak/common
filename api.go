@@ -62,7 +62,7 @@ type ResponseWriter interface {
 }
 
 type Debugger interface {
-	AddDebugInfo([]map[string]string)
+	SetDebugInfo([]map[string]string)
 	DebugInfo() []map[string]string
 }
 
