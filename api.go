@@ -62,8 +62,8 @@ type ResponseWriter interface {
 }
 
 type Debugger interface {
-	SetDebugInfo([]map[string]string)
-	DebugInfo() []map[string]string
+	SetDebugInfo([]map[string]any)
+	DebugInfo() []map[string]any
 }
 
 type Handler interface {
