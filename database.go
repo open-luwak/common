@@ -37,4 +37,6 @@ type DalContext struct {
 	TraceID  string
 	ParentID string
 	SpanID   string
+
+	DebugInfo []map[string]string
 }

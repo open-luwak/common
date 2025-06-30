@@ -58,6 +58,7 @@ type RequestWriter interface {
 type ResponseWriter interface {
 	SetResult(any)
 	SetErr(error)
+	SetDebugInfo([]map[string]string)
 }
 
 type Handler interface {
