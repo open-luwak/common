@@ -25,6 +25,7 @@ type APIContext interface {
 	ResponseReader
 	RequestWriter
 	ResponseWriter
+	Debugger
 }
 
 // RequestReader contains request-related information
@@ -58,7 +59,11 @@ type RequestWriter interface {
 type ResponseWriter interface {
 	SetResult(any)
 	SetErr(error)
-	SetDebugInfo([]map[string]string)
+}
+
+type Debugger interface {
+	AddDebugInfo([]map[string]string)
+	DebugInfo() []map[string]string
 }
 
 type Handler interface {
