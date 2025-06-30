@@ -38,5 +38,5 @@ type DalContext struct {
 	ParentID string
 	SpanID   string
 
-	DebugInfo []map[string]string
+	DebugInfo []map[string]any
 }
