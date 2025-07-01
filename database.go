@@ -31,6 +31,8 @@ type QueryResult struct {
 }
 
 type DalContext struct {
+	DefaultEntityName string
+
 	// The name of the actual physical database instance.
 	PhysicalDatabaseName string
 
