@@ -31,8 +31,13 @@ type QueryResult struct {
 }
 
 type DalContext struct {
-	DefaultEntity string
-	Container     *sync.Map
+	// The name of the actual physical database instance.
+	PhysicalDatabaseName string
+
+	// Container for transaction management.
+	// Ensures that accessing the same database during a single API request uses the same connection,
+	// and automatically commits or rolls back transactions when the request ends.
+	Container *sync.Map
 
 	TraceID  string
 	ParentID string
