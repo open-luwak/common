@@ -47,3 +47,8 @@ type DalContext struct {
 
 	DebugInfo []map[string]any
 }
+
+type RunnerContext struct {
+	GlobalThis map[string]any
+	DalCtx     *DalContext
+}
