@@ -67,7 +67,7 @@ func loadScripts(baseDir string) ([]*ScriptInfo, error) {
 		}
 		info, err := parseScriptInfo(baseDir, v)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("common.metadata: failed to parse script info from %s: %w", v, err)
 		}
 		scripts = append(scripts, info)
 	}
