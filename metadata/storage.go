@@ -13,14 +13,14 @@ import (
 )
 
 type Storage struct {
-	Env      map[string]any  `toml:"env"`
+	Env      map[string]any  `toml:"env,omitempty"`
 	App      []*AppInfo      `toml:"app,omitempty"`
 	Endpoint []*EndpointInfo `toml:"endpoint,omitempty"`
 	API      []*ApiInfo      `toml:"api,omitempty"`
 	Db       []*DbInfo       `toml:"db,omitempty"`
 	Entity   []*EntityInfo   `toml:"entity,omitempty"`
 
-	Crontab []*CrontabInfo `toml:"crontab"`
+	Crontab []*CrontabInfo `toml:"crontab,omitempty"`
 }
 
 // Load metadata information from local files, not resident in memory
