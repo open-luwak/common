@@ -96,8 +96,8 @@ func parseScriptInfo(baseDir string, path string) (*ScriptInfo, error) {
 		scriptType = ResponseEnricherType
 
 	// conditional role
-	case GetRoleDir:
-		scriptType = GetRoleType
+	case ConditionalRoleDir:
+		scriptType = ConditionalRoleType
 
 	// global hooks
 	case BeforeHookDir:

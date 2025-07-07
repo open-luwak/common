@@ -19,8 +19,8 @@ const (
 	ResponseEnricherType = "RE"
 	ResponseEnricherDir  = "response_enricher"
 
-	GetRoleType = "GET_ROLE"
-	GetRoleDir  = "get_role"
+	ConditionalRoleType = "CR"
+	ConditionalRoleDir  = "conditional_role"
 )
 
 const (
