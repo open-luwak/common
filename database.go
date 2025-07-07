@@ -31,6 +31,8 @@ type QueryResult struct {
 }
 
 type DalContext struct {
+	DefaultEntityName string
+
 	// The name of the actual physical database instance.
 	PhysicalDatabaseName string
 
@@ -47,7 +49,6 @@ type DalContext struct {
 }
 
 type RunnerContext struct {
-	DefaultEntityName string
-	GlobalThis        map[string]any
-	DalCtx            *DalContext
+	GlobalThis map[string]any
+	DalCtx     *DalContext
 }
