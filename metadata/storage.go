@@ -52,13 +52,13 @@ func Load(dir string, subDirs []string) (*Storage, error) {
 	return localStorage, nil
 }
 
-func loadScripts(baseDir string) ([]*ScriptInfo, error) {
+func loadScripts(baseDir string) ([]*ScriptSource, error) {
 	list, err := walkDir(baseDir)
 	if err != nil {
 		return nil, err
 	}
 
-	var scripts []*ScriptInfo
+	var scripts []*ScriptSource
 	allowedFileExt := []string{".js", ".py", ".sql", "lua"}
 	for _, v := range list {
 		fileExt := filepath.Ext(v)
@@ -75,7 +75,7 @@ func loadScripts(baseDir string) ([]*ScriptInfo, error) {
 	return scripts, nil
 }
 
-func parseScriptInfo(baseDir string, path string) (*ScriptInfo, error) {
+func parseScriptInfo(baseDir string, path string) (*ScriptSource, error) {
 	parts := strings.Split(path, "/")
 	if len(parts) < 2 {
 		return nil, fmt.Errorf("invalid path: %s", path)
@@ -147,12 +147,12 @@ func parseScriptInfo(baseDir string, path string) (*ScriptInfo, error) {
 		return nil, err
 	}
 
-	scriptInfo := &ScriptInfo{
-		Name:       scriptName,
-		Language:   lang,
-		Type:       scriptType,
-		Priority:   priority,
-		SourceCode: string(content),
+	scriptInfo := &ScriptSource{
+		Name:     scriptName,
+		Lang:     lang,
+		Type:     scriptType,
+		Code:     string(content),
+		Priority: priority,
 	}
 	return scriptInfo, nil
 }

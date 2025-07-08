@@ -12,7 +12,7 @@ func LoadHooks(dir string) (*HooksInfo, error) {
 		return nil, err
 	}
 
-	var before, afterSuccess, afterError, finally []*ScriptInfo
+	var before, afterSuccess, afterError, finally []*ScriptSource
 	for _, v := range list {
 		switch v.Type {
 		case BeforeHookType:
