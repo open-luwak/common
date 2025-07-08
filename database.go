@@ -31,11 +31,6 @@ type QueryResult struct {
 }
 
 type DalContext struct {
-	DefaultEntityName string
-
-	// The name of the actual physical database instance.
-	PhysicalDatabaseName string
-
 	// Container for transaction management.
 	// Ensures that accessing the same database during a single API request uses the same connection,
 	// and automatically commits or rolls back transactions when the request ends.
@@ -46,9 +41,4 @@ type DalContext struct {
 	SpanID   string
 
 	DebugInfo []map[string]any
-}
-
-type RunnerContext struct {
-	GlobalThis map[string]any
-	DalCtx     *DalContext
 }
