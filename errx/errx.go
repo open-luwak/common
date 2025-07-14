@@ -59,7 +59,11 @@ type defaultError struct {
 
 func (e *defaultError) Error() string {
 	if e.cause != nil {
-		return fmt.Sprintf("%s, cause: %v", e.message, e.cause)
+		if e.message != "" {
+			return fmt.Sprintf("%s, cause: %v", e.message, e.cause)
+		} else {
+			return e.cause.Error()
+		}
 	}
 	return e.message
 }
