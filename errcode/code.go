@@ -2,6 +2,9 @@ package errcode
 
 // gateway
 const (
+	JsonRpcInvalidRequest = "AD.JsonRpc.InvalidRequest"
+	JsonRpcMethodNotFound = "AD.JsonRpc.MethodNotFound"
+
 	EndpointEnvExpress    = "SP.Endpoint.EnvExpression"
 	EndpointFilterExpress = "SP.Endpoint.FilterExpression"
 	EndpointValueExpress  = "SP.Endpoint.ValueExpression"
@@ -22,6 +25,7 @@ const (
 	FwMissingMetasParameter = "EU.CheckSign.MissingMetasParameter"
 	FwInvalidAppKey         = "EU.CheckSign.InvalidAppKey"
 	FwInvalidSignature      = "EU.CheckSign.InvalidSignature"
+	FwAclRoleNotAllowed     = "SP.ACL.RoleNotAllowed"
 )
 
 // core
