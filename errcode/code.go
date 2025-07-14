@@ -9,15 +9,16 @@ const (
 	EndpointFilterExpress = "SP.Endpoint.FilterExpression"
 	EndpointValueExpress  = "SP.Endpoint.ValueExpression"
 
-	APINotFound         = "DEV.API.NotFound"
-	APIStateDraft       = "DEV.API.State.Draft"
-	APIStateOffline     = "DEV.API.State.Offline"
-	APIStateRemoved     = "DEV.API.State.Removed"
-	APIRequestIdUsed    = "AD.API.RequestIdUsed"
-	APIInvalidTimestamp = "AD.API.InvalidTimestamp"
-	APIInvalidSignature = "AD.API.InvalidSignature"
-	APIInvalidAppKey    = "AD.API.InvalidAppKey"
-	APIUnauthorized     = "EU.API.Unauthorized"
+	APIScheduledTaskNotAllowed = "EU.API.ScheduledTaskNotAllowed"
+	APINotFound                = "DEV.API.NotFound"
+	APIStateDraft              = "DEV.API.State.Draft"
+	APIStateOffline            = "DEV.API.State.Offline"
+	APIStateRemoved            = "DEV.API.State.Removed"
+	APIRequestIdUsed           = "AD.API.RequestIdUsed"
+	APIInvalidTimestamp        = "AD.API.InvalidTimestamp"
+	APIInvalidSignature        = "AD.API.InvalidSignature"
+	APIInvalidAppKey           = "AD.API.InvalidAppKey"
+	APIUnauthorized            = "EU.API.Unauthorized"
 )
 
 // firewall
