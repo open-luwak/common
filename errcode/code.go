@@ -1,19 +1,24 @@
 package errcode
 
+// end user = EU
+// app developer = AD
+// biz error = BIZ
+// operations = OPS
+
 // gateway
 const (
 	JsonRpcInvalidRequest = "AD.JsonRpc.InvalidRequest"
 	JsonRpcMethodNotFound = "AD.JsonRpc.MethodNotFound"
 
-	EndpointEnvExpress    = "SP.Endpoint.EnvExpression"
-	EndpointFilterExpress = "SP.Endpoint.FilterExpression"
-	EndpointValueExpress  = "SP.Endpoint.ValueExpression"
+	EndpointEnvExpress    = "BIZ.Endpoint.EnvExpression"
+	EndpointFilterExpress = "BIZ.Endpoint.FilterExpression"
+	EndpointValueExpress  = "BIZ.Endpoint.ValueExpression"
 
-	APIScheduledTaskNotAllowed = "EU.API.ScheduledTaskNotAllowed"
-	APINotFound                = "DEV.API.NotFound"
-	APIStateDraft              = "DEV.API.State.Draft"
-	APIStateOffline            = "DEV.API.State.Offline"
-	APIStateRemoved            = "DEV.API.State.Removed"
+	APIScheduledTaskNotAllowed = "AD.API.ScheduledTaskNotAllowed"
+	APINotFound                = "AD.API.NotFound"
+	APIStateDraft              = "AD.API.State.Draft"
+	APIStateOffline            = "AD.API.State.Offline"
+	APIStateRemoved            = "AD.API.State.Removed"
 	APIRequestIdUsed           = "AD.API.RequestIdUsed"
 	APIInvalidTimestamp        = "AD.API.InvalidTimestamp"
 	APIInvalidSignature        = "AD.API.InvalidSignature"
@@ -26,14 +31,14 @@ const (
 	FwMissingMetasParameter = "EU.CheckSign.MissingMetasParameter"
 	FwInvalidAppKey         = "EU.CheckSign.InvalidAppKey"
 	FwInvalidSignature      = "EU.CheckSign.InvalidSignature"
-	FwAclRoleNotAllowed     = "SP.ACL.RoleNotAllowed"
+	FwAclRoleNotAllowed     = "BIZ.ACL.RoleNotAllowed"
 )
 
 // core
 const (
-	ScriptParse     = "BE.Script.Parse"
-	ScriptExecution = "BE.Script.Execution"
-	ScriptTimeout   = "BE.Script.Timeout"
+	ScriptParse     = "BIZ.Script.Parse"
+	ScriptExecution = "BIZ.Script.Execution"
+	ScriptTimeout   = "BIZ.Script.Timeout"
 )
 
 // infrastructure
