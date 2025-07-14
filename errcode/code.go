@@ -36,9 +36,11 @@ const (
 
 // core
 const (
-	ScriptParse     = "BIZ.Script.Parse"
-	ScriptExecution = "BIZ.Script.Execution"
-	ScriptTimeout   = "BIZ.Script.Timeout"
+	ScriptParse                = "BIZ.Script.Parse"
+	ScriptExecution            = "BIZ.Script.Execution"
+	ScriptTimeout              = "BIZ.Script.Timeout"
+	ScriptNotSupported         = "AD.Script.NotSupported"
+	ScriptExecutorNotAvailable = "AD.Script.ExecutorNotAvailable"
 )
 
 // infrastructure
