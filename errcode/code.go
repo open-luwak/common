@@ -8,7 +8,6 @@ package errcode
 // gateway
 const (
 	JsonRpcInvalidRequest = "AD.JsonRpc.InvalidRequest"
-	JsonRpcMethodNotFound = "AD.JsonRpc.MethodNotFound"
 
 	EndpointEnvExpress    = "BIZ.Endpoint.EnvExpression"
 	EndpointFilterExpress = "BIZ.Endpoint.FilterExpression"
