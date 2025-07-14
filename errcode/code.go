@@ -28,9 +28,9 @@ const (
 
 // firewall
 const (
-	FwMissingMetasParameter = "EU.CheckSign.MissingMetasParameter"
-	FwInvalidAppKey         = "EU.CheckSign.InvalidAppKey"
-	FwInvalidSignature      = "EU.CheckSign.InvalidSignature"
+	FwMissingMetasParameter = "AD.CheckSign.MissingMetasParameter"
+	FwInvalidAppKey         = "AD.CheckSign.InvalidAppKey"
+	FwInvalidSignature      = "AD.CheckSign.InvalidSignature"
 	FwAclRoleNotAllowed     = "BIZ.ACL.RoleNotAllowed"
 )
 
