@@ -14,6 +14,7 @@ const (
 	EndpointValueExpress  = "BIZ.Endpoint.ValueExpression"
 
 	APIScheduledTaskNotAllowed = "AD.API.ScheduledTaskNotAllowed"
+	APIInvalidMethodName       = "AD.API.InvalidMethodName"
 	APINotFound                = "AD.API.NotFound"
 	APIStateDraft              = "AD.API.State.Draft"
 	APIStateOffline            = "AD.API.State.Offline"
@@ -40,6 +41,8 @@ const (
 	ScriptTimeout              = "BIZ.Script.Timeout"
 	ScriptNotSupported         = "AD.Script.NotSupported"
 	ScriptExecutorNotAvailable = "AD.Script.ExecutorNotAvailable"
+
+	SqlQueryFailed = "AD.SQL.QueryFailed"
 )
 
 // infrastructure
