@@ -5,12 +5,10 @@ package errcode
 // biz error = BIZ
 // operations = OPS
 
-// gateway
 const (
-	EndpointEnvExpress    = "BIZ.Endpoint.EnvExpression"
-	EndpointFilterExpress = "BIZ.Endpoint.FilterExpression"
-	EndpointValueExpress  = "BIZ.Endpoint.ValueExpression"
-
+	EndpointEnvExpress         = "AD.API.Endpoint.EnvExpression"
+	EndpointFilterExpress      = "AD.API.Endpoint.FilterExpression"
+	EndpointValueExpress       = "AD.API.Endpoint.ValueExpression"
 	APIScheduledTaskNotAllowed = "AD.API.ScheduledTaskNotAllowed"
 	APIInvalidMethodName       = "AD.API.InvalidMethodName"
 	APINotFound                = "AD.API.NotFound"
@@ -18,40 +16,31 @@ const (
 	APIStateOffline            = "AD.API.State.Offline"
 	APIStateRemoved            = "AD.API.State.Removed"
 	APIRequestIdUsed           = "AD.API.RequestIdUsed"
+	APIMissingMetasParameter   = "AD.API.MissingMetasParameter"
 	APIInvalidTimestamp        = "AD.API.InvalidTimestamp"
 	APIInvalidSignature        = "AD.API.InvalidSignature"
-	APIInvalidAppKey           = "AD.API.InvalidAppKey"
 	APIUnauthorized            = "EU.API.Unauthorized"
-)
 
-// firewall
-const (
-	FwMissingMetasParameter = "AD.CheckSign.MissingMetasParameter"
-	FwInvalidAppKey         = "AD.CheckSign.InvalidAppKey"
-	FwInvalidSignature      = "AD.CheckSign.InvalidSignature"
-	FwAclRoleNotAllowed     = "BIZ.ACL.RoleNotAllowed"
-)
+	APPInvalidAppKey       = "AD.APP.Invalid.AppKey"
+	APPInvalidSoftwareName = "AD.APP.Invalid.softwareName"
+	APPEmptyAppKey         = "AD.APP.Empty.AppKey"
+	APPEmptySoftwareName   = "AD.APP.Empty.SoftwareName"
 
-// core
-const (
-	ScriptParse                = "BIZ.Script.Parse"
-	ScriptExecution            = "BIZ.Script.Execution"
-	ScriptTimeout              = "BIZ.Script.Timeout"
+	SoftwarePrivilegeNotGranted = "AD.Software.PrivilegeNotGranted"
+
+	AclRoleNotAllowed = "AD.ACL.RoleNotAllowed"
+
+	ScriptParse                = "AD.Script.Parse"
+	ScriptExecution            = "AD.Script.Execution"
+	ScriptTimeout              = "AD.Script.Timeout"
 	ScriptNotSupported         = "AD.Script.NotSupported"
 	ScriptExecutorNotAvailable = "AD.Script.ExecutorNotAvailable"
 
-	SqlQueryFailed = "AD.SQL.QueryFailed"
-)
+	DatabaseQueryFailed = "AD.Database.QueryFailed"
 
-// infrastructure
-const (
-	DbConnect    = "OPS.DbConnect"
-	RedisConnect = "OPS.RedisConnect"
-	MqConnect    = "OPS.MqConnect"
-)
-
-// license
-const (
+	DbConnect         = "OPS.DbConnect"
+	RedisConnect      = "OPS.RedisConnect"
+	MqConnect         = "OPS.MqConnect"
 	LicenseExpired    = "OPS.LicenseExpired"
 	LicenseInvalid    = "OPS.LicenseInvalid"
 	LicenseRestricted = "OPS.LicenseRestricted"
