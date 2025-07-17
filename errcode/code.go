@@ -30,10 +30,10 @@ const (
 
 	AclRoleNotAllowed = "AD.ACL.RoleNotAllowed"
 
-	ScriptParse                = "AD.Script.ParseFailed"
-	ScriptExecution            = "AD.Script.ExecutionFailed"
-	ScriptTimeout              = "AD.Script.ExecutionTimeout"
-	ScriptNotSupported         = "AD.Script.LangNotSupported"
+	ScriptParseFailed          = "AD.Script.ParseFailed"
+	ScriptExecutionFailed      = "AD.Script.ExecutionFailed"
+	ScriptExecutionTimeout     = "AD.Script.ExecutionTimeout"
+	ScriptLangNotSupported     = "AD.Script.LangNotSupported"
 	ScriptExecutorNotAvailable = "AD.Script.ExecutorNotAvailable"
 
 	DatabaseQueryFailed = "AD.Database.QueryFailed"
