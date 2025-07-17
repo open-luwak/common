@@ -14,6 +14,7 @@ import (
 
 type Storage struct {
 	Env      map[string]any  `toml:"env,omitempty"`
+	Software []*Software     `toml:"software,omitempty"`
 	App      []*AppInstance  `toml:"app,omitempty"`
 	Endpoint []*EndpointInfo `toml:"endpoint,omitempty"`
 	API      []*ApiInfo      `toml:"api,omitempty"`
