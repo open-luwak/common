@@ -38,10 +38,10 @@ const (
 
 	DatabaseQueryFailed = "AD.Database.QueryFailed"
 
-	DbConnect         = "OPS.Database.ConnectFailed"
-	RedisConnect      = "OPS.Redis.ConnectFailed"
-	MqConnect         = "OPS.Mq.ConnectFailed"
-	LicenseExpired    = "OPS.License.Expired"
-	LicenseInvalid    = "OPS.License.Invalid"
-	LicenseRestricted = "OPS.License.Restricted"
+	DbConnectFailed    = "OPS.Database.ConnectFailed"
+	RedisConnectFailed = "OPS.Redis.ConnectFailed"
+	MqConnectFailed    = "OPS.Mq.ConnectFailed"
+	LicenseExpired     = "OPS.License.Expired"
+	LicenseInvalid     = "OPS.License.Invalid"
+	LicenseRestricted  = "OPS.License.Restricted"
 )
