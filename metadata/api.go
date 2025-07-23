@@ -1,12 +1,17 @@
 package metadata
 
 type ApiInfo struct {
-	Name                string          `toml:"name"`
-	Status              string          `toml:"status"`
-	AccessLevel         string          `toml:"access_level"`
-	ExecuteGlobalScript bool            `toml:"execute_global_script"`
-	Enabled             bool            `toml:"enabled"`
-	Scripts             []*ScriptSource `toml:"-"`
+	Name                string `toml:"name"`
+	Status              string `toml:"status"`
+	AccessLevel         string `toml:"access_level"`
+	ExecuteGlobalScript bool   `toml:"execute_global_script"`
+	Enabled             bool   `toml:"enabled"`
+
+	Checking []string `toml:"checking,omitempty"`
+
+	Validation map[string]any `toml:"validation,omitempty"`
+
+	Scripts []*ScriptSource `toml:"-"`
 }
 
 type ScriptSource struct {
