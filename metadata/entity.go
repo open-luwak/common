@@ -37,7 +37,7 @@ type RealColumn struct {
 	DataType     string `toml:"data_type"`
 	Nullable     bool   `toml:"nullable"`
 	HasDefault   bool   `toml:"has_default"`
-	DefaultValue string `toml:"default_value"`
+	DefaultValue any    `toml:"default_value"`
 	CheckRule    string `toml:"check_rule"`
 	Comment      string `toml:"comment,omitempty"`
 }
