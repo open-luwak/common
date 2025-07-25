@@ -1,7 +1,7 @@
 package metadata
 
 type TableInfo struct {
-	Name        string        `toml:"name"`
+	FullName    string        `toml:"full_name"`
 	IsView      bool          `toml:"is_view"`
 	PrimaryKey  string        `toml:"primary_key"`
 	UniqueKeys  [][]string    `toml:"unique_keys"`
@@ -10,7 +10,7 @@ type TableInfo struct {
 }
 
 type ViewLogicalKey struct {
-	Name       string     `toml:"name"`
+	FullName   string     `toml:"full_name"`
 	PrimaryKey string     `toml:"primary_key"`
 	UniqueKeys [][]string `toml:"unique_keys"`
 }
