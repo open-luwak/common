@@ -1,13 +1,18 @@
 package metadata
 
 type TableInfo struct {
-	Name       string     `toml:"name"`
-	IsView     bool       `toml:"is_view"`
-	PrimaryKey string     `toml:"primary_key"`
-	UniqueKeys [][]string `toml:"unique_keys"`
-	//NormalKeys  [][]string    `toml:"-"`
+	Name        string        `toml:"name"`
+	IsView      bool          `toml:"is_view"`
+	PrimaryKey  string        `toml:"primary_key"`
+	UniqueKeys  [][]string    `toml:"unique_keys"`
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
 	Columns     []*RealColumn `toml:"columns"`
+}
+
+type ViewLogicalKey struct {
+	Name       string     `toml:"name"`
+	PrimaryKey string     `toml:"primary_key"`
+	UniqueKeys [][]string `toml:"unique_keys"`
 }
 
 type ForeignKey struct {
