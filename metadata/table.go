@@ -1,16 +1,24 @@
 package metadata
 
 type TableInfo struct {
-	FullName    string        `toml:"full_name"`
-	IsView      bool          `toml:"is_view"`
+	DbName     string `toml:"db_name"`
+	SchemaName string `toml:"schema_name"`
+	TableName  string `toml:"table_name"`
+
+	IsView bool `toml:"is_view"`
+
+	Columns []*RealColumn `toml:"columns"`
+
 	PrimaryKey  string        `toml:"primary_key"`
 	UniqueKeys  [][]string    `toml:"unique_keys"`
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
-	Columns     []*RealColumn `toml:"columns"`
 }
 
 type ViewLogicalKey struct {
-	FullName   string     `toml:"full_name"`
+	DbName     string `toml:"db_name"`
+	SchemaName string `toml:"schema_name"`
+	TableName  string `toml:"table_name"`
+
 	PrimaryKey string     `toml:"primary_key"`
 	UniqueKeys [][]string `toml:"unique_keys"`
 }
