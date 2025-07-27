@@ -1,6 +1,10 @@
 package metadata
 
-type EntityInfo struct {
+type EntityConfig struct {
+	Entities []*Entity `toml:"entity,omitempty"`
+}
+
+type Entity struct {
 	Name              string        `toml:"name"`
 	LogicalDbName     string        `toml:"logical_db_name"`
 	RealDbName        string        `toml:"real_db_name"`

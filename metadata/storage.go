@@ -21,10 +21,10 @@ type Storage struct {
 	API      []*Api         `toml:"api,omitempty"`
 	Crontab  []*Job         `toml:"crontab,omitempty"`
 
-	Db     []*DBMapping  `toml:"db,omitempty"`
-	Table  []*Table      `toml:"table,omitempty"`
-	View   []*Table      `toml:"view,omitempty"`
-	Entity []*EntityInfo `toml:"entity,omitempty"`
+	Db     []*DBMapping `toml:"db,omitempty"`
+	Table  []*Table     `toml:"table,omitempty"`
+	View   []*Table     `toml:"view,omitempty"`
+	Entity []*Entity    `toml:"entity,omitempty"`
 }
 
 // Load metadata information from local files, not resident in memory
