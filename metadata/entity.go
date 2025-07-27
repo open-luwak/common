@@ -12,12 +12,12 @@ type Entity struct {
 	RealSchemaName    string        `toml:"real_schema_name"`
 	LogicalTableName  string        `toml:"logical_table_name"`
 	RealTableName     string        `toml:"real_table_name"`
-	IsView            bool          `toml:"is_view"`
-	PrimaryKey        string        `toml:"primary_key"`
-	UniqueKeys        [][]string    `toml:"unique_keys"`
+	IsView            bool          `toml:"is_view,omitempty"`
+	PrimaryKey        string        `toml:"primary_key,omitempty"`
+	UniqueKeys        [][]string    `toml:"unique_keys,omitempty"`
 	NormalKeys        [][]string    `toml:"-"`
-	ForeignKeys       []*ForeignKey `toml:"foreign_keys"`
-	Columns           []*Column     `toml:"columns"`
+	ForeignKeys       []*ForeignKey `toml:"foreign_keys,omitempty"`
+	Columns           []*Column     `toml:"columns,omitempty"`
 
 	HasBeenDeleted bool `toml:"-"`
 }
