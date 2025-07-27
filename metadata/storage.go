@@ -21,9 +21,9 @@ type Storage struct {
 	API      []*Api         `toml:"api,omitempty"`
 	Crontab  []*Job         `toml:"crontab,omitempty"`
 
-	Db     []*DB         `toml:"db,omitempty"`
-	Table  []*TableInfo  `toml:"table,omitempty"`
-	View   []*TableInfo  `toml:"view,omitempty"`
+	Db     []*DBMapping  `toml:"db,omitempty"`
+	Table  []*Table      `toml:"table,omitempty"`
+	View   []*Table      `toml:"view,omitempty"`
 	Entity []*EntityInfo `toml:"entity,omitempty"`
 }
 

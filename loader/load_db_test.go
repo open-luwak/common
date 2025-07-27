@@ -7,16 +7,14 @@ import (
 )
 
 func TestLoadDb(t *testing.T) {
-	dir := "../build/metadata/db"
+	dir := "../build/generated/db"
 	db, err := LoadDb(dir)
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	data, err := toml.Marshal(db)
-	if err != nil {
-		t.Fatal(err)
+	data, er := toml.Marshal(db)
+	if er != nil {
+		t.Fatal(er)
 	}
-
 	t.Log(string(data))
 }

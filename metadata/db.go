@@ -1,16 +1,12 @@
 package metadata
 
-type DbConfig struct {
+type DBConfig struct {
 	DBs []*DB `toml:"db,omitempty"`
 }
 
 type DB struct {
-	Type    string `toml:"type"`
-	Name    string `toml:"name"`
-	Version string `toml:"version"`
+	Name string `toml:"name"`
 
-	//Deprecated
-	LogicalName string `toml:"logical_name,omitempty"`
-	//Deprecated
-	RealName string `toml:"real_name,omitempty"`
+	Type    string `toml:"type"`
+	Version string `toml:"version"`
 }

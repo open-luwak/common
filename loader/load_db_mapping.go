@@ -4,8 +4,8 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDb(dir string) (*metadata.DBConfig, error) {
-	var config = &metadata.DBConfig{}
+func LoadDbMapping(dir string) (*metadata.DBMappingConfig, error) {
+	var config = &metadata.DBMappingConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
 	if err != nil {

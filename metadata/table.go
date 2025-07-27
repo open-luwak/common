@@ -1,17 +1,35 @@
 package metadata
 
-type TableInfo struct {
+type TableConfig struct {
+	Tables []*Table `toml:"table,omitempty"`
+}
+
+type ViewConfig struct {
+	Views []*Table `toml:"view,omitempty"`
+}
+
+type Table struct {
 	DbName     string `toml:"db_name"`
 	SchemaName string `toml:"schema_name"`
 	TableName  string `toml:"table_name"`
 
 	IsView bool `toml:"is_view"`
 
-	Columns []*RealColumn `toml:"columns"`
+	Columns []*Column `toml:"columns"`
 
 	PrimaryKey  string        `toml:"primary_key"`
 	UniqueKeys  [][]string    `toml:"unique_keys"`
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
+}
+
+type Column struct {
+	Name         string `toml:"name"`
+	DataType     string `toml:"data_type"`
+	Nullable     bool   `toml:"nullable"`
+	HasDefault   bool   `toml:"has_default"`
+	DefaultValue any    `toml:"default_value,omitempty"`
+	CheckRule    string `toml:"check_rule,omitempty"`
+	Comment      string `toml:"comment,omitempty"`
 }
 
 type ViewLogicalKey struct {
@@ -35,14 +53,4 @@ type FKColumn struct {
 	ReferencedTableSchema string `toml:"referenced_table_schema"`
 	ReferencedTableName   string `toml:"referenced_table_name"`
 	ReferencedColumnName  string `toml:"referenced_column_name"`
-}
-
-type RealColumn struct {
-	Name         string `toml:"name"`
-	DataType     string `toml:"data_type"`
-	Nullable     bool   `toml:"nullable"`
-	HasDefault   bool   `toml:"has_default"`
-	DefaultValue any    `toml:"default_value,omitempty"`
-	CheckRule    string `toml:"check_rule,omitempty"`
-	Comment      string `toml:"comment,omitempty"`
 }

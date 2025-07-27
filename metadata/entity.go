@@ -13,7 +13,7 @@ type EntityInfo struct {
 	UniqueKeys        [][]string    `toml:"unique_keys"`
 	NormalKeys        [][]string    `toml:"-"`
 	ForeignKeys       []*ForeignKey `toml:"foreign_keys"`
-	Columns           []*RealColumn `toml:"columns"`
+	Columns           []*Column     `toml:"columns"`
 
 	HasBeenDeleted bool `toml:"-"`
 }
