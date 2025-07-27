@@ -10,7 +10,4 @@ type DBMapping struct {
 
 	Type    string `toml:"type"`
 	Version string `toml:"version"`
-
-	//Deprecated
-	Name string `toml:"name"`
 }

@@ -4,7 +4,7 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDb(dir string) (*metadata.DBConfig, error) {
+func LoadDb(dir string) (map[string]*metadata.DB, error) {
 	var config = &metadata.DBConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
@@ -12,5 +12,10 @@ func LoadDb(dir string) (*metadata.DBConfig, error) {
 		return nil, err
 	}
 
-	return config, nil
+	dbMap := make(map[string]*metadata.DB, len(config.DBs))
+	for _, v := range config.DBs {
+		dbMap[v.Name] = v
+	}
+
+	return dbMap, nil
 }

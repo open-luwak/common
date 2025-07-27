@@ -8,13 +8,14 @@ import (
 
 func TestLoadDb(t *testing.T) {
 	dir := "../build/generated/db"
-	db, err := LoadDb(dir)
+	dbMap, err := LoadDb(dir)
 	if err != nil {
 		t.Fatal(err)
 	}
-	data, er := toml.Marshal(db)
-	if er != nil {
-		t.Fatal(er)
+
+	data, err := toml.Marshal(dbMap)
+	if err != nil {
+		t.Fatal(err)
 	}
 	t.Log(string(data))
 }

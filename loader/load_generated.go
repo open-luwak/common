@@ -1,0 +1,53 @@
+package loader
+
+import (
+	"fmt"
+
+	"github.com/open-luwak/common/metadata"
+)
+
+type GeneratedConfig struct {
+	DBMap map[string]*metadata.DB
+	TBMap map[string]*metadata.Table
+}
+
+func LoadGenerated(dir string) (*GeneratedConfig, error) {
+	var config = &metadata.GeneratedDbTable{}
+
+	err := UnmarshalTomlFiles(dir, config)
+	if err != nil {
+		return nil, err
+	}
+
+	dbMap := make(map[string]*metadata.DB, len(config.DBs))
+	for _, v := range config.DBs {
+		dbMap[v.Name] = v
+	}
+
+	tbMap := make(map[string]*metadata.Table, len(config.Tables)+len(config.Views))
+	for _, table := range config.Tables {
+		key := genMapKey(table.DbType, table)
+		tbMap[key] = table
+	}
+	for _, view := range config.Views {
+		key := genMapKey(view.DbType, view)
+		tbMap[key] = view
+	}
+
+	dbTbMap := &GeneratedConfig{
+		DBMap: dbMap,
+		TBMap: tbMap,
+	}
+	return dbTbMap, nil
+}
+
+func genMapKey(dbType string, v *metadata.Table) string {
+	var key string
+	switch dbType {
+	case "postgresql", "oracle", "mssql":
+		key = fmt.Sprintf("%s.%s.%s", v.DbName, v.SchemaName, v.TableName)
+	default:
+		key = fmt.Sprintf("%s.%s", v.DbName, v.TableName)
+	}
+	return key
+}

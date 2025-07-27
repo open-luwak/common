@@ -6,7 +6,7 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadEntity(dir string, dbMap map[string]*metadata.DB, tbMap map[string]*metadata.Table) (*metadata.EntityConfig, error) {
+func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
 	var errs []error
 	var config = &metadata.EntityConfig{}
 
@@ -15,9 +15,14 @@ func LoadEntity(dir string, dbMap map[string]*metadata.DB, tbMap map[string]*met
 		return nil, err
 	}
 
+	generated, err := LoadGenerated(genDir)
+	if err != nil {
+		return nil, err
+	}
+
 	// set columns, pk, uk, fk, validator
 	for _, v := range config.Entities {
-		vv, ok := dbMap[v.RealDbName]
+		vv, ok := generated.DBMap[v.RealDbName]
 		if !ok {
 			errs = append(errs, fmt.Errorf("database %s not generated", v.RealDbName))
 			continue
@@ -29,7 +34,7 @@ func LoadEntity(dir string, dbMap map[string]*metadata.DB, tbMap map[string]*met
 		default:
 			key = fmt.Sprintf("%s.%s", v.RealDbName, v.RealTableName)
 		}
-		vvv, ok := tbMap[key]
+		vvv, ok := generated.TBMap[key]
 		if !ok {
 			if v.IsView {
 				errs = append(errs, fmt.Errorf("view %s not generated", key))
