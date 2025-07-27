@@ -1,6 +1,10 @@
 package metadata
 
-type ApiInfo struct {
+type ApiConfig struct {
+	Apis []*Api `toml:"api,omitempty"`
+}
+
+type Api struct {
 	Name                string `toml:"name"`
 	Status              string `toml:"status"`
 	AccessLevel         string `toml:"access_level"`
@@ -12,6 +16,10 @@ type ApiInfo struct {
 	Validation map[string]any `toml:"validation,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
+}
+
+type ScriptConfig struct {
+	Scripts []*ScriptSource `toml:"script,omitempty"`
 }
 
 type ScriptSource struct {

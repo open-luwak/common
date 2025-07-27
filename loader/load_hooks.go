@@ -1,27 +1,27 @@
-package metadata
+package loader
 
 import (
-	"path/filepath"
 	"sort"
+
+	"github.com/open-luwak/common/metadata"
 )
 
-func LoadHooks(dir string) (*HooksConfig, error) {
-	baseDir := filepath.Join(dir, "hooks")
-	list, err := loadScripts(baseDir)
+func LoadHooks(dir string) (*metadata.HooksConfig, error) {
+	list, err := LoadScripts(dir)
 	if err != nil {
 		return nil, err
 	}
 
-	var before, afterSuccess, afterError, finally []*ScriptSource
-	for _, v := range list {
+	var before, afterSuccess, afterError, finally []*metadata.ScriptSource
+	for _, v := range list.Scripts {
 		switch v.Type {
-		case BeforeHookType:
+		case metadata.BeforeHookType:
 			before = append(before, v)
-		case AfterSuccessHookType:
+		case metadata.AfterSuccessHookType:
 			afterSuccess = append(afterSuccess, v)
-		case AfterErrorHookType:
+		case metadata.AfterErrorHookType:
 			afterError = append(afterError, v)
-		case FinallyHookType:
+		case metadata.FinallyHookType:
 			finally = append(finally, v)
 		}
 	}
@@ -38,7 +38,7 @@ func LoadHooks(dir string) (*HooksConfig, error) {
 		return finally[i].Priority < finally[j].Priority
 	})
 
-	hooksInfo := &HooksConfig{
+	hooksInfo := &metadata.HooksConfig{
 		Before:       before,
 		AfterSuccess: afterSuccess,
 		AfterError:   afterError,

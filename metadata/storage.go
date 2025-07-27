@@ -15,13 +15,13 @@ import (
 type Storage struct {
 	Env map[string]any `toml:"env,omitempty"`
 
-	Software []*Software     `toml:"software,omitempty"`
-	App      []*AppInstance  `toml:"app,omitempty"`
-	Endpoint []*EndpointInfo `toml:"endpoint,omitempty"`
-	API      []*ApiInfo      `toml:"api,omitempty"`
-	Crontab  []*CrontabInfo  `toml:"crontab,omitempty"`
+	Software []*Software    `toml:"software,omitempty"`
+	App      []*AppInstance `toml:"app,omitempty"`
+	Endpoint []*Endpoint    `toml:"endpoint,omitempty"`
+	API      []*Api         `toml:"api,omitempty"`
+	Crontab  []*Job         `toml:"crontab,omitempty"`
 
-	Db     []*DbInfo     `toml:"db,omitempty"`
+	Db     []*DB         `toml:"db,omitempty"`
 	Table  []*TableInfo  `toml:"table,omitempty"`
 	View   []*TableInfo  `toml:"view,omitempty"`
 	Entity []*EntityInfo `toml:"entity,omitempty"`

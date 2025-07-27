@@ -1,6 +1,10 @@
 package metadata
 
-type DbInfo struct {
+type DbConfig struct {
+	DBs []*DB `toml:"db,omitempty"`
+}
+
+type DB struct {
 	Type    string `toml:"type"`
 	Name    string `toml:"name"`
 	Version string `toml:"version"`

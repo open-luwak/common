@@ -1,5 +1,9 @@
 package metadata
 
+type AppConfig struct {
+	Apps []*AppInstance `toml:"app,omitempty"`
+}
+
 type AppInstance struct {
 	Software string         `toml:"software"`
 	Key      string         `toml:"key"`
