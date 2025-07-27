@@ -9,6 +9,7 @@ type ViewConfig struct {
 }
 
 type Table struct {
+	DbType     string `toml:"db_type"`
 	DbName     string `toml:"db_name"`
 	SchemaName string `toml:"schema_name"`
 	TableName  string `toml:"table_name"`
