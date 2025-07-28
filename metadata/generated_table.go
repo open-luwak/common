@@ -26,6 +26,11 @@ type Table struct {
 
 	Validation map[string]any `toml:"validation,omitempty"`
 	Checking   []CheckItem    `toml:"checking,omitempty"`
+
+	// Deprecated
+	Assignment map[string]string `toml:"assignment,omitempty"`
+	// Deprecated
+	Directive map[string]string `toml:"directive,omitempty"`
 }
 
 type Column struct {
