@@ -21,7 +21,7 @@ type Storage struct {
 	AppInstances       []*AppInstance `toml:"app,omitempty"`
 	Endpoints          []*Endpoint    `toml:"endpoint,omitempty"`
 	APIs               []*Api         `toml:"api,omitempty"`
-	CronJobs           []*Job         `toml:"crontab,omitempty"`
+	CronJobs           []*CronJob     `toml:"crontab,omitempty"`
 
 	DbMappings []*DBMapping `toml:"db,omitempty"`
 	Entities   []*Entity    `toml:"entity,omitempty"`
