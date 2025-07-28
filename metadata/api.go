@@ -11,9 +11,8 @@ type Api struct {
 	ExecuteGlobalScript bool   `toml:"execute_global_script"`
 	Enabled             bool   `toml:"enabled"`
 
-	Checking []string `toml:"checking,omitempty"`
-
 	Validation map[string]any `toml:"validation,omitempty"`
+	Checking   []CheckItem    `toml:"checking,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }

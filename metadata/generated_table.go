@@ -18,9 +18,13 @@ type Table struct {
 
 	Columns []*Column `toml:"columns"`
 
-	PrimaryKey  string        `toml:"primary_key"`
-	UniqueKeys  [][]string    `toml:"unique_keys"`
+	PrimaryKey string     `toml:"primary_key"`
+	UniqueKeys [][]string `toml:"unique_keys"`
+	//NormalKeys [][]string `toml:"-"`
+
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
+
+	Validation map[string]any `toml:"validation,omitempty"`
 }
 
 type Column struct {
