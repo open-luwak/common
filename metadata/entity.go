@@ -24,5 +24,5 @@ type Entity struct {
 	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 
 	Validation map[string]any `toml:"validation,omitempty"`
-	Checking   []CheckItem    `toml:"checking,omitempty"`
+	Checking   []*CheckItem   `toml:"checking,omitempty"`
 }

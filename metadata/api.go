@@ -12,7 +12,7 @@ type Api struct {
 	Enabled             bool   `toml:"enabled"`
 
 	Validation map[string]any `toml:"validation,omitempty"`
-	Checking   []CheckItem    `toml:"checking,omitempty"`
+	Checking   []*CheckItem   `toml:"checking,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }
