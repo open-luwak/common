@@ -4,7 +4,7 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDbNameMapping(dir string) (*metadata.DbNameMappingConfig, error) {
+func LoadDbNameMapping(dir string) (map[string]string, error) {
 	var config = &metadata.DbNameMappingConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
@@ -17,7 +17,7 @@ func LoadDbNameMapping(dir string) (*metadata.DbNameMappingConfig, error) {
 		mapping[v.DevName] = v.DeployName
 	}
 
-	return config, nil
+	return mapping, nil
 }
 
 func ResolveDbMapping(config *metadata.DBMappingConfig, naming map[string]string) error {
