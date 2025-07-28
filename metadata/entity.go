@@ -25,4 +25,7 @@ type Entity struct {
 
 	Validation map[string]any `toml:"validation,omitempty"`
 	Checking   []*CheckItem   `toml:"checking,omitempty"`
+
+	Assignment map[string]string `toml:"assignment,omitempty"`
+	Directive  map[string]string `toml:"directive,omitempty"`
 }
