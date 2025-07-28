@@ -19,6 +19,7 @@ type Entity struct {
 
 	PrimaryKey string     `toml:"primary_key,omitempty"`
 	UniqueKeys [][]string `toml:"unique_keys,omitempty"`
+	NormalKeys [][]string `toml:"normal_keys,omitempty"`
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 

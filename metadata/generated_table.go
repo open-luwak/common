@@ -20,7 +20,7 @@ type Table struct {
 
 	PrimaryKey string     `toml:"primary_key"`
 	UniqueKeys [][]string `toml:"unique_keys"`
-	//NormalKeys [][]string `toml:"-"`
+	NormalKeys [][]string `toml:"normal_keys"`
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
 
