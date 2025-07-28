@@ -58,6 +58,9 @@ func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
 		if len(v.Validation) == 0 {
 			v.Validation = vvv.Validation
 		}
+		if len(v.Checking) == 0 {
+			v.Checking = vvv.Checking
+		}
 	}
 
 	return config, nil

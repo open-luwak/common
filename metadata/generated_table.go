@@ -25,6 +25,7 @@ type Table struct {
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
 
 	Validation map[string]any `toml:"validation,omitempty"`
+	Checking   []CheckItem    `toml:"checking,omitempty"`
 }
 
 type Column struct {
