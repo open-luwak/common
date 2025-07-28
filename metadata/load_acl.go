@@ -6,6 +6,8 @@ import (
 	"github.com/pelletier/go-toml/v2"
 )
 
+// LoadAcl
+// Deprecated
 func LoadAcl(dir string) (*AclConfig, error) {
 	baseDir := filepath.Join(dir, "acl")
 	exists, err := dirExists(baseDir)

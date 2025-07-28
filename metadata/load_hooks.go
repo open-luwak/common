@@ -5,6 +5,8 @@ import (
 	"sort"
 )
 
+// LoadHooks
+// Deprecated
 func LoadHooks(dir string) (*HooksConfig, error) {
 	baseDir := filepath.Join(dir, "hooks")
 	list, err := loadScripts(baseDir)

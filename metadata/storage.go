@@ -12,6 +12,8 @@ import (
 	"github.com/spf13/cast"
 )
 
+// Storage
+// Deprecated
 type Storage struct {
 	Env map[string]any `toml:"env,omitempty"`
 
@@ -28,6 +30,7 @@ type Storage struct {
 // Load metadata information from local files, not resident in memory
 //
 // The kernel or plugin usually needs to be organized into its own data structure and resident in memory
+// Deprecated
 func Load(dir string, subDirs []string) (*Storage, error) {
 	localStorage, err := loadMetadata(dir, subDirs)
 	if err != nil {
