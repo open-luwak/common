@@ -6,7 +6,7 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDbMapping(dir string, generatedDb map[string]*metadata.DB) (*metadata.DBMappingConfig, error) {
+func LoadDbMapping(dir string, genDir string) (*metadata.DBMappingConfig, error) {
 	var errs []error
 	var config = &metadata.DBMappingConfig{}
 
@@ -15,9 +15,14 @@ func LoadDbMapping(dir string, generatedDb map[string]*metadata.DB) (*metadata.D
 		return nil, err
 	}
 
+	generated, err := LoadGenerated(genDir)
+	if err != nil {
+		return nil, err
+	}
+
 	// set database version
 	for _, v := range config.DBMaps {
-		vv, ok := generatedDb[v.RealName]
+		vv, ok := generated.DBMap[v.RealName]
 		if !ok {
 			errs = append(errs, fmt.Errorf("database %s not generated", v.RealName))
 			continue

@@ -7,14 +7,9 @@ import (
 )
 
 func TestLoadDbMapping(t *testing.T) {
-	dir1 := "../build/generated/db"
-	dbMap, err := LoadDb(dir1)
-	if err != nil {
-		t.Fatal(err)
-	}
-
+	genDir := "../build/generated/db"
 	dir := "../build/metadata/db"
-	db, err := LoadDbMapping(dir, dbMap)
+	db, err := LoadDbMapping(dir, genDir)
 	if err != nil {
 		t.Fatal(err)
 	}
