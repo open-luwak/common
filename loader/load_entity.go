@@ -44,9 +44,20 @@ func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
 			continue
 		}
 		v.Columns = vvv.Columns
-		v.PrimaryKey = vvv.PrimaryKey
-		v.UniqueKeys = vvv.UniqueKeys
+
+		// view: use custom primary and unique keys
+		// table: use physical table defined primary and unique keys
+		if !v.IsView {
+			v.PrimaryKey = vvv.PrimaryKey
+			v.UniqueKeys = vvv.UniqueKeys
+		}
+
 		v.ForeignKeys = vvv.ForeignKeys
+
+		// If no validation rules are defined, then use automatically generated validation rules.
+		if len(v.Validation) == 0 {
+			v.Validation = vvv.Validation
+		}
 	}
 
 	return config, nil
