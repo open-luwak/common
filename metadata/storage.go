@@ -15,16 +15,14 @@ import (
 type Storage struct {
 	Env map[string]any `toml:"env,omitempty"`
 
-	Software []*Software    `toml:"software,omitempty"`
-	App      []*AppInstance `toml:"app,omitempty"`
-	Endpoint []*Endpoint    `toml:"endpoint,omitempty"`
-	API      []*Api         `toml:"api,omitempty"`
-	Crontab  []*Job         `toml:"crontab,omitempty"`
+	SoftwareCollection []*Software    `toml:"software,omitempty"`
+	AppInstances       []*AppInstance `toml:"app,omitempty"`
+	Endpoints          []*Endpoint    `toml:"endpoint,omitempty"`
+	APIs               []*Api         `toml:"api,omitempty"`
+	CronJobs           []*Job         `toml:"crontab,omitempty"`
 
-	Db     []*DBMapping `toml:"db,omitempty"`
-	Table  []*Table     `toml:"table,omitempty"`
-	View   []*Table     `toml:"view,omitempty"`
-	Entity []*Entity    `toml:"entity,omitempty"`
+	DbMappings []*DBMapping `toml:"db,omitempty"`
+	Entities   []*Entity    `toml:"entity,omitempty"`
 }
 
 // Load metadata information from local files, not resident in memory
@@ -36,7 +34,7 @@ func Load(dir string, subDirs []string) (*Storage, error) {
 		return nil, err
 	}
 	// load scripts
-	for _, v := range localStorage.API {
+	for _, v := range localStorage.APIs {
 		part := strings.Split(v.Name, ".")
 		if len(part) != 4 {
 			continue

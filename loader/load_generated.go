@@ -6,12 +6,7 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-type GeneratedCache struct {
-	DBMap map[string]*metadata.DB
-	TBMap map[string]*metadata.Table
-}
-
-func LoadGenerated(dir string) (*GeneratedCache, error) {
+func LoadGenerated(dir string) (*metadata.GeneratedCache, error) {
 	var config = &metadata.GeneratedConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
@@ -34,7 +29,7 @@ func LoadGenerated(dir string) (*GeneratedCache, error) {
 		tbMap[key] = view
 	}
 
-	dbTbMap := &GeneratedCache{
+	dbTbMap := &metadata.GeneratedCache{
 		DBMap: dbMap,
 		TBMap: tbMap,
 	}
