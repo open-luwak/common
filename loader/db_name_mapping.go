@@ -15,6 +15,10 @@ func LoadDbNameMapping(root string) (map[string]string, error) {
 		return nil, err
 	}
 
+	if config == nil {
+		return nil, nil
+	}
+
 	mapping := make(map[string]string)
 	for _, v := range config.DbNameMapping {
 		mapping[v.DevName] = v.DeployName
