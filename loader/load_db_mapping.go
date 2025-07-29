@@ -1,13 +1,13 @@
 package loader
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/open-luwak/common/metadata"
 )
 
 func LoadDbMapping(dir string, genDir string) (*metadata.DBMappingConfig, error) {
-	var errs []error
 	var config = &metadata.DBMappingConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
@@ -20,6 +20,7 @@ func LoadDbMapping(dir string, genDir string) (*metadata.DBMappingConfig, error)
 		return nil, err
 	}
 
+	var errs []error
 	// set database version
 	for _, v := range config.DBMaps {
 		vv, ok := generated.DBMap[v.RealName]
@@ -31,5 +32,5 @@ func LoadDbMapping(dir string, genDir string) (*metadata.DBMappingConfig, error)
 		v.Version = vv.Version
 	}
 
-	return config, nil
+	return config, errors.Join(errs...)
 }

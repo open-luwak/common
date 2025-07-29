@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadDbMapping(t *testing.T) {
-	genDir := "../build/generated/db"
-	dir := "../build/metadata/db"
+	dir := "../build/project/meta"
+	genDir := "../build/project/generated"
 	db, err := LoadDbMapping(dir, genDir)
 	if err != nil {
 		t.Fatal(err)

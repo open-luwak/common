@@ -1,13 +1,13 @@
 package loader
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/open-luwak/common/metadata"
 )
 
 func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
-	var errs []error
 	var config = &metadata.EntityConfig{}
 
 	err := UnmarshalTomlFiles(dir, config)
@@ -20,6 +20,7 @@ func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
 		return nil, err
 	}
 
+	var errs []error
 	// set columns, pk, uk, fk, validator
 	for _, v := range config.Entities {
 		vv, ok := generated.DBMap[v.RealDbName]
@@ -63,5 +64,5 @@ func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
 		}
 	}
 
-	return config, nil
+	return config, errors.Join(errs...)
 }

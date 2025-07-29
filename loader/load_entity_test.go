@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadEntity(t *testing.T) {
-	genDir := "../build/generated"
-	dir := "../build/metadata/db"
+	dir := "../build/project/meta"
+	genDir := "../build/project/generated"
 
 	entity, err := LoadEntity(dir, genDir)
 	if err != nil {
