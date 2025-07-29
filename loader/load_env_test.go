@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadEnv(t *testing.T) {
-	dir := "../build/metadata/env"
-	env, err := LoadEnv(dir)
+	root := "../build/project"
+	env, err := LoadEnv(root)
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadSoftware(t *testing.T) {
-	dir := "../build/metadata/software"
-	software, err := LoadSoftware(dir)
+	root := "../build/project"
+	software, err := LoadSoftware(root)
 	if err != nil {
 		t.Fatal(err)
 	}

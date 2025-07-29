@@ -1,12 +1,15 @@
 package loader
 
 import (
+	"path/filepath"
+
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDbNameMapping(dir string) (map[string]string, error) {
+func LoadDbNameMapping(root string) (map[string]string, error) {
 	var config = &metadata.DbNameMappingConfig{}
 
+	dir := filepath.Join(root, defaultDeploymentDir)
 	err := UnmarshalTomlFiles(dir, config)
 	if err != nil {
 		return nil, err

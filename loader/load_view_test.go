@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadView(t *testing.T) {
-	dir := "../build/generated/view"
-	view, err := LoadView(dir)
+	root := "../build/project"
+	view, err := LoadView(root)
 	if err != nil {
 		t.Fatal(err)
 	}

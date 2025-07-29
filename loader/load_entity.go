@@ -3,18 +3,21 @@ package loader
 import (
 	"errors"
 	"fmt"
+	"path/filepath"
 
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadEntity(dir string, genDir string) (*metadata.EntityConfig, error) {
+func LoadEntity(root string) (*metadata.EntityConfig, error) {
 	var config = &metadata.EntityConfig{}
 
+	dir := filepath.Join(root, defaultEntityMappingDir)
 	err := UnmarshalTomlFiles(dir, config)
 	if err != nil {
 		return nil, err
 	}
 
+	genDir := filepath.Join(root, defaultGeneratedDir)
 	generated, err := LoadGenerated(genDir)
 	if err != nil {
 		return nil, err

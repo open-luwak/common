@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadDb(t *testing.T) {
-	dir := "../build/generated/db"
-	dbMap, err := LoadDb(dir)
+	root := "../build/project"
+	dbMap, err := LoadDb(root)
 	if err != nil {
 		t.Fatal(err)
 	}

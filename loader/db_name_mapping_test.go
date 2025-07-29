@@ -6,8 +6,8 @@ import (
 )
 
 func TestLoadDbNameMapping(t *testing.T) {
-	dir := "../build/project/deployment"
-	dbNameMapping, err := LoadDbNameMapping(dir)
+	root := "../build/project"
+	dbNameMapping, err := LoadDbNameMapping(root)
 	if err != nil {
 		t.Fatal(err)
 	}

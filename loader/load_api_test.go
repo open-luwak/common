@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadApi(t *testing.T) {
-	dir := "../build/metadata/api"
-	api, err := LoadApi(dir)
+	root := "../build/project"
+	api, err := LoadApi(root)
 	if err != nil {
 		t.Fatal(err)
 	}

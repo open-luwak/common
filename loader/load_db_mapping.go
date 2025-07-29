@@ -3,18 +3,21 @@ package loader
 import (
 	"errors"
 	"fmt"
+	"path/filepath"
 
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadDbMapping(dir string, genDir string) (*metadata.DBMappingConfig, error) {
+func LoadDbMapping(root string) (*metadata.DBMappingConfig, error) {
 	var config = &metadata.DBMappingConfig{}
 
+	dir := filepath.Join(root, defaultDbMappingDir)
 	err := UnmarshalTomlFiles(dir, config)
 	if err != nil {
 		return nil, err
 	}
 
+	genDir := filepath.Join(root, defaultGeneratedDir)
 	generated, err := LoadGenerated(genDir)
 	if err != nil {
 		return nil, err

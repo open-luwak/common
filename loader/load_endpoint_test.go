@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadEndpoint(t *testing.T) {
-	dir := "../build/metadata/endpoint"
-	endpoint, err := LoadEndpoint(dir)
+	root := "../build/project"
+	endpoint, err := LoadEndpoint(root)
 	if err != nil {
 		t.Fatal(err)
 	}

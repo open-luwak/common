@@ -1,12 +1,14 @@
 package loader
 
 import (
+	"path/filepath"
 	"sort"
 
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadHooks(dir string) (*metadata.HooksConfig, error) {
+func LoadHooks(root string) (*metadata.HooksConfig, error) {
+	dir := filepath.Join(root, defaultHooksDir)
 	list, err := LoadScripts(dir)
 	if err != nil {
 		return nil, err

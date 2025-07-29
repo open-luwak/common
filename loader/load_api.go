@@ -3,13 +3,15 @@ package loader
 import (
 	"fmt"
 	"log/slog"
+	"path/filepath"
 
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadApi(dir string) (*metadata.ApiConfig, error) {
+func LoadApi(root string) (*metadata.ApiConfig, error) {
 	var config = &metadata.ApiConfig{}
 
+	dir := filepath.Join(root, defaultApiSrcDir)
 	err := UnmarshalTomlFiles(dir, config)
 	if err != nil {
 		return nil, err

@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadCrontab(t *testing.T) {
-	dir := "../build/metadata/crontab"
-	crontab, err := LoadCrontab(dir)
+	root := "../build/project"
+	crontab, err := LoadCrontab(root)
 	if err != nil {
 		t.Fatal(err)
 	}

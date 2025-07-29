@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadAcl(t *testing.T) {
-	dir := "../build/metadata/acl"
-	acl, err := LoadAcl(dir)
+	root := "../build/project"
+	acl, err := LoadAcl(root)
 	if err != nil {
 		t.Fatal(err)
 	}

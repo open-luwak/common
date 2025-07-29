@@ -6,10 +6,10 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-func LoadGenerated(dir string) (*metadata.GeneratedCache, error) {
+func LoadGenerated(root string) (*metadata.GeneratedCache, error) {
 	var config = &metadata.GeneratedConfig{}
 
-	err := UnmarshalTomlFiles(dir, config)
+	err := UnmarshalTomlFiles(root, config)
 	if err != nil {
 		return nil, err
 	}

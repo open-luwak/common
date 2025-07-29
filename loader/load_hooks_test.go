@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadHooks(t *testing.T) {
-	dir := "../build/metadata/hooks"
-	hooks, err := LoadHooks(dir)
+	root := "../build/project"
+	hooks, err := LoadHooks(root)
 	if err != nil {
 		t.Fatal(err)
 	}

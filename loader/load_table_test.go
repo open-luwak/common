@@ -7,8 +7,8 @@ import (
 )
 
 func TestLoadTable(t *testing.T) {
-	dir := "../build/generated/table"
-	table, err := LoadTable(dir)
+	root := "../build/project"
+	table, err := LoadTable(root)
 	if err != nil {
 		t.Fatal(err)
 	}
