@@ -1,6 +1,11 @@
 package loader
 
 const (
+	DefaultProjDir = "project"
+	DefaultDevDir  = "dev"
+)
+
+const (
 	defaultAclDir      = "gateway/acl"
 	defaultAppDir      = "gateway/app"
 	defaultEndpointDir = "gateway/endpoint"
