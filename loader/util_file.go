@@ -34,6 +34,9 @@ func validateDir(path string) error {
 func UnmarshalTomlFiles(dir string, v any) error {
 	err := validateDir(dir)
 	if err != nil {
+		if errors.Is(err, ErrDirNotFound) {
+			return nil
+		}
 		return err
 	}
 
