@@ -1,13 +1,13 @@
 package metadata
 
 type SoftwareConfig struct {
-	Softwares []Software `toml:"software"`
+	SoftwareCollection []*Software `toml:"software"`
 }
 
 type Software struct {
-	Name          string  `toml:"name"`
-	Description   string  `toml:"description"`
-	DefaultAccess string  `toml:"default_access,omitempty"`
-	Allows        []Allow `toml:"allow,omitempty"`
-	Denies        []Deny  `toml:"deny,omitempty"`
+	Name          string   `toml:"name"`
+	Description   string   `toml:"description"`
+	DefaultAccess string   `toml:"default_access,omitempty"`
+	Allows        []*Allow `toml:"allow,omitempty"`
+	Denies        []*Deny  `toml:"deny,omitempty"`
 }
