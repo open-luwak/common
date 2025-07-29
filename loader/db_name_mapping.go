@@ -28,7 +28,7 @@ func LoadDbNameMapping(root string) (map[string]string, error) {
 }
 
 func ResolveDbMapping(config *metadata.DBMappingConfig, naming map[string]string) error {
-	if naming == nil {
+	if config == nil || naming == nil {
 		return nil
 	}
 
@@ -43,7 +43,7 @@ func ResolveDbMapping(config *metadata.DBMappingConfig, naming map[string]string
 }
 
 func ResolveEntities(config *metadata.EntityConfig, naming map[string]string) error {
-	if naming == nil {
+	if config == nil || naming == nil {
 		return nil
 	}
 
