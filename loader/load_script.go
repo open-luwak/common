@@ -1,6 +1,7 @@
 package loader
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -13,6 +14,14 @@ import (
 )
 
 func LoadScripts(baseDir string) (*metadata.ScriptConfig, error) {
+	err := validateDir(baseDir)
+	if err != nil {
+		if errors.Is(err, ErrDirNotFound) {
+			return nil, nil
+		}
+		return nil, err
+	}
+
 	list, err := walkDir(baseDir)
 	if err != nil {
 		return nil, err

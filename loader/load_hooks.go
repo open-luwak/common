@@ -14,6 +14,10 @@ func LoadHooks(root string) (*metadata.HooksConfig, error) {
 		return nil, err
 	}
 
+	if list == nil {
+		return nil, nil
+	}
+
 	var before, afterSuccess, afterError, finally []*metadata.ScriptSource
 	for _, v := range list.Scripts {
 		switch v.Type {
