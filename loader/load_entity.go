@@ -28,7 +28,7 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 	for _, v := range config.Entities {
 		vv, ok := generated.DBMap[v.RealDbName]
 		if !ok {
-			errs = append(errs, fmt.Errorf("database %s not generated", v.RealDbName))
+			errs = append(errs, fmt.Errorf("load meta/entity failed: database %s not generated", v.RealDbName))
 			continue
 		}
 		var key string
@@ -41,9 +41,9 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 		vvv, ok := generated.TBMap[key]
 		if !ok {
 			if v.IsView {
-				errs = append(errs, fmt.Errorf("view %s not generated", key))
+				errs = append(errs, fmt.Errorf("load meta/entity failed: view %s not generated", key))
 			} else {
-				errs = append(errs, fmt.Errorf("table %s not generated", key))
+				errs = append(errs, fmt.Errorf("load meta/entity failed: table %s not generated", key))
 			}
 			continue
 		}

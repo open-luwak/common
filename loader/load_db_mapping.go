@@ -28,7 +28,7 @@ func LoadDbMapping(root string) (*metadata.DBMappingConfig, error) {
 	for _, v := range config.DBMaps {
 		vv, ok := generated.DBMap[v.RealName]
 		if !ok {
-			errs = append(errs, fmt.Errorf("database %s not generated", v.RealName))
+			errs = append(errs, fmt.Errorf("load meta/db failed: database %s not generated", v.RealName))
 			continue
 		}
 		v.Type = vv.Type
