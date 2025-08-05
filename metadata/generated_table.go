@@ -24,8 +24,8 @@ type Table struct {
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
 
-	Validation map[string]any `toml:"validation,omitempty"`
-	Checking   []*CheckItem   `toml:"checking,omitempty"`
+	Validation []*ValidationRule `toml:"validation,omitempty"`
+	Checking   []*CheckItem      `toml:"checking,omitempty"`
 
 	// Deprecated
 	Assignment map[string]string `toml:"assignment,omitempty"`
