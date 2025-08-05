@@ -2,7 +2,7 @@ package metadata
 
 type ValidationRule struct {
 	Field string      `toml:"field"`
-	Rules []*RuleItem `toml:"rule,omitempty"`
+	Rules []*RuleItem `toml:"rules,omitempty"`
 }
 
 type RuleItem struct {
