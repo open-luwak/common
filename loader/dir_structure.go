@@ -21,4 +21,6 @@ const (
 
 	defaultDeploymentDir = "deployment"
 	defaultGeneratedDir  = "generated"
+
+	defaultI18nDir = "i18n"
 )
