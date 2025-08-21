@@ -5,12 +5,12 @@ type EntityConfig struct {
 }
 
 type Entity struct {
-	Name              string `toml:"name"`
-	LogicalDbName     string `toml:"logical_db_name"`
+	Name              string `toml:"name,omitempty"`
+	LogicalDbName     string `toml:"logical_db_name,omitempty"`
 	RealDbName        string `toml:"real_db_name"`
-	LogicalSchemaName string `toml:"logical_schema_name"`
+	LogicalSchemaName string `toml:"logical_schema_name,omitempty"`
 	RealSchemaName    string `toml:"real_schema_name"`
-	LogicalTableName  string `toml:"logical_table_name"`
+	LogicalTableName  string `toml:"logical_table_name,omitempty"`
 	RealTableName     string `toml:"real_table_name"`
 
 	IsView bool `toml:"is_view,omitempty"`

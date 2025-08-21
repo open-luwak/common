@@ -40,7 +40,7 @@ func UnmarshalTomlFiles(dir string, v any) error {
 		return err
 	}
 
-	data, err := readTomlFiles(dir)
+	data, err := catTomlFiles(dir)
 	if err != nil {
 		return err
 	}
@@ -53,7 +53,7 @@ func UnmarshalTomlFiles(dir string, v any) error {
 	return nil
 }
 
-func readTomlFiles(baseDir string) ([]byte, error) {
+func catTomlFiles(baseDir string) ([]byte, error) {
 	var buf bytes.Buffer
 
 	list, err := walkDir(baseDir)
@@ -75,6 +75,31 @@ func readTomlFiles(baseDir string) ([]byte, error) {
 	}
 
 	return buf.Bytes(), nil
+}
+
+func ReadTomlFiles(baseDir string) (map[string][]byte, error) {
+	data := make(map[string][]byte)
+
+	list, err := walkDir(baseDir)
+	if err != nil {
+		return nil, err
+	}
+	for _, v := range list {
+		fileExt := filepath.Ext(v)
+		if fileExt != ".toml" {
+			continue
+		}
+
+		file := filepath.Join(baseDir, v)
+		content, err := os.ReadFile(file)
+		if err != nil {
+			return nil, err
+		}
+		key := v
+		data[key] = content
+	}
+
+	return data, nil
 }
 
 // walkDir Returns the relative paths of all files in a directory and its subdirectories
