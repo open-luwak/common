@@ -1,18 +1,21 @@
 package loader
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
+	"os"
 	"path/filepath"
+	"strings"
+
+	"github.com/pelletier/go-toml/v2"
 
 	"github.com/open-luwak/common/metadata"
 )
 
 func LoadEntity(root string) (*metadata.EntityConfig, error) {
-	var config = &metadata.EntityConfig{}
-
 	dir := filepath.Join(root, defaultEntityMappingDir)
-	err := UnmarshalTomlFiles(dir, config)
+	config, err := UnmarshalEntityFiles(dir)
 	if err != nil {
 		return nil, err
 	}
@@ -68,4 +71,99 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 	}
 
 	return config, errors.Join(errs...)
+}
+
+func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
+	err := validateDir(dir)
+	if err != nil {
+		if errors.Is(err, ErrDirNotFound) {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	files, err := readTomlFiles(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	var config = &metadata.EntityConfig{}
+	var errs []error
+
+	for fileDir, fileContent := range files {
+		v := &metadata.EntityConfig{}
+		err = toml.Unmarshal(fileContent, v)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+		if len(v.Entities) == 0 {
+			continue
+		}
+		if len(v.Entities) > 1 {
+			errs = append(errs, fmt.Errorf("load entity failed: more than one entity in %s", fileDir))
+			continue
+		}
+
+		parts := strings.Split(fileDir, string(filepath.Separator))
+		if len(parts) != 3 {
+			errs = append(errs, fmt.Errorf("load entity failed: must be a three-level directory: %s", fileDir))
+			continue
+		}
+
+		entity := &metadata.Entity{
+			Name:              strings.Join(parts, "."),
+			LogicalDbName:     parts[0],
+			RealDbName:        v.Entities[0].RealDbName,
+			LogicalSchemaName: parts[1],
+			RealSchemaName:    v.Entities[0].RealSchemaName,
+			LogicalTableName:  parts[2],
+			RealTableName:     v.Entities[0].RealTableName,
+			IsView:            v.Entities[0].IsView,
+		}
+
+		config.Entities = append(config.Entities, entity)
+	}
+
+	return config, errors.Join(errs...)
+}
+
+func readTomlFiles(baseDir string) (map[string][]byte, error) {
+	data := make(map[string][]byte)
+
+	list, err := walkDir(baseDir)
+	if err != nil {
+		return nil, err
+	}
+
+	var buf bytes.Buffer
+
+	for _, v := range list {
+		fileExt := filepath.Ext(v)
+		if fileExt != ".toml" {
+			continue
+		}
+
+		file := filepath.Join(baseDir, v)
+		content, err := os.ReadFile(file)
+		if err != nil {
+			return nil, err
+		}
+
+		// Merge the content of files within the same directory
+		key := filepath.Dir(v)
+		if lastContent, ok := data[key]; !ok {
+			data[key] = content
+		} else {
+			buf.Reset()
+			buf.Write(lastContent)
+			buf.Write([]byte("\n"))
+			buf.Write(content)
+
+			newData := append([]byte(nil), buf.Bytes()...)
+			data[key] = newData
+		}
+	}
+
+	return data, nil
 }
