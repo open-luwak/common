@@ -120,6 +120,9 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 			LogicalTableName:  parts[2],
 			RealTableName:     v.Entities[0].RealTableName,
 			IsView:            v.Entities[0].IsView,
+			//If it's a view, it may contain custom primary keys and unique keys.
+			PrimaryKey: v.Entities[0].PrimaryKey,
+			UniqueKeys: v.Entities[0].UniqueKeys,
 		}
 
 		config.Entities = append(config.Entities, entity)
