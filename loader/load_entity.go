@@ -74,10 +74,12 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 }
 
 func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
+	var config = &metadata.EntityConfig{}
+
 	err := validateDir(dir)
 	if err != nil {
 		if errors.Is(err, ErrDirNotFound) {
-			return nil, nil
+			return config, nil
 		}
 		return nil, err
 	}
@@ -87,7 +89,6 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 		return nil, err
 	}
 
-	var config = &metadata.EntityConfig{}
 	var errs []error
 
 	for fileDir, fileContent := range files {
