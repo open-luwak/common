@@ -7,6 +7,7 @@ type ValidationRule struct {
 }
 
 type RuleItem struct {
-	Rule    string `toml:"rule"`
-	Message string `toml:"message,omitempty"`
+	Validator      string `toml:"validator"`
+	ValidatorValue []any  `toml:"validator_value,omitempty"`
+	Message        string `toml:"message,omitempty"`
 }
