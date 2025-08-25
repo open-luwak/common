@@ -22,7 +22,7 @@ type Table struct {
 	UniqueKeys [][]string `toml:"unique_keys"`
 	NormalKeys [][]string `toml:"normal_keys"`
 
-	ForeignKeys []*ForeignKey `toml:"foreign_keys"`
+	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 
 	Validation []*ValidationRule `toml:"validation,omitempty"`
 	Checking   []*CheckItem      `toml:"checking,omitempty"`
