@@ -4,6 +4,8 @@ type TableConfig struct {
 	Tables []*Table `toml:"table,omitempty"`
 }
 
+// ViewConfig
+// Deprecated
 type ViewConfig struct {
 	Views []*Table `toml:"view,omitempty"`
 }
@@ -16,11 +18,11 @@ type Table struct {
 
 	IsView bool `toml:"is_view"`
 
-	Columns []*Column `toml:"columns"`
+	Columns []*Column `toml:"columns,omitempty"`
 
-	PrimaryKey string     `toml:"primary_key"`
-	UniqueKeys [][]string `toml:"unique_keys"`
-	NormalKeys [][]string `toml:"normal_keys"`
+	PrimaryKey string     `toml:"primary_key,omitempty"`
+	UniqueKeys [][]string `toml:"unique_keys,omitempty"`
+	NormalKeys [][]string `toml:"normal_keys,omitempty"`
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 
