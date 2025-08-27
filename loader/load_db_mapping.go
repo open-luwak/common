@@ -17,8 +17,7 @@ func LoadDbMapping(root string) (*metadata.DBMappingConfig, error) {
 		return nil, err
 	}
 
-	genDir := filepath.Join(root, defaultGeneratedDir)
-	generated, err := LoadGenerated(genDir)
+	generated, err := LoadGenerated(root)
 	if err != nil {
 		return nil, err
 	}

@@ -7,26 +7,23 @@ import (
 )
 
 func LoadGenerated(root string) (*metadata.GeneratedCache, error) {
-	var config = &metadata.GeneratedConfig{}
-
-	err := UnmarshalTomlFiles(root, config)
+	dbMap, err := LoadDb(root)
 	if err != nil {
 		return nil, err
 	}
 
-	dbMap := make(map[string]*metadata.DB, len(config.DBs))
-	for _, v := range config.DBs {
-		dbMap[v.Name] = v
+	config, err := LoadTable(root)
+	if err != nil {
+		return nil, err
+	}
+	if config == nil {
+		config = &metadata.TableConfig{}
 	}
 
-	tbMap := make(map[string]*metadata.Table, len(config.Tables)+len(config.Views))
+	tbMap := make(map[string]*metadata.Table, len(config.Tables))
 	for _, table := range config.Tables {
 		key := genMapKey(table.DbType, table)
 		tbMap[key] = table
-	}
-	for _, view := range config.Views {
-		key := genMapKey(view.DbType, view)
-		tbMap[key] = view
 	}
 
 	dbTbMap := &metadata.GeneratedCache{

@@ -6,7 +6,7 @@ import (
 )
 
 func TestLoadGeneratedTable(t *testing.T) {
-	root := "../build/project/generated"
+	root := "../build/project"
 	generated, err := LoadGenerated(root)
 	if err != nil {
 		t.Fatal(err)

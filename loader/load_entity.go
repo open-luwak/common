@@ -18,8 +18,7 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 		return nil, err
 	}
 
-	genDir := filepath.Join(root, defaultGeneratedDir)
-	generated, err := LoadGenerated(genDir)
+	generated, err := LoadGenerated(root)
 	if err != nil {
 		return nil, err
 	}

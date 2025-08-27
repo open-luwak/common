@@ -4,12 +4,6 @@ type TableConfig struct {
 	Tables []*Table `toml:"table,omitempty"`
 }
 
-// ViewConfig
-// Deprecated
-type ViewConfig struct {
-	Views []*Table `toml:"view,omitempty"`
-}
-
 type Table struct {
 	DbType     string `toml:"db_type"`
 	DbName     string `toml:"db_name"`
