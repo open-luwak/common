@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 
 	"github.com/pelletier/go-toml/v2"
 )
@@ -97,4 +98,67 @@ func walkDir(rootDir string) ([]string, error) {
 		return nil, fmt.Errorf("failed to walk directory: %w", err)
 	}
 	return paths, nil
+}
+
+func readTomlFiles(baseDir string, order []string) (map[string][]byte, error) {
+	fileList, err := walkDir(baseDir)
+	if err != nil {
+		return nil, err
+	}
+
+	fileMap := make(map[string][]string)
+	for _, v := range fileList {
+		if filepath.Ext(v) != ".toml" {
+			continue
+		}
+
+		key := filepath.Dir(v)
+		fileMap[key] = append(fileMap[key], v)
+	}
+
+	for _, list := range fileMap {
+		sortByOrder(list, order)
+	}
+
+	data := make(map[string][]byte)
+	for key, list := range fileMap {
+		var contents [][]byte
+		for _, v := range list {
+			file := filepath.Join(baseDir, v)
+			content, err := os.ReadFile(file)
+			if err != nil {
+				return nil, err
+			}
+			contents = append(contents, content)
+		}
+		data[key] = bytes.Join(contents, []byte("\n"))
+	}
+
+	return data, nil
+}
+
+func sortByOrder(slice []string, order []string) {
+	orderMap := make(map[string]int)
+	for i, s := range order {
+		orderMap[s] = i
+	}
+
+	sort.Slice(slice, func(i, j int) bool {
+		fileNameI := filepath.Base(slice[i])
+		fileNameJ := filepath.Base(slice[j])
+
+		idxI, existsI := orderMap[fileNameI]
+		idxJ, existsJ := orderMap[fileNameJ]
+
+		if existsI && existsJ {
+			return idxI < idxJ
+		}
+		if existsI {
+			return true
+		}
+		if existsJ {
+			return false
+		}
+		return fileNameI < fileNameJ
+	})
 }

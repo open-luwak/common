@@ -30,9 +30,9 @@ type Table struct {
 	Checking   []*CheckItem      `toml:"checking,omitempty"`
 
 	// Deprecated
-	Assignment map[string]string `toml:"assignment,omitempty"`
+	Assignment map[string]any `toml:"assignment,omitempty"`
 	// Deprecated
-	Directive map[string]string `toml:"directive,omitempty"`
+	Directive map[string]any `toml:"directive,omitempty"`
 }
 
 type Column struct {

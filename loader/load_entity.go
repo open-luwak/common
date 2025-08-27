@@ -1,10 +1,8 @@
 package loader
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -84,7 +82,12 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 		return nil, err
 	}
 
-	files, err := readTomlFiles(dir)
+	order := []string{
+		"entity.toml",
+		"entity_keys.toml",
+	}
+
+	files, err := readTomlFiles(dir, order)
 	if err != nil {
 		return nil, err
 	}
@@ -130,44 +133,4 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 	}
 
 	return config, errors.Join(errs...)
-}
-
-func readTomlFiles(baseDir string) (map[string][]byte, error) {
-	data := make(map[string][]byte)
-
-	list, err := walkDir(baseDir)
-	if err != nil {
-		return nil, err
-	}
-
-	var buf bytes.Buffer
-
-	for _, v := range list {
-		fileExt := filepath.Ext(v)
-		if fileExt != ".toml" {
-			continue
-		}
-
-		file := filepath.Join(baseDir, v)
-		content, err := os.ReadFile(file)
-		if err != nil {
-			return nil, err
-		}
-
-		// Merge the content of files within the same directory
-		key := filepath.Dir(v)
-		if lastContent, ok := data[key]; !ok {
-			data[key] = content
-		} else {
-			buf.Reset()
-			buf.Write(lastContent)
-			buf.Write([]byte("\n"))
-			buf.Write(content)
-
-			newData := append([]byte(nil), buf.Bytes()...)
-			data[key] = newData
-		}
-	}
-
-	return data, nil
 }
