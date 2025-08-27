@@ -31,6 +31,7 @@ type Table struct {
 
 type Column struct {
 	Name         string `toml:"name"`
+	Label        string `toml:"label"`
 	DataType     string `toml:"data_type"`
 	Nullable     bool   `toml:"nullable"`
 	HasDefault   bool   `toml:"has_default"`
