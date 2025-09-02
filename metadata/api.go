@@ -11,6 +11,7 @@ type Api struct {
 	ExecuteGlobalScript bool   `toml:"execute_global_script"`
 	Enabled             bool   `toml:"enabled"`
 
+	AutoFilter []*AutoFilter     `toml:"auto_filter,omitempty"`
 	Validation []*ValidationRule `toml:"validation,omitempty"`
 	Checking   []*CheckItem      `toml:"checking,omitempty"`
 
@@ -28,4 +29,11 @@ type ScriptSource struct {
 	Code string
 
 	Priority int
+}
+
+type AutoFilter struct {
+	Software string `toml:"software"`
+	Field    string `toml:"field"`
+	Operator string `toml:"operator"`
+	Value    int    `toml:"value"`
 }

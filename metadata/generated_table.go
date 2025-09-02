@@ -21,8 +21,9 @@ type Table struct {
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 
-	Validation []*ValidationRule `toml:"validation,omitempty"`
-	Checking   []*CheckItem      `toml:"checking,omitempty"`
+	AutoPopulate []*AutoPopulate   `toml:"auto_populate,omitempty"`
+	Validation   []*ValidationRule `toml:"validation,omitempty"`
+	Checking     []*CheckItem      `toml:"checking,omitempty"`
 
 	// Deprecated
 	Assignment map[string]any `toml:"assignment,omitempty"`
@@ -62,4 +63,9 @@ type FKColumn struct {
 	ReferencedTableSchema string `toml:"referenced_table_schema"`
 	ReferencedTableName   string `toml:"referenced_table_name"`
 	ReferencedColumnName  string `toml:"referenced_column_name"`
+}
+
+type AutoPopulate struct {
+	Column string `toml:"column"`
+	Value  string `toml:"value"`
 }
