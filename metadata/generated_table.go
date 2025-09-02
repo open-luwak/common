@@ -9,8 +9,9 @@ type Table struct {
 	DbName     string `toml:"db_name"`
 	SchemaName string `toml:"schema_name"`
 	TableName  string `toml:"table_name"`
+	Label      string `toml:"label"`
 
-	IsView bool `toml:"is_view"`
+	IsView bool `toml:"is_view,omitempty"`
 
 	Columns []*Column `toml:"columns,omitempty"`
 
