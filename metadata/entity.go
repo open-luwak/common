@@ -12,8 +12,8 @@ type Entity struct {
 	RealSchemaName    string `toml:"real_schema_name"`
 	LogicalTableName  string `toml:"logical_table_name,omitempty"`
 	RealTableName     string `toml:"real_table_name"`
-
-	IsView bool `toml:"is_view,omitempty"`
+	Label             string `toml:"label"`
+	IsView            bool   `toml:"is_view,omitempty"`
 
 	Columns []*Column `toml:"columns,omitempty"`
 
