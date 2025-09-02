@@ -6,8 +6,8 @@ import (
 )
 
 type ParsedName struct {
-	FullName     string `json:"fullName"` // FullName = EndpointName + ApiName
-	EndpointName string `json:"endpointName"`
+	FullName     string `json:"fullName"` // FullName = OrgName + ApiName
+	OrgName      string `json:"orgName"`
 	ApiName      string `json:"apiName"` // ApiName = EntityName + EntityMethod
 	EntityName   string `json:"entityName"`
 	EntityMethod string `json:"entityMethod"`
@@ -23,7 +23,7 @@ func ParseMethodName(method string) (*ParsedName, error) {
 		FullName: method,
 	}
 	if len(parts) > 4 {
-		name.EndpointName = strings.Join(parts[:len(parts)-4], ".")
+		name.OrgName = strings.Join(parts[:len(parts)-4], ".")
 	}
 	name.ApiName = strings.Join(parts[len(parts)-4:], ".")
 	name.EntityName = strings.Join(parts[len(parts)-4:len(parts)-1], ".")

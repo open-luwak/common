@@ -8,7 +8,6 @@ const (
 const (
 	defaultAclDir      = "gateway/acl"
 	defaultAppDir      = "gateway/app"
-	defaultEndpointDir = "gateway/endpoint"
 	defaultEnvDir      = "gateway/env"
 	defaultSoftwareDir = "gateway/software"
 

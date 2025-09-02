@@ -6,9 +6,6 @@ package errcode
 // operations = OPS
 
 const (
-	EndpointEnvExpress         = "AD.API.EndpointEnvExpression"
-	EndpointFilterExpress      = "AD.API.EndpointFilterExpression"
-	EndpointValueExpress       = "AD.API.EndpointValueExpression"
 	APIScheduledTaskNotAllowed = "AD.API.ScheduledTaskNotAllowed"
 	APIInvalidMethodName       = "AD.API.InvalidMethodName"
 	APINotFound                = "AD.API.NotFound"

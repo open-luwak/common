@@ -47,9 +47,9 @@ func TestNewAPIName(t *testing.T) {
 				return
 			}
 
-			if got.EndpointName != tt.want[0] {
-				t.Errorf("ParseMethodName() EndpointName = %v, want %v",
-					got.EndpointName, tt.want[0])
+			if got.OrgName != tt.want[0] {
+				t.Errorf("ParseMethodName() OrgName = %v, want %v",
+					got.OrgName, tt.want[0])
 			}
 			if got.ApiName != tt.want[1] {
 				t.Errorf("ParseMethodName() ApiName = %v, want %v",

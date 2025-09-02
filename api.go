@@ -13,12 +13,6 @@ type RequestContext struct {
 	RequestTime time.Time
 }
 
-type EndpointMetas struct {
-	Name          string
-	SessionFilter map[string]any
-	SessionValue  map[string]any
-}
-
 // APIContext combines request and response contexts
 type APIContext interface {
 	RequestReader
@@ -36,7 +30,6 @@ type RequestReader interface {
 	Params() any
 	RawParams() []byte
 	Metas() map[string]any
-	EndpointMetas() *EndpointMetas
 }
 
 // ResponseReader contains response-related information
@@ -52,7 +45,6 @@ type RequestWriter interface {
 	SetParams(any)
 	SetRawParams([]byte)
 	SetMetas(map[string]any)
-	SetEndpointMetas(*EndpointMetas)
 }
 
 // ResponseWriter allows modification of response-related information
