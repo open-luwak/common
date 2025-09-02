@@ -67,5 +67,5 @@ type FKColumn struct {
 
 type AutoPopulate struct {
 	Column string `toml:"column"`
-	Value  string `toml:"value"`
+	Value  any    `toml:"value"`
 }

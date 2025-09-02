@@ -35,5 +35,5 @@ type AutoFilter struct {
 	Software string `toml:"software"`
 	Field    string `toml:"field"`
 	Operator string `toml:"operator"`
-	Value    int    `toml:"value"`
+	Value    any    `toml:"value"`
 }
