@@ -5,19 +5,14 @@ type AclConfig struct {
 }
 
 type Role struct {
-	Name          string   `toml:"name"`
-	Description   string   `toml:"description"`
-	DefaultAccess string   `toml:"default_access,omitempty"`
-	Allows        []*Allow `toml:"allow,omitempty"`
-	Denies        []*Deny  `toml:"deny,omitempty"`
+	Name        string        `toml:"name"`
+	Description string        `toml:"description"`
+	AccessType  string        `toml:"access_type,omitempty"`
+	Allows      []*Permission `toml:"allow,omitempty"`
+	Denies      []*Permission `toml:"deny,omitempty"`
 }
 
-type Allow struct {
-	Resource string   `toml:"resource"`
-	Actions  []string `toml:"action"`
-}
-
-type Deny struct {
-	Resource string   `toml:"resource"`
-	Actions  []string `toml:"action"`
+type Permission struct {
+	Entity string   `toml:"entity"`
+	Method []string `toml:"method"`
 }
