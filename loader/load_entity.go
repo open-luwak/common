@@ -49,6 +49,10 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 		}
 		v.Columns = vvv.Columns
 
+		if v.Label == "" {
+			v.Label = vvv.Label
+		}
+
 		// view: use custom primary and unique keys
 		// table: use physical table defined primary and unique keys
 		if !v.IsView {
