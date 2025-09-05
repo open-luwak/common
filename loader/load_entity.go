@@ -99,6 +99,12 @@ func mergeValidation(entityValidation, tableValidation []*metadata.ValidationRul
 			if e.Field != v.Field {
 				continue
 			}
+			if v.Type != e.Type {
+				v.Type = e.Type
+			}
+			if v.Label != e.Label {
+				v.Label = e.Label
+			}
 			for _, rule := range e.Rules {
 				key := genKey(v.Field, rule.Validator)
 				if i, ok := hasRule[key]; ok {
