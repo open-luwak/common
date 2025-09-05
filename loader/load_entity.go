@@ -62,16 +62,55 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 
 		v.ForeignKeys = vvv.ForeignKeys
 
-		// If no validation rules are defined, then use automatically generated validation rules.
-		if len(v.Validation) == 0 {
-			v.Validation = vvv.Validation
-		}
+		v.Validation = mergeValidation(v.Validation, vvv.Validation)
+
 		if len(v.Checking) == 0 {
 			v.Checking = vvv.Checking
 		}
 	}
 
 	return config, errors.Join(errs...)
+}
+
+func mergeValidation(entityValidation, tableValidation []*metadata.ValidationRule) []*metadata.ValidationRule {
+	var out []*metadata.ValidationRule
+
+	hasRule := make(map[string]int)
+
+	genKey := func(field, rule string) string {
+		return fmt.Sprintf("%s.%s", field, rule)
+	}
+
+	for _, v := range tableValidation {
+		for i, vv := range v.Rules {
+			key := genKey(v.Field, vv.Validator)
+			hasRule[key] = i
+		}
+		out = append(out, v)
+	}
+
+	// If no validation rules are defined, then use automatically generated validation rules.
+	if len(entityValidation) == 0 {
+		return out
+	}
+
+	for _, v := range out {
+		for _, e := range entityValidation {
+			if e.Field != v.Field {
+				continue
+			}
+			for _, rule := range e.Rules {
+				key := genKey(v.Field, rule.Validator)
+				if i, ok := hasRule[key]; ok {
+					v.Rules[i] = rule // 覆盖
+				} else {
+					v.Rules = append(v.Rules, rule) // 追加
+				}
+			}
+		}
+	}
+
+	return out
 }
 
 func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
@@ -130,6 +169,8 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 			//If it's a view, it may contain custom primary keys and unique keys.
 			PrimaryKey: v.Entities[0].PrimaryKey,
 			UniqueKeys: v.Entities[0].UniqueKeys,
+			Validation: v.Entities[0].Validation,
+			Checking:   v.Entities[0].Checking,
 		}
 
 		config.Entities = append(config.Entities, entity)
