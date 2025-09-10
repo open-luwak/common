@@ -11,6 +11,7 @@ type Api struct {
 	ExecuteGlobalScript bool   `toml:"execute_global_script"`
 	Enabled             bool   `toml:"enabled"`
 
+	Context      map[string]any    `toml:"context,omitempty"`
 	AutoFilter   []*AutoFilter     `toml:"auto_filter,omitempty"`
 	AutoPopulate []*AutoPopulate   `toml:"auto_populate,omitempty"`
 	Validation   []*ValidationRule `toml:"validation,omitempty"`
