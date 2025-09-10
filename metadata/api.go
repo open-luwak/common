@@ -16,6 +16,7 @@ type Api struct {
 	AutoPopulate []*AutoPopulate   `toml:"auto_populate,omitempty"`
 	Validation   []*ValidationRule `toml:"validation,omitempty"`
 	Checking     []*CheckItem      `toml:"checking,omitempty"`
+	Checkpoint   []*CheckItem      `toml:"checkpoint,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }
