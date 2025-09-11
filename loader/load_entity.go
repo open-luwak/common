@@ -62,11 +62,16 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 
 		v.ForeignKeys = vvv.ForeignKeys
 
+		v.AutoFilter = vvv.AutoFilter
+		v.AutoPopulate = vvv.AutoPopulate
+
 		v.Validation = mergeValidation(v.Validation, vvv.Validation)
 
 		if len(v.Checking) == 0 {
 			v.Checking = vvv.Checking
 		}
+
+		v.ConditionalRole = vvv.ConditionalRole
 	}
 
 	return config, errors.Join(errs...)
