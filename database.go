@@ -2,12 +2,21 @@ package common
 
 import (
 	"sync"
+
+	"github.com/open-luwak/common/metadata"
 )
 
 type AsmParam struct {
-	Api           string
-	Param         []any
+	Api   string
+	Param []any
+
+	AutoFilter   *metadata.AutoFilter
+	AutoPopulate *metadata.AutoPopulate
+
+	// Deprecated
 	SessionFilter map[string]string
+
+	// Deprecated
 	SessionValues map[string]string
 }
 
