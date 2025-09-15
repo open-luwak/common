@@ -19,6 +19,7 @@ type APIContext interface {
 	ResponseReader
 	RequestWriter
 	ResponseWriter
+	Preloader
 	Debugger
 }
 
@@ -51,6 +52,11 @@ type RequestWriter interface {
 type ResponseWriter interface {
 	SetResult(any)
 	SetErr(error)
+}
+
+type Preloader interface {
+	PreloadData() map[string]any
+	SetPreloadData(map[string]any)
 }
 
 type Debugger interface {
