@@ -62,14 +62,14 @@ type Handler interface {
 	Process(APIContext) error
 }
 
+type Middleware struct {
+	Name     string
+	Priority int
+	Handler  func(Handler) Handler
+}
+
 type HandlerFunc func(APIContext) error
 
 func (hf HandlerFunc) Process(ctx APIContext) error {
 	return hf(ctx)
-}
-
-type Middleware struct {
-	Name     string
-	Priority int
-	Handler  Handler
 }
