@@ -12,12 +12,6 @@ type AsmParam struct {
 
 	AutoFilter   *metadata.AutoFilter
 	AutoPopulate *metadata.AutoPopulate
-
-	// Deprecated
-	SessionFilter map[string]string
-
-	// Deprecated
-	SessionValues map[string]string
 }
 
 type PreparedQuery struct {
