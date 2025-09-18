@@ -28,9 +28,4 @@ type Entity struct {
 	Validation      []*ValidationRule  `toml:"validation,omitempty"`
 	Checking        []*CheckItem       `toml:"checking,omitempty"`
 	ConditionalRole []*ConditionalRole `toml:"conditional_role,omitempty"`
-
-	// Deprecated
-	Assignment map[string]string `toml:"assignment,omitempty"`
-	// Deprecated
-	Directive map[string]string `toml:"directive,omitempty"`
 }
