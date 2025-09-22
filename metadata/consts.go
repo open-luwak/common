@@ -5,7 +5,7 @@ const (
 	CheckpointDir  = "checkpoint"
 
 	DataPreprocessType = "DPP"
-	DataPreprocessDir  = "data_preprocess"
+	DataPreprocessDir  = "data_preprocessor"
 
 	MainType = "MAIN"
 	MainDir  = "main"
