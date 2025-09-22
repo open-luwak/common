@@ -65,7 +65,7 @@ type Debugger interface {
 }
 
 type Handler interface {
-	Process(APIContext) error
+	Handle(APIContext) error
 }
 
 type Middleware struct {
@@ -76,6 +76,6 @@ type Middleware struct {
 
 type HandlerFunc func(APIContext) error
 
-func (hf HandlerFunc) Process(ctx APIContext) error {
+func (hf HandlerFunc) Handle(ctx APIContext) error {
 	return hf(ctx)
 }
