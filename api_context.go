@@ -19,7 +19,7 @@ type APIContext interface {
 	ResponseReader
 	RequestWriter
 	ResponseWriter
-	Preloader
+	MethodNameParser
 	Debugger
 }
 
@@ -54,28 +54,12 @@ type ResponseWriter interface {
 	SetErr(error)
 }
 
-type Preloader interface {
-	PreloadData() map[string]any
-	SetPreloadData(map[string]any)
+type MethodNameParser interface {
+	ParsedName() *ParsedName
+	SetParsedName(*ParsedName)
 }
 
 type Debugger interface {
 	SetDebugInfo([]map[string]any)
 	DebugInfo() []map[string]any
-}
-
-type Handler interface {
-	Handle(APIContext) error
-}
-
-type Middleware struct {
-	Name     string
-	Priority int
-	Handler  func(Handler) Handler
-}
-
-type HandlerFunc func(APIContext) error
-
-func (hf HandlerFunc) Handle(ctx APIContext) error {
-	return hf(ctx)
 }
