@@ -1,6 +1,9 @@
 package metadata
 
 const (
+	PreloaderType = "PL"
+	PreloaderDir  = "preloader"
+
 	CheckpointType = "CP"
 	CheckpointDir  = "checkpoint"
 

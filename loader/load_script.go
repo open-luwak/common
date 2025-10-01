@@ -54,6 +54,8 @@ func parseScriptInfo(baseDir string, path string) (*metadata.ScriptSource, error
 	}
 	scriptType := parts[0]
 	switch scriptType {
+	case metadata.PreloaderDir:
+		scriptType = metadata.PreloaderType
 	case metadata.CheckpointDir:
 		scriptType = metadata.CheckpointType
 	case metadata.DataPreprocessDir:
