@@ -4,8 +4,6 @@ import (
 	"fmt"
 )
 
-type Code string
-
 type Error interface {
 	Code() string
 	Data() any
@@ -25,7 +23,7 @@ type Error interface {
 //   - The first element can be of any type and is used to provide additional data.
 //   - The second element (if provided) must be of type `error` and is used to specify the cause.
 //   - If more than two elements are provided, only the first two will be used.
-func New(code Code, message string, opts ...any) Error {
+func New(code string, message string, opts ...any) Error {
 	var data any
 	var cause error
 
@@ -51,7 +49,7 @@ func New(code Code, message string, opts ...any) Error {
 }
 
 type defaultError struct {
-	code    Code
+	code    string
 	message string
 	data    any
 	cause   error

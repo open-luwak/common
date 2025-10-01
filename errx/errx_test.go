@@ -10,7 +10,7 @@ var underlyingError = fmt.Errorf("underlying error")
 
 var testCases = []struct {
 	name     string
-	code     Code
+	code     string
 	message  string
 	opts     []any
 	expected *defaultError
