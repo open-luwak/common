@@ -62,6 +62,8 @@ func parseScriptInfo(baseDir string, path string) (*metadata.ScriptSource, error
 		scriptType = metadata.MainType
 	case metadata.DatabaseUpdaterDir:
 		scriptType = metadata.DatabaseUpdaterType
+	case metadata.DatabaseInserterDir:
+		scriptType = metadata.DatabaseInserterType
 	case metadata.EventBroadcasterDir:
 		scriptType = metadata.EventBroadcasterType
 	case metadata.ResponseEnricherDir:

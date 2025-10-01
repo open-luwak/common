@@ -13,6 +13,9 @@ const (
 	DatabaseUpdaterType = "DU"
 	DatabaseUpdaterDir  = "database_updater"
 
+	DatabaseInserterType = "DI"
+	DatabaseInserterDir  = "database_inserter"
+
 	EventBroadcasterType = "EB"
 	EventBroadcasterDir  = "event_broadcaster"
 
