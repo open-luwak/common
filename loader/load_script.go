@@ -5,13 +5,26 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"slices"
 	"strings"
 
 	"github.com/spf13/cast"
 
 	"github.com/open-luwak/common/metadata"
 )
+
+func isAllowedFile(name string) bool {
+	ext := filepath.Ext(name)
+	switch ext {
+	case ".js", ".py", ".sql", ".lua":
+		// continue
+	default:
+		return false
+	}
+
+	// skip .test.*
+	baseName := name[:len(name)-len(ext)]
+	return !strings.HasSuffix(baseName, ".test")
+}
 
 func LoadScripts(baseDir string) (*metadata.ScriptConfig, error) {
 	err := validateDir(baseDir)
@@ -28,12 +41,12 @@ func LoadScripts(baseDir string) (*metadata.ScriptConfig, error) {
 	}
 
 	var scripts []*metadata.ScriptSource
-	allowedFileExt := []string{".js", ".py", ".sql", "lua"}
+
 	for _, v := range list {
-		fileExt := filepath.Ext(v)
-		if !slices.Contains(allowedFileExt, fileExt) {
+		if !isAllowedFile(v) {
 			continue
 		}
+
 		info, err := parseScriptInfo(baseDir, v)
 		if err != nil {
 			return nil, fmt.Errorf("common.metadata: failed to parse script info from %s: %w", v, err)
