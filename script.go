@@ -8,4 +8,6 @@ type RunnerContext struct {
 	GlobalThis map[string]any
 
 	DalCtx *DalContext
+
+	DebugInfo map[string]any
 }
