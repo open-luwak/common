@@ -11,48 +11,39 @@ type Error interface {
 	error
 }
 
-// New creates a new Error instance.
-//
-// Parameters:
-//   - code: The error code.
-//   - message: The error message.
-//   - opts: A variadic list of optional parameters for providing additional data or an error cause.
-//
-// Note:
-//   - `opts` can accept at most two elements.
-//   - The first element can be of any type and is used to provide additional data.
-//   - The second element (if provided) must be of type `error` and is used to specify the cause.
-//   - If more than two elements are provided, only the first two will be used.
-func New(code string, message string, opts ...any) Error {
-	var data any
-	var cause error
-
-	if len(opts) == 1 {
-		switch v := opts[0].(type) {
-		case error:
-			cause = v
-		default:
-			data = v
-		}
-	}
-	if len(opts) > 1 {
-		data = opts[0]
-		cause, _ = opts[1].(error)
-	}
-
-	return &defaultError{
-		code:    code,
-		message: message,
-		data:    data,
-		cause:   cause,
-	}
-}
-
 type defaultError struct {
 	code    string
 	message string
 	data    any
 	cause   error
+}
+
+type Option func(*defaultError)
+
+func WithData(data any) Option {
+	return func(e *defaultError) {
+		e.data = data
+	}
+}
+
+func WithCause(cause error) Option {
+	return func(e *defaultError) {
+		e.cause = cause
+	}
+}
+
+// New creates a new Error instance.
+func New(code string, message string, opts ...Option) Error {
+	err := &defaultError{
+		code:    code,
+		message: message,
+	}
+
+	for _, opt := range opts {
+		opt(err)
+	}
+
+	return err
 }
 
 func (e *defaultError) Error() string {
