@@ -21,7 +21,7 @@ type Api struct {
 
 	Checkpoint []*CheckItem `toml:"checkpoint,omitempty"`
 
-	DatabaseInserter []DatabaseInserter `toml:"database_inserter"`
+	DatabaseInserter []*DatabaseInserter `toml:"database_inserter"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }
