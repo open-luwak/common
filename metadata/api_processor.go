@@ -1,8 +1,14 @@
 package metadata
 
-type Preloader struct {
+type DataFetcher struct {
 	Name   string `toml:"name,omitempty"`
 	Var    string `toml:"var"`
+	Method string `toml:"method"`
+	Param  any    `toml:"param"`
+}
+
+type DataAccessOperator struct {
+	Name   string `toml:"name,omitempty"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
 }
@@ -26,10 +32,4 @@ type AutoPopulate struct {
 	Name   string `toml:"name,omitempty"`
 	Column string `toml:"column"`
 	Value  any    `toml:"value"`
-}
-
-type DatabaseInserter struct {
-	Name   string `toml:"name,omitempty"`
-	Method string `toml:"method"`
-	Param  any    `toml:"param"`
 }

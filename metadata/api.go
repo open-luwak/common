@@ -11,17 +11,15 @@ type Api struct {
 	ExecuteGlobalScript bool   `toml:"execute_global_script"`
 	Enabled             bool   `toml:"enabled"`
 
-	Preloader []*Preloader `toml:"preloader,omitempty"`
-
-	AutoFilter   []*AutoFilter   `toml:"auto_filter,omitempty"`
-	AutoPopulate []*AutoPopulate `toml:"auto_populate,omitempty"`
-
-	Validation []*ValidationRule `toml:"validation,omitempty"`
-	Checking   []*CheckItem      `toml:"checking,omitempty"`
-
-	Checkpoint []*CheckItem `toml:"checkpoint,omitempty"`
-
-	DatabaseInserter []*DatabaseInserter `toml:"database_inserter"`
+	Preloader        []*DataFetcher        `toml:"preloader,omitempty"`
+	Validation       []*ValidationRule     `toml:"validation,omitempty"`
+	Checking         []*CheckItem          `toml:"checking,omitempty"`
+	Checkpoint       []*CheckItem          `toml:"checkpoint,omitempty"`
+	BusinessExecutor []*DataAccessOperator `toml:"business_executor,omitempty"`
+	DatabaseUpdater  []*DataAccessOperator `toml:"database_updater,omitempty"`
+	DatabaseInserter []*DataAccessOperator `toml:"database_inserter,omitempty"`
+	AutoFilter       []*AutoFilter         `toml:"auto_filter,omitempty"`
+	AutoPopulate     []*AutoPopulate       `toml:"auto_populate,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }
