@@ -1,5 +1,7 @@
 package script
 
+const GlobalKey = "globalThis"
+
 const (
 	inputKey   = "input"
 	envKey     = "env"
