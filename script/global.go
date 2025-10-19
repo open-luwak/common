@@ -1,14 +1,16 @@
 package script
 
 const (
-	inputKey          = "input"
-	envKey            = "env"
-	metaKey           = "metas"
-	serverKey         = "server"
-	sessionKey        = "session"
+	inputKey   = "input"
+	envKey     = "env"
+	metaKey    = "metas"
+	serverKey  = "server"
+	sessionKey = "session"
+	outputKey  = "output"
+	ctxKey     = "ctx"
+
 	requestHeaderKey  = "requestHeaders"
 	responseHeaderKey = "responseHeaders"
-	outputKey         = "output"
 	rolesKey          = "roles"
 )
 
@@ -92,4 +94,17 @@ func (m GlobalThis) Env() map[string]any {
 
 func (m GlobalThis) SetEnv(env map[string]any) {
 	m[envKey] = env
+}
+
+func (m GlobalThis) SetCtx(key string, value any) {
+	if v, ok := m[ctxKey]; ok {
+		if ctx, ok := v.(map[string]any); ok {
+			ctx[key] = value
+			return
+		}
+	}
+
+	ctx := make(map[string]any)
+	ctx[key] = value
+	m[ctxKey] = ctx
 }
