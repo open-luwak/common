@@ -18,7 +18,7 @@ func LoadI18n(root string) (map[string]string, map[string]string, error) {
 	}
 
 	lang := make(map[string]string)
-	for k, _ := range messages {
+	for k := range messages {
 		parts := strings.SplitN(k, ".", 2)
 		kk := parts[0]
 		lang[kk] = kk

@@ -1,4 +1,4 @@
-package common
+package traceid
 
 import (
 	"testing"
@@ -14,9 +14,9 @@ func TestGenerateTraceID(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := GenerateTraceID()
+			got := NewTraceID()
 			if len(got) != 32 {
-				t.Errorf("GenerateTraceID() = %v, want length 32", got)
+				t.Errorf("NewTraceID() = %v, want length 32", got)
 			}
 		})
 	}
@@ -32,9 +32,9 @@ func TestGenerateSpanID(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := GenerateSpanID()
+			got := NewSpanID()
 			if len(got) != 16 {
-				t.Errorf("GenerateSpanID() = %v, want length 16", got)
+				t.Errorf("NewSpanID() = %v, want length 16", got)
 			}
 		})
 	}

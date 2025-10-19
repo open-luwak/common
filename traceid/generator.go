@@ -1,4 +1,4 @@
-package common
+package traceid
 
 import (
 	"crypto/rand"
@@ -6,14 +6,14 @@ import (
 	"fmt"
 )
 
-// GenerateTraceID generates a 128-bit Trace ID
-func GenerateTraceID() string {
+// NewTraceID generates a 128-bit Trace ID
+func NewTraceID() string {
 	randomBytes, _ := generateRandomBytes(16)
 	return hex.EncodeToString(randomBytes)
 }
 
-// GenerateSpanID generates a 64-bit Span ID
-func GenerateSpanID() string {
+// NewSpanID generates a 64-bit Span ID
+func NewSpanID() string {
 	randomBytes, _ := generateRandomBytes(8)
 	return hex.EncodeToString(randomBytes)
 }

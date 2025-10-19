@@ -1,4 +1,4 @@
-package common
+package api
 
 type Handler interface {
 	Handle(APIContext) error

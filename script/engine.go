@@ -1,4 +1,8 @@
-package common
+package script
+
+import (
+	"github.com/open-luwak/common/dbop"
+)
 
 type RunnerContext struct {
 	// Provide the default entity name for getting database connections
@@ -7,7 +11,7 @@ type RunnerContext struct {
 
 	GlobalThis map[string]any
 
-	DalCtx *DalContext
+	DalCtx *dbop.DalContext
 
 	DebugInfo map[string]any
 }

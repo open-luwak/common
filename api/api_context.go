@@ -1,6 +1,8 @@
-package common
+package api
 
-import "time"
+import (
+	"time"
+)
 
 var ApiCtxKey = ContextKey{}
 
