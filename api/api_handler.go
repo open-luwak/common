@@ -1,12 +1,12 @@
 package api
 
 type Handler interface {
-	Handle(APIContext) error
+	Handle(Context) error
 }
 
-type HandlerFunc func(APIContext) error
+type HandlerFunc func(Context) error
 
-func (hf HandlerFunc) Handle(ctx APIContext) error {
+func (hf HandlerFunc) Handle(ctx Context) error {
 	return hf(ctx)
 }
 

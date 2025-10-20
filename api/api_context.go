@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-var ApiCtxKey = ContextKey{}
+var CtxKey = ContextKey{}
 
 type ContextKey struct{}
 
@@ -15,8 +15,8 @@ type RequestContext struct {
 	RequestTime time.Time
 }
 
-// APIContext combines request and response contexts
-type APIContext interface {
+// Context combines request and response contexts
+type Context interface {
 	RequestReader
 	ResponseReader
 	RequestWriter
