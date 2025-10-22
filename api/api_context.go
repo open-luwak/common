@@ -1,19 +1,8 @@
 package api
 
-import (
-	"time"
-)
-
 var CtxKey = ContextKey{}
 
 type ContextKey struct{}
-
-type RequestContext struct {
-	ApiName     string
-	RemoteAddr  string
-	RemoteHost  string
-	RequestTime time.Time
-}
 
 // Context combines request and response contexts
 type Context interface {
@@ -28,11 +17,12 @@ type Context interface {
 // RequestReader contains request-related information
 type RequestReader interface {
 	RequestID() string
-	RequestContext() *RequestContext
 	Method() string
 	Params() any
 	RawParams() []byte
 	Metas() map[string]any
+
+	ServerContext() map[string]any
 }
 
 // ResponseReader contains response-related information
@@ -48,6 +38,8 @@ type RequestWriter interface {
 	SetParams(any)
 	SetRawParams([]byte)
 	SetMetas(map[string]any)
+
+	SetServerContext(map[string]any)
 }
 
 // ResponseWriter allows modification of response-related information
