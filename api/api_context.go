@@ -54,6 +54,6 @@ type MethodNameParser interface {
 }
 
 type Debugger interface {
-	SetDebugInfo([]map[string]any)
 	DebugInfo() []map[string]any
+	AppendDebugInfo([]map[string]any)
 }
