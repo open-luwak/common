@@ -11,18 +11,18 @@ const (
 
 type Metas map[string]any
 
-func (m Server) AppKey() string {
+func (m Metas) AppKey() string {
 	return cast.ToString(m[appKeyKey])
 }
 
-func (m Server) SetAppKey(appKey string) {
+func (m Metas) SetAppKey(appKey string) {
 	m[appKeyKey] = appKey
 }
 
-func (m Server) Token() string {
+func (m Metas) Token() string {
 	return cast.ToString(m[tokenKey])
 }
 
-func (m Server) SetToken(accessToken string) {
+func (m Metas) SetToken(accessToken string) {
 	m[tokenKey] = accessToken
 }
