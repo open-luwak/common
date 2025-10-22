@@ -5,11 +5,11 @@ import (
 )
 
 type InputWrapper struct {
-	value any
+	input any
 }
 
 func Input(v any) *InputWrapper {
-	return &InputWrapper{value: v}
+	return &InputWrapper{input: v}
 }
 
 func (i *InputWrapper) LimitOffset() (int, int) {
@@ -46,7 +46,7 @@ func (i *InputWrapper) getPaginationInt(key string, defaultValue int) int {
 }
 
 func (i *InputWrapper) getPaginationMap() map[string]any {
-	if v, ok := i.value.(map[string]any); ok {
+	if v, ok := i.input.(map[string]any); ok {
 		if pagination, ok := v["pagination"]; ok {
 			if paginationMap, ok := pagination.(map[string]any); ok {
 				return paginationMap
