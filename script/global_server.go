@@ -8,7 +8,8 @@ const (
 	apiNameKey     = "apiName"
 	remoteAddrKey  = "remoteAddr"
 	remoteHostKey  = "remoteHost"
-	requestTimeKey = "requestTime"
+	requestTimeKey = "reqTime"
+	requestIdKey   = "reqId"
 )
 
 type Server map[string]any
@@ -43,4 +44,12 @@ func (m Server) RequestTime() int64 {
 
 func (m Server) SetRequestTime(timestamp int64) {
 	m[requestTimeKey] = timestamp
+}
+
+func (m Server) RequestId() string {
+	return cast.ToString(m[requestIdKey])
+}
+
+func (m Server) SetRequestId(remoteHost string) {
+	m[requestIdKey] = remoteHost
 }
