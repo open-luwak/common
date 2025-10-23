@@ -66,41 +66,6 @@ func parseScriptInfo(baseDir string, path string) (*metadata.ScriptSource, error
 		return nil, fmt.Errorf("invalid path: %s", path)
 	}
 	scriptType := parts[0]
-	switch scriptType {
-	case metadata.PreloaderDir:
-		scriptType = metadata.PreloaderType
-	case metadata.CheckpointDir:
-		scriptType = metadata.CheckpointType
-	case metadata.DataPreprocessDir:
-		scriptType = metadata.DataPreprocessType
-	case metadata.MainDir:
-		scriptType = metadata.MainType
-	case metadata.DatabaseUpdaterDir:
-		scriptType = metadata.DatabaseUpdaterType
-	case metadata.DatabaseInserterDir:
-		scriptType = metadata.DatabaseInserterType
-	case metadata.EventBroadcasterDir:
-		scriptType = metadata.EventBroadcasterType
-	case metadata.ResponseEnricherDir:
-		scriptType = metadata.ResponseEnricherType
-
-	// conditional role
-	case metadata.ConditionalRoleDir:
-		scriptType = metadata.ConditionalRoleType
-
-	// global hooks
-	case metadata.BeforeHookDir:
-		scriptType = metadata.BeforeHookType
-	case metadata.AfterSuccessHookDir:
-		scriptType = metadata.AfterSuccessHookType
-	case metadata.AfterErrorHookDir:
-		scriptType = metadata.AfterErrorHookType
-	case metadata.FinallyHookDir:
-		scriptType = metadata.FinallyHookType
-
-	default:
-		return nil, fmt.Errorf("invalid script type: %s", scriptType)
-	}
 
 	fileName := filepath.Base(path)
 	fileExt := filepath.Ext(fileName)

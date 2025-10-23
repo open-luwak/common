@@ -7,7 +7,7 @@ import (
 )
 
 func TestLoadScripts(t *testing.T) {
-	dir := "../build/metadata/api/smartPanda/mdh/brand/jsGet"
+	dir := "../build/project/src/api/smartPanda/mdh/brand/jsGet"
 	scripts, err := LoadScripts(dir)
 	if err != nil {
 		t.Fatal(err)
