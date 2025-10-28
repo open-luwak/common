@@ -2,9 +2,9 @@ package metadata
 
 type DataFetcher struct {
 	Name   string `toml:"name,omitempty"`
-	To     string `toml:"to"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
+	To     string `toml:"to"`
 }
 
 type DataAccessOperator struct {

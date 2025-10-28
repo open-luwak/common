@@ -1,6 +1,7 @@
 package metadata
 
 type CheckItem struct {
+	Name    string `toml:"name,omitempty"`
 	Check   string `toml:"check"`
 	Message string `toml:"message,omitempty"`
 	Error   *Error `toml:"error,omitempty"`
