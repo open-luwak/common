@@ -2,7 +2,7 @@ package metadata
 
 type DataFetcher struct {
 	Name   string `toml:"name,omitempty"`
-	Var    string `toml:"var"`
+	To     string `toml:"to"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
 }
