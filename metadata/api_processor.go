@@ -29,7 +29,7 @@ type AutoFilter struct {
 type Filters struct {
 	Column   string `toml:"column"`
 	Operator string `toml:"operator"`
-	Value    string `toml:"value"`
+	Value    any    `toml:"value"`
 }
 
 type AutoPopulate struct {
@@ -41,5 +41,5 @@ type AutoPopulate struct {
 
 type Fields struct {
 	Column string `toml:"column"`
-	Value  string `toml:"value"`
+	Value  any    `toml:"value"`
 }
