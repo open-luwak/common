@@ -21,8 +21,8 @@ type Table struct {
 
 	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
 
-	AutoFilter      []*AutoFilter      `toml:"auto_filter,omitempty"`
-	AutoPopulate    []*AutoPopulate    `toml:"auto_populate,omitempty"`
+	AutoFilter      *AutoFilter        `toml:"auto_filter,omitempty"`
+	AutoPopulate    *AutoPopulate      `toml:"auto_populate,omitempty"`
 	Validation      []*ValidationRule  `toml:"validation,omitempty"`
 	Checking        []*CheckItem       `toml:"checking,omitempty"`
 	ConditionalRole []*ConditionalRole `toml:"conditional_role,omitempty"`

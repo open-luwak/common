@@ -1,15 +1,35 @@
 package dbop
 
-import (
-	"github.com/open-luwak/common/metadata"
-)
-
 type AsmParam struct {
-	Api   string
-	Param []any
+	Api   string `json:"api"`
+	Param []any  `json:"param"`
 
-	AutoFilter   []*metadata.AutoFilter
-	AutoPopulate []*metadata.AutoPopulate
+	AutoFilter   *AutoFilter   `json:"autoFilter,omitempty"`
+	AutoPopulate *AutoPopulate `json:"autoPopulate,omitempty"`
+}
+
+type AutoFilter struct {
+	Name     string     `json:"name,omitempty"`
+	Software string     `json:"software"`
+	Filters  []*Filters `json:"filters"`
+}
+
+type Filters struct {
+	Column   string `json:"column"`
+	Operator string `json:"operator"`
+	Value    any    `json:"value,omitempty"`
+}
+
+type AutoPopulate struct {
+	Name     string    `json:"name,omitempty"`
+	Software string    `json:"software"`
+	On       []string  `json:"on"`
+	Fields   []*Fields `json:"fields"`
+}
+
+type Fields struct {
+	Column string `json:"column"`
+	Value  any    `json:"value"`
 }
 
 type PreparedQuery struct {
