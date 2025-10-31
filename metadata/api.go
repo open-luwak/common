@@ -18,8 +18,8 @@ type Api struct {
 	BusinessExecutor []*DataAccessOperator `toml:"business_executor,omitempty"`
 	DatabaseUpdater  []*DataAccessOperator `toml:"database_updater,omitempty"`
 	DatabaseInserter []*DataAccessOperator `toml:"database_inserter,omitempty"`
-	AutoFilter       *AutoFilter           `toml:"auto_filter,omitempty"`
-	AutoPopulate     *AutoPopulate         `toml:"auto_populate,omitempty"`
+	AutoFilter       []*AutoFilter         `toml:"auto_filter,omitempty"`
+	AutoPopulate     []*AutoPopulate       `toml:"auto_populate,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }

@@ -10,21 +10,21 @@ type AsmParam struct {
 
 type AutoFilter struct {
 	Name     string    `json:"name,omitempty"`
-	Software string    `json:"software"`
+	Software string    `json:"software,omitempty"`
 	Filters  []*Filter `json:"filters"`
+}
+
+type AutoPopulate struct {
+	Name     string   `json:"name,omitempty"`
+	Software string   `json:"software,omitempty"`
+	OnInsert []*Field `json:"onInsert"`
+	OnUpdate []*Field `json:"onUpdate"`
 }
 
 type Filter struct {
 	Column   string `json:"column"`
 	Operator string `json:"operator"`
 	Value    any    `json:"value,omitempty"`
-}
-
-type AutoPopulate struct {
-	Name     string   `json:"name,omitempty"`
-	Software string   `json:"software"`
-	On       []string `json:"on"`
-	Fields   []*Field `json:"fields"`
 }
 
 type Field struct {
