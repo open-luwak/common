@@ -30,7 +30,7 @@ func (m GlobalThis) SetOutput(output any) {
 	m[outputKey] = output
 }
 
-func (m GlobalThis) Metas() map[string]any {
+func (m GlobalThis) Meta() map[string]any {
 	if v, ok := m[metaKey]; ok {
 		if metas, ok := v.(map[string]any); ok {
 			return metas
@@ -42,7 +42,7 @@ func (m GlobalThis) Metas() map[string]any {
 	return metas
 }
 
-func (m GlobalThis) SetMetas(metas map[string]any) {
+func (m GlobalThis) SetMeta(metas map[string]any) {
 	m[metaKey] = metas
 }
 
