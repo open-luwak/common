@@ -21,25 +21,25 @@ type ConditionalRole struct {
 }
 
 type AutoFilter struct {
-	Name     string     `toml:"name,omitempty"`
-	Software []string   `toml:"software"`
-	Filters  []*Filters `toml:"filters"`
+	Name     string    `toml:"name,omitempty"`
+	Software []string  `toml:"software"`
+	Filters  []*Filter `toml:"filters"`
 }
 
-type Filters struct {
+type Filter struct {
 	Column   string `toml:"column"`
 	Operator string `toml:"operator"`
 	Value    any    `toml:"value"`
 }
 
 type AutoPopulate struct {
-	Name     string    `toml:"name,omitempty"`
-	Software []string  `toml:"software"`
-	On       []string  `toml:"on"`
-	Fields   []*Fields `toml:"fields"`
+	Name     string   `toml:"name,omitempty"`
+	Software []string `toml:"software"`
+	On       []string `toml:"on"`
+	Fields   []*Field `toml:"fields"`
 }
 
-type Fields struct {
+type Field struct {
 	Column string `toml:"column"`
 	Value  any    `toml:"value"`
 }

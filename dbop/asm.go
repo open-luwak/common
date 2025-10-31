@@ -9,25 +9,25 @@ type AsmParam struct {
 }
 
 type AutoFilter struct {
-	Name     string     `json:"name,omitempty"`
-	Software string     `json:"software"`
-	Filters  []*Filters `json:"filters"`
+	Name     string    `json:"name,omitempty"`
+	Software string    `json:"software"`
+	Filters  []*Filter `json:"filters"`
 }
 
-type Filters struct {
+type Filter struct {
 	Column   string `json:"column"`
 	Operator string `json:"operator"`
 	Value    any    `json:"value,omitempty"`
 }
 
 type AutoPopulate struct {
-	Name     string    `json:"name,omitempty"`
-	Software string    `json:"software"`
-	On       []string  `json:"on"`
-	Fields   []*Fields `json:"fields"`
+	Name     string   `json:"name,omitempty"`
+	Software string   `json:"software"`
+	On       []string `json:"on"`
+	Fields   []*Field `json:"fields"`
 }
 
-type Fields struct {
+type Field struct {
 	Column string `json:"column"`
 	Value  any    `json:"value"`
 }
