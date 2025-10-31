@@ -5,11 +5,13 @@ import (
 )
 
 const (
-	apiNameKey     = "apiName"
-	remoteAddrKey  = "remoteAddr"
-	remoteHostKey  = "remoteHost"
-	requestTimeKey = "reqTime"
-	requestIdKey   = "reqId"
+	remoteAddrKey     = "remoteAddr"
+	remoteHostKey     = "remoteHost"
+	apiNameKey        = "reqApi"
+	requestIdKey      = "reqId"
+	requestTimeKey    = "reqTime"
+	requestHeaderKey  = "reqHeader"
+	responseHeaderKey = "respHeader"
 )
 
 type Server map[string]any
@@ -52,4 +54,39 @@ func (m Server) RequestId() string {
 
 func (m Server) SetRequestId(remoteHost string) {
 	m[requestIdKey] = remoteHost
+}
+
+func (m Server) ReqHeader() map[string]string {
+	if value, ok := m[requestHeaderKey]; ok {
+		if v, ok := value.(map[string]string); ok {
+			return v
+		}
+	}
+
+	return make(map[string]string)
+}
+
+func (m Server) SetReqHeader(header map[string]string) {
+	m[requestHeaderKey] = header
+}
+
+func (m Server) RespHeader() map[string]string {
+	if value, ok := m[responseHeaderKey]; ok {
+		if v, ok := value.(map[string]string); ok {
+			return v
+		}
+	}
+
+	return make(map[string]string)
+}
+
+func (m Server) AddRespHeader(key, value string) {
+	if respHeader, ok := m[responseHeaderKey]; ok {
+		if v, ok := respHeader.(map[string]string); ok {
+			v[key] = value
+		}
+	}
+	respHeader := make(map[string]string)
+	respHeader[key] = value
+	m[responseHeaderKey] = respHeader
 }

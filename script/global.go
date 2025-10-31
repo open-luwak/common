@@ -5,15 +5,11 @@ const GlobalKey = "globalThis"
 const (
 	inputKey   = "input"
 	envKey     = "env"
-	metaKey    = "metas"
+	metaKey    = "meta"
 	serverKey  = "server"
 	sessionKey = "session"
 	outputKey  = "output"
 	ctxKey     = "ctx"
-
-	requestHeaderKey  = "requestHeaders"
-	responseHeaderKey = "responseHeaders"
-	rolesKey          = "roles"
 )
 
 type GlobalThis map[string]any
