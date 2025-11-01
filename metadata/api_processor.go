@@ -29,8 +29,9 @@ type AutoFilter struct {
 }
 
 type AutoPopulate struct {
-	Name   string   `toml:"name,omitempty"`
-	Column string   `toml:"column"`
-	Value  any      `toml:"value"`
-	On     []string `toml:"on"`
+	Name     string   `toml:"name,omitempty"`
+	Software []string `toml:"software"`
+	Column   string   `toml:"column"`
+	Value    any      `toml:"value"`
+	On       []string `toml:"on"`
 }
