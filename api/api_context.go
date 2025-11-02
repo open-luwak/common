@@ -53,6 +53,7 @@ type ServerEnvReadWriter interface {
 
 type MethodNameParser interface {
 	ParsedName() *ParsedName
+	SetParsedName(*ParsedName)
 }
 
 type AppReadWriter interface {
