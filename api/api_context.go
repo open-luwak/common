@@ -14,7 +14,7 @@ type Context interface {
 	ResponseReadWriter
 	ServerEnvReadWriter
 	MethodNameParser
-	AppReader
+	AppReadWriter
 	SessionReadWriter
 	DebugInfoReadWriter
 }
@@ -55,8 +55,9 @@ type MethodNameParser interface {
 	ParsedName() *ParsedName
 }
 
-type AppReader interface {
+type AppReadWriter interface {
 	AppInstance() *metadata.AppInstance
+	SetAppInstance(*metadata.AppInstance)
 }
 
 type SessionReadWriter interface {
