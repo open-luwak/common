@@ -72,9 +72,7 @@ func (m Server) SetReqHeader(header map[string]string) {
 
 func (m Server) RespHeader() map[string]string {
 	if value, ok := m[responseHeaderKey]; ok {
-		if v, ok := value.(map[string]string); ok {
-			return v
-		}
+		return cast.ToStringMapString(value)
 	}
 
 	return make(map[string]string)
@@ -82,11 +80,11 @@ func (m Server) RespHeader() map[string]string {
 
 func (m Server) AddRespHeader(key, value string) {
 	if respHeader, ok := m[responseHeaderKey]; ok {
-		if v, ok := respHeader.(map[string]string); ok {
+		if v, ok := respHeader.(map[string]any); ok {
 			v[key] = value
 		}
 	}
-	respHeader := make(map[string]string)
+	respHeader := make(map[string]any)
 	respHeader[key] = value
 	m[responseHeaderKey] = respHeader
 }
