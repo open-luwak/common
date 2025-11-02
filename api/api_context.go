@@ -13,8 +13,9 @@ type Context interface {
 	RequestReadWriter
 	ResponseReadWriter
 	ServerEnvReadWriter
-	AppReader
 	MethodNameParser
+	AppReader
+	SessionReadWriter
 	DebugInfoReadWriter
 }
 
@@ -50,12 +51,17 @@ type ServerEnvReadWriter interface {
 	SetServerEnv(map[string]any)
 }
 
+type MethodNameParser interface {
+	ParsedName() *ParsedName
+}
+
 type AppReader interface {
 	AppInstance() *metadata.AppInstance
 }
 
-type MethodNameParser interface {
-	ParsedName() *ParsedName
+type SessionReadWriter interface {
+	Session() map[string]any
+	SetSession(string, map[string]any)
 }
 
 type DebugInfoReadWriter interface {
