@@ -1,6 +1,8 @@
 package api
 
 import (
+	"net/http"
+
 	"github.com/open-luwak/common/metadata"
 )
 
@@ -39,6 +41,8 @@ type RequestReadWriter interface {
 
 // ResponseReadWriter contains response-related information
 type ResponseReadWriter interface {
+	ResponseHeader() http.Header
+
 	Result() any
 	SetResult(any)
 
