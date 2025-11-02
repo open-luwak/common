@@ -1,5 +1,9 @@
 package api
 
+import (
+	"github.com/open-luwak/common/metadata"
+)
+
 var CtxKey = ContextKey{}
 
 type ContextKey struct{}
@@ -10,6 +14,7 @@ type Context interface {
 	ResponseReader
 	RequestWriter
 	ResponseWriter
+	AppReader
 	MethodNameParser
 	Debugger
 }
@@ -46,6 +51,10 @@ type RequestWriter interface {
 type ResponseWriter interface {
 	SetResult(any)
 	SetErr(error)
+}
+
+type AppReader interface {
+	AppInstance() *metadata.AppInstance
 }
 
 type MethodNameParser interface {
