@@ -61,7 +61,7 @@ type AppReader interface {
 
 type SessionReadWriter interface {
 	Session() map[string]any
-	SetSession(string, map[string]any)
+	SetSession(map[string]any)
 }
 
 type DebugInfoReadWriter interface {
