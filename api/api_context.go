@@ -10,47 +10,44 @@ type ContextKey struct{}
 
 // Context combines request and response contexts
 type Context interface {
-	RequestReader
-	ResponseReader
-	RequestWriter
-	ResponseWriter
+	RequestReadWriter
+	ResponseReadWriter
+	ServerEnvReadWriter
 	AppReader
 	MethodNameParser
-	Debugger
+	DebugInfoReadWriter
 }
 
-// RequestReader contains request-related information
-type RequestReader interface {
+// RequestReadWriter contains request-related information
+type RequestReadWriter interface {
 	RequestID() string
-	Method() string
-	Params() any
-	RawParams() []byte
-	Metas() map[string]any
-
-	ServerContext() map[string]any
-}
-
-// ResponseReader contains response-related information
-type ResponseReader interface {
-	Result() any
-	Err() error
-}
-
-// RequestWriter allows modification of request-related information
-type RequestWriter interface {
 	SetRequestID(string)
-	SetMethod(string)
-	SetParams(any)
-	SetRawParams([]byte)
-	SetMetas(map[string]any)
 
-	SetServerContext(map[string]any)
+	Method() string
+	SetMethod(string)
+
+	Params() any
+	SetParams(any)
+
+	RawParams() []byte
+	SetRawParams([]byte)
+
+	Metas() map[string]any
+	SetMetas(map[string]any)
 }
 
-// ResponseWriter allows modification of response-related information
-type ResponseWriter interface {
+// ResponseReadWriter contains response-related information
+type ResponseReadWriter interface {
+	Result() any
 	SetResult(any)
+
+	Err() error
 	SetErr(error)
+}
+
+type ServerEnvReadWriter interface {
+	ServerEnv() map[string]any
+	SetServerEnv(map[string]any)
 }
 
 type AppReader interface {
@@ -59,10 +56,9 @@ type AppReader interface {
 
 type MethodNameParser interface {
 	ParsedName() *ParsedName
-	SetParsedName(*ParsedName)
 }
 
-type Debugger interface {
+type DebugInfoReadWriter interface {
 	DebugInfo() []map[string]any
 	AppendDebugInfo([]map[string]any)
 }
