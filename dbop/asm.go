@@ -23,26 +23,3 @@ type PreparedQuery struct {
 
 	Result *QueryResult `json:"-"`
 }
-
-type ResultType string
-
-const (
-	None         ResultType = "none"
-	MultiRows    ResultType = "multi_rows"
-	SingleRow    ResultType = "single_row"
-	SingleValue  ResultType = "single_value"
-	LastInsertId ResultType = "last_insert_id"
-	RowsAffected ResultType = "rows_affected"
-	Transaction  ResultType = "transaction"
-)
-
-type QueryResult struct {
-	ResultType ResultType
-	ResultName string
-
-	Rows         []map[string]any
-	Row          map[string]any
-	Value        any
-	LastInsertId int64
-	RowsAffected int64
-}
