@@ -33,6 +33,7 @@ const (
 	SingleValue  ResultType = "single_value"
 	LastInsertId ResultType = "last_insert_id"
 	RowsAffected ResultType = "rows_affected"
+	Transaction  ResultType = "transaction"
 )
 
 type QueryResult struct {
