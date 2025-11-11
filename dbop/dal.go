@@ -7,13 +7,13 @@ import (
 type ResultType int
 
 const (
-	RetNone ResultType = iota
-	RetMultiRows
-	RetSingleRow
-	RetSingleValue
-	RetLastInsertId
-	RetRowsAffected
-	RetTransaction
+	None ResultType = iota
+	MultiRows
+	SingleRow
+	SingleValue
+	LastInsertId
+	RowsAffected
+	Transaction
 )
 
 type QueryResult struct {
@@ -30,18 +30,18 @@ type QueryResult struct {
 type OperationType int
 
 const (
-	OpInvalid OperationType = iota
-	OpCreateOne
-	OpCreateMany
-	OpReadMany
-	OpReadOne
-	OpReadValue
-	OpUpdateOne
-	OpUpdateMany
-	OpDeleteOne
-	OpDeleteMany
-	OpTransaction
-	OpDDL
+	InvalidAction OperationType = iota
+	CreateOneAction
+	CreateManyAction
+	ReadManyAction
+	ReadOneAction
+	ReadValueAction
+	UpdateOneAction
+	UpdateManyAction
+	DeleteOneAction
+	DeleteManyAction
+	TransactionAction
+	DDLAction
 )
 
 type DalContext struct {
