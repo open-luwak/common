@@ -10,6 +10,7 @@ const (
 	None ResultType = iota
 	MultiRows
 	SingleRow
+	AutoSingleColumn
 	SingleValue
 	LastInsertId
 	RowsAffected
