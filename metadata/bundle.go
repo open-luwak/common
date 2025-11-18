@@ -9,7 +9,7 @@ type Bundle struct {
 }
 
 type TomlBundle struct {
-	Preloader        []*DataFetcher
+	Preloader        []*DataAccessOperator
 	Checkpoint       []*CheckItem
 	BusinessExecutor []*DataAccessOperator
 	DBUpdater        []*DataAccessOperator

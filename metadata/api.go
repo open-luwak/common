@@ -11,7 +11,7 @@ type Api struct {
 	ExecuteGlobalScript bool   `toml:"execute_global_script"`
 	Enabled             bool   `toml:"enabled"`
 
-	Preloader        []*DataFetcher        `toml:"preloader,omitempty"`
+	Preloader        []*DataAccessOperator `toml:"preloader,omitempty"`
 	Validation       []*ValidationRule     `toml:"validation,omitempty"`
 	Checking         []*CheckItem          `toml:"checking,omitempty"`
 	Checkpoint       []*CheckItem          `toml:"checkpoint,omitempty"`

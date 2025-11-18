@@ -1,16 +1,11 @@
 package metadata
 
-type DataFetcher struct {
-	Name   string `toml:"name,omitempty"`
-	Method string `toml:"method"`
-	Param  any    `toml:"param"`
-	To     string `toml:"to"`
-}
-
 type DataAccessOperator struct {
 	Name   string `toml:"name,omitempty"`
+	When   string `toml:"when,omitempty"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
+	To     string `toml:"to,omitempty"`
 }
 
 type ConditionalRole struct {
