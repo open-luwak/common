@@ -3,9 +3,9 @@ package metadata
 type DataAccessOperator struct {
 	Name   string `toml:"name,omitempty"`
 	When   string `toml:"when,omitempty"`
+	To     string `toml:"to,omitempty"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
-	To     string `toml:"to,omitempty"`
 }
 
 type ConditionalRole struct {
@@ -26,7 +26,7 @@ type AutoFilter struct {
 type AutoPopulate struct {
 	Name     string   `toml:"name,omitempty"`
 	Software []string `toml:"software"`
+	On       []string `toml:"on"`
 	Column   string   `toml:"column"`
 	Value    any      `toml:"value"`
-	On       []string `toml:"on"`
 }
