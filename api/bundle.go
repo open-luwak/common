@@ -51,8 +51,7 @@ type MetaProvider struct {
 }
 
 type ConditionalRoleProvider interface {
-	ApiRole(software string, method string) *[]metadata.ConditionalRole
-	EntityRole(software string, entity string) *[]metadata.ConditionalRole
+	EntityRole(software string, entity string) []*metadata.ConditionalRole
 }
 
 type AutoFilterProvider interface {
