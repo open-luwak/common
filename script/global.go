@@ -94,7 +94,7 @@ func (m GlobalThis) SetEnv(env map[string]any) {
 	m[envKey] = env
 }
 
-func (m GlobalThis) Ctx() map[string]any {
+func (m GlobalThis) CtxData() map[string]any {
 	if v, ok := m[ctxKey]; ok {
 		if ctx, ok := v.(map[string]any); ok {
 			return ctx
@@ -106,7 +106,7 @@ func (m GlobalThis) Ctx() map[string]any {
 	return ctx
 }
 
-func (m GlobalThis) SetCtx(key string, value any) {
+func (m GlobalThis) SetCtxData(key string, value any) {
 	if v, ok := m[ctxKey]; ok {
 		if ctx, ok := v.(map[string]any); ok {
 			ctx[key] = value
