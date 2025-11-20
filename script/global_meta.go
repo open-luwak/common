@@ -9,7 +9,6 @@ const (
 	sessionIdKey = "sessionId"
 	appKeyKey    = "appKey"
 	softwareKey  = "software"
-	rolesKey     = "roles"
 )
 
 type Meta map[string]any
@@ -47,14 +46,14 @@ func (m Meta) SetSoftware(software string) {
 }
 
 func (m Meta) Roles() []string {
-	return cast.ToStringSlice(m[rolesKey])
+	return cast.ToStringSlice(m[DefaultRolesKey])
 }
 
 func (m Meta) AddRoles(roles []string) {
-	if v, ok := m[rolesKey]; ok {
+	if v, ok := m[DefaultRolesKey]; ok {
 		if vv, ok := v.([]string); ok {
 			vv = append(vv, roles...)
 		}
 	}
-	m[rolesKey] = roles
+	m[DefaultRolesKey] = roles
 }
