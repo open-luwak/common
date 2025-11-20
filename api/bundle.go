@@ -49,6 +49,7 @@ const (
 	NameSourceUnknown NameSourceType = iota
 	NameSourceHTTPJsonRPC
 	NameSourceInternalDAO
+	NameSourceCronJob
 )
 
 type MetaProvider struct {
