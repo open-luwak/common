@@ -1,5 +1,9 @@
 package script
 
+import (
+	"github.com/tiendc/go-deepcopy"
+)
+
 const GlobalKey = "globalThis"
 
 const (
@@ -120,14 +124,7 @@ func (m GlobalThis) SetCtxData(key string, value any) {
 }
 
 func (m GlobalThis) Copy(global map[string]any) {
-	if value, ok := global[metaKey]; ok {
-		if meta, ok := value.(map[string]any); ok {
-			newMeta := make(map[string]any)
-			for k, v := range meta {
-				newMeta[k] = v
-			}
-			m.SetMeta(newMeta)
-			return
-		}
+	for _, key := range []string{envKey, metaKey, serverKey, sessionKey, ctxKey} {
+		_ = deepcopy.Copy(m[key], global[key])
 	}
 }
