@@ -1,6 +1,9 @@
 package script
 
 import (
+	"fmt"
+	"log/slog"
+
 	"github.com/tiendc/go-deepcopy"
 )
 
@@ -123,8 +126,16 @@ func (m GlobalThis) SetCtxData(key string, value any) {
 	m[ctxKey] = ctx
 }
 
-func (m GlobalThis) Copy(global map[string]any) {
+func (m GlobalThis) Copy(sourceMap map[string]any) {
 	for _, key := range []string{envKey, metaKey, serverKey, sessionKey, ctxKey} {
-		_ = deepcopy.Copy(m[key], global[key])
+		if val, exists := sourceMap[key]; exists {
+			var deepCopyValue any
+			err := deepcopy.Copy(&deepCopyValue, val)
+			if err != nil {
+				slog.Error(fmt.Sprintf("deepcopy key %s: %s", key, err.Error()))
+				continue
+			}
+			m[key] = deepCopyValue
+		}
 	}
 }
