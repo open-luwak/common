@@ -43,18 +43,7 @@ type HooksBundle struct {
 	UnsupportedScripts []*metadata.ScriptSource
 }
 
-type NameSourceType int
-
-const (
-	NameSourceUnknown NameSourceType = iota
-	NameSourceHTTPJsonRPC
-	NameSourceInternalDAO
-	NameSourceCronJob
-)
-
 type MetaProvider struct {
-	NameSource      NameSourceType
-	Name            *ParsedName
 	ConditionalRole ConditionalRoleProvider
 	AutoFilter      AutoFilterProvider
 	AutoPopulate    AutoPopulateProvider
