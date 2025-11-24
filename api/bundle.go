@@ -5,11 +5,11 @@ import (
 )
 
 type Bundle struct {
-	TomlBundle   *TomlBundle
-	ScriptBundle *ScriptBundle
-
 	EnableGlobalHooks bool
 	HooksBundle       *HooksBundle
+	TomlBundle        *TomlBundle
+	ScriptBundle      *ScriptBundle
+	MetaProvider      *MetaProvider
 }
 
 type TomlBundle struct {
@@ -18,8 +18,6 @@ type TomlBundle struct {
 	BusinessExecutor []*metadata.DataAccessOperator
 	DBUpdater        []*metadata.DataAccessOperator
 	DBInserter       []*metadata.DataAccessOperator
-
-	MetaProvider *MetaProvider
 }
 
 type ScriptBundle struct {
