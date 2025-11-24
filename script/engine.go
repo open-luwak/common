@@ -6,15 +6,10 @@ import (
 )
 
 type RunnerContext struct {
-	// Provide the default entity name for getting database connections
-	// only when the scripting language is native SQL.
-	//
-	// Deprecated
-	DefaultEntityName string
+	ParsedName   *api.ParsedName
+	MetaProvider *api.MetaProvider
+	DalCtx       *dbop.DalContext
 
 	GlobalThis map[string]any
 	DebugInfo  map[string]any
-
-	DalCtx       *dbop.DalContext
-	MetaProvider *api.MetaProvider
 }
