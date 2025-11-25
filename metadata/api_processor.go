@@ -6,6 +6,7 @@ type DataAccessOperator struct {
 	To     string `toml:"to,omitempty"`
 	Method string `toml:"method"`
 	Param  any    `toml:"param"`
+	Error  *Error `toml:"error,omitempty"`
 }
 
 type ConditionalRole struct {
@@ -29,4 +30,16 @@ type AutoPopulate struct {
 	On       []string `toml:"on"`
 	Column   string   `toml:"column"`
 	Value    any      `toml:"value"`
+}
+
+type CheckItem struct {
+	Name    string `toml:"name,omitempty"`
+	Check   string `toml:"check"`
+	Message string `toml:"message,omitempty"`
+	Error   *Error `toml:"error,omitempty"`
+}
+
+type Error struct {
+	Code    string `toml:"code"`
+	Message string `toml:"message"`
 }
