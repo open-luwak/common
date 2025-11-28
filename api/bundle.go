@@ -13,6 +13,7 @@ type Bundle struct {
 }
 
 type TomlBundle struct {
+	InputValidator   []*metadata.ValidationRule
 	Preloader        []*metadata.DataAccessOperator
 	Checkpoint       []*metadata.CheckItem
 	BusinessExecutor []*metadata.DataAccessOperator

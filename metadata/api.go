@@ -12,7 +12,7 @@ type Api struct {
 	Enabled             bool   `toml:"enabled"`
 
 	Preloader        []*DataAccessOperator `toml:"preloader,omitempty"`
-	Validation       []*ValidationRule     `toml:"validation,omitempty"`
+	InputValidator   []*ValidationRule     `toml:"input_validator,omitempty"`
 	Checking         []*CheckItem          `toml:"checking,omitempty"`
 	Checkpoint       []*CheckItem          `toml:"checkpoint,omitempty"`
 	BusinessExecutor []*DataAccessOperator `toml:"business_executor,omitempty"`
