@@ -8,7 +8,20 @@ type ValidationRule struct {
 }
 
 type RuleItem struct {
+	Name      string `toml:"name,omitempty"`
+	Message   string `toml:"message,omitempty"`
 	Validator string `toml:"validator"`
 	Value     any    `toml:"value,omitempty"`
-	Message   string `toml:"message,omitempty"`
+}
+
+type ValidationResult struct {
+	Valid    bool
+	Failures []RuleFailure
+}
+
+type RuleFailure struct {
+	Name    string
+	Field   string
+	Message string
+	Details map[string]any
 }
