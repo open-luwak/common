@@ -16,7 +16,7 @@ type RuleItem struct {
 
 type ValidationResult struct {
 	Valid    bool
-	Failures []RuleFailure
+	Failures []*RuleFailure
 }
 
 type RuleFailure struct {
@@ -24,4 +24,8 @@ type RuleFailure struct {
 	Field   string
 	Message string
 	Details map[string]any
+}
+
+func (err *RuleFailure) Error() string {
+	return err.Message
 }
