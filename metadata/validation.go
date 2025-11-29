@@ -15,15 +15,15 @@ type RuleItem struct {
 }
 
 type ValidationResult struct {
-	Valid    bool
-	Failures []*RuleFailure
+	Valid    bool           `json:"valid"`
+	Failures []*RuleFailure `json:"failures,omitempty"`
 }
 
 type RuleFailure struct {
-	Name    string
-	Field   string
-	Message string
-	Details map[string]any
+	Name    string         `json:"name,omitempty"`
+	Field   string         `json:"field,omitempty"`
+	Message string         `json:"message,omitempty"`
+	Details map[string]any `json:"details,omitempty"`
 }
 
 func (err *RuleFailure) Error() string {
