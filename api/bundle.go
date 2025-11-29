@@ -46,6 +46,7 @@ type MetaProvider struct {
 	ConditionalRole ConditionalRoleProvider
 	AutoFilter      AutoFilterProvider
 	AutoPopulate    AutoPopulateProvider
+	Validation      ValidationProvider
 }
 
 type ConditionalRoleProvider interface {
@@ -60,4 +61,9 @@ type AutoFilterProvider interface {
 type AutoPopulateProvider interface {
 	ApiPopulate(software string, method string) []*metadata.AutoPopulate
 	EntityPopulate(software string, entity string) []*metadata.AutoPopulate
+}
+
+type ValidationProvider interface {
+	EntityValidationRule(entity string) []*metadata.ValidationRule
+	EntityChecking(entity string) []*metadata.CheckItem
 }
