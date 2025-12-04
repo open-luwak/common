@@ -15,25 +15,27 @@ type Bundle struct {
 type TomlBundle struct {
 	InputValidator   []*metadata.ValidationRule
 	Preloader        []*metadata.DataAccessOperator
-	PostLoader       []*metadata.DataAccessOperator
 	Checkpoint       []*metadata.CheckItem
 	DataPreprocessor []*metadata.DataTransformer
-	ResultEnricher   []*metadata.DataTransformer
 	BusinessExecutor []*metadata.DataAccessOperator
 	DBUpdater        []*metadata.DataAccessOperator
 	DBInserter       []*metadata.DataAccessOperator
+	PostLoader       []*metadata.DataAccessOperator
+	ResultEnricher   []*metadata.DataTransformer
 }
 
 type ScriptBundle struct {
+	InputValidator     []*metadata.ScriptSource
 	Preloader          []*metadata.ScriptSource
 	Checkpoint         []*metadata.ScriptSource
 	DataPreprocessor   []*metadata.ScriptSource
+	ConditionalRole    []*metadata.ScriptSource
 	BusinessExecutor   []*metadata.ScriptSource
-	ResultEnricher     []*metadata.ScriptSource
 	DBUpdater          []*metadata.ScriptSource
 	DBInserter         []*metadata.ScriptSource
 	EventPublisher     []*metadata.ScriptSource
-	ConditionalRole    []*metadata.ScriptSource
+	PostLoader         []*metadata.ScriptSource
+	ResultEnricher     []*metadata.ScriptSource
 	UnsupportedScripts []*metadata.ScriptSource
 }
 
