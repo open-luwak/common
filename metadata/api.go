@@ -15,6 +15,7 @@ type Api struct {
 	InputValidator   []*ValidationRule     `toml:"input_validator,omitempty"`
 	Checking         []*CheckItem          `toml:"checking,omitempty"`
 	Checkpoint       []*CheckItem          `toml:"checkpoint,omitempty"`
+	DataPreprocessor []*DataPreprocessor   `toml:"data_preprocessor,omitempty"`
 	BusinessExecutor []*DataAccessOperator `toml:"business_executor,omitempty"`
 	DatabaseUpdater  []*DataAccessOperator `toml:"database_updater,omitempty"`
 	DatabaseInserter []*DataAccessOperator `toml:"database_inserter,omitempty"`

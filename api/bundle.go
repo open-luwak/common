@@ -16,6 +16,7 @@ type TomlBundle struct {
 	InputValidator   []*metadata.ValidationRule
 	Preloader        []*metadata.DataAccessOperator
 	Checkpoint       []*metadata.CheckItem
+	DataPreprocessor []*metadata.DataPreprocessor
 	BusinessExecutor []*metadata.DataAccessOperator
 	DBUpdater        []*metadata.DataAccessOperator
 	DBInserter       []*metadata.DataAccessOperator

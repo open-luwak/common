@@ -1,5 +1,11 @@
 package metadata
 
+type DataPreprocessor struct {
+	Name  string `toml:"name,omitempty"`
+	Field string `toml:"field,omitempty"`
+	Value any    `toml:"value,omitempty"`
+}
+
 type DataAccessOperator struct {
 	Name   string `toml:"name,omitempty"`
 	When   string `toml:"when,omitempty"`
