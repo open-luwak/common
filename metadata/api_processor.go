@@ -1,6 +1,6 @@
 package metadata
 
-type DataPreprocessor struct {
+type DataTransformer struct {
 	Name  string `toml:"name,omitempty"`
 	Field string `toml:"field,omitempty"`
 	Value any    `toml:"value,omitempty"`
