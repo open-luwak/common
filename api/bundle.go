@@ -18,24 +18,26 @@ type TomlBundle struct {
 	Checkpoint       []*metadata.CheckItem
 	DataPreprocessor []*metadata.DataTransformer
 	BusinessExecutor []*metadata.DataAccessOperator
-	DBUpdater        []*metadata.DataAccessOperator
 	DBInserter       []*metadata.DataAccessOperator
+	DBUpdater        []*metadata.DataAccessOperator
 	PostLoader       []*metadata.DataAccessOperator
 	ResultEnricher   []*metadata.DataTransformer
+	FieldMasker      []*metadata.FieldMasker
 }
 
 type ScriptBundle struct {
 	InputValidator     []*metadata.ScriptSource
 	Preloader          []*metadata.ScriptSource
+	ConditionalRole    []*metadata.ScriptSource
 	Checkpoint         []*metadata.ScriptSource
 	DataPreprocessor   []*metadata.ScriptSource
-	ConditionalRole    []*metadata.ScriptSource
 	BusinessExecutor   []*metadata.ScriptSource
 	DBUpdater          []*metadata.ScriptSource
 	DBInserter         []*metadata.ScriptSource
 	EventPublisher     []*metadata.ScriptSource
 	PostLoader         []*metadata.ScriptSource
 	ResultEnricher     []*metadata.ScriptSource
+	FieldMasker        []*metadata.ScriptSource
 	UnsupportedScripts []*metadata.ScriptSource
 }
 

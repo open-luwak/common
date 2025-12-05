@@ -49,3 +49,11 @@ type Error struct {
 	Code    string `toml:"code"`
 	Message string `toml:"message"`
 }
+
+type FieldMasker struct {
+	Name   string `toml:"name,omitempty"`
+	When   string `toml:"when,omitempty"`
+	Field  string `toml:"field"`
+	Masker string `toml:"masker,omitempty"`
+	Value  string `toml:"value,omitempty"`
+}
