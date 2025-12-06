@@ -18,14 +18,17 @@ const (
 )
 
 type QueryResult struct {
-	ResultType ResultType
 	ResultName string
+	ResultType ResultType
 
 	Rows         []map[string]any
 	Row          map[string]any
 	Value        any
 	LastInsertId int64
 	RowsAffected int64
+
+	CheckPoint     []*QueryResult
+	ResultEnricher []*QueryResult
 }
 
 type OperationType int
