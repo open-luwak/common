@@ -13,7 +13,7 @@ type Api struct {
 
 	InputValidator   []*ValidationRule     `toml:"input_validator,omitempty"`
 	Checking         []*CheckItem          `toml:"checking,omitempty"`
-	Preloader        []*DataAccessOperator `toml:"preloader,omitempty"`
+	Preloader        []*DataAccessOperator `toml:"pre_loader,omitempty"`
 	Checkpoint       []*CheckItem          `toml:"checkpoint,omitempty"`
 	AutoFilter       []*AutoFilter         `toml:"auto_filter,omitempty"`
 	AutoPopulate     []*AutoPopulate       `toml:"auto_populate,omitempty"`
