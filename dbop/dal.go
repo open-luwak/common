@@ -40,14 +40,37 @@ func (t ResultType) String() string {
 	}
 }
 
+type ResultSource int
+
+const (
+	SourceMainQuery ResultSource = iota
+	SourceCheckpoint
+	SourceEnricher
+)
+
+func (s ResultSource) String() string {
+	switch s {
+	case SourceMainQuery:
+		return "main_query"
+	case SourceCheckpoint:
+		return "checkpoint"
+	case SourceEnricher:
+		return "enricher"
+	default:
+		return "unknown"
+	}
+}
+
 type QueryResult struct {
-	ResultType     ResultType
-	LastInsertId   int64
-	RowsAffected   int64
-	Row            map[string]any
-	Rows           []map[string]any
-	CheckPoint     []*QueryResult
-	ResultEnricher []*QueryResult
+	ResultName   string
+	ResultSource ResultSource
+	ResultType   ResultType
+	LastInsertId int64
+	RowsAffected int64
+	Row          map[string]any
+	Rows         []map[string]any
+	CheckPoint   []*QueryResult
+	Enricher     []*QueryResult
 }
 
 type OperationType int
