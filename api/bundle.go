@@ -14,6 +14,7 @@ type Bundle struct {
 
 type TomlBundle struct {
 	InputValidator   []*metadata.ValidationRule
+	Checks           []*metadata.CheckExpression
 	Preloader        []*metadata.DataAccessOperator
 	Checkpoint       []*metadata.CheckExpression
 	DataPreprocessor []*metadata.DataTransformer
@@ -21,8 +22,8 @@ type TomlBundle struct {
 	DBInserter       []*metadata.DataAccessOperator
 	DBUpdater        []*metadata.DataAccessOperator
 	PostLoader       []*metadata.DataAccessOperator
-	ResultEnricher   []*metadata.DataTransformer
 	FieldMasker      []*metadata.FieldMasker
+	ResultEnricher   []*metadata.DataTransformer
 }
 
 type ScriptBundle struct {

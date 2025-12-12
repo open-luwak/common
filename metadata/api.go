@@ -22,8 +22,8 @@ type Api struct {
 	DatabaseInserter []*DataAccessOperator `toml:"database_inserter,omitempty"`
 	DatabaseUpdater  []*DataAccessOperator `toml:"database_updater,omitempty"`
 	PostLoader       []*DataAccessOperator `toml:"post_loader,omitempty"`
-	ResultEnricher   []*DataTransformer    `toml:"result_enricher,omitempty"`
 	FieldMasker      []*FieldMasker        `toml:"field_masker,omitempty"`
+	ResultEnricher   []*DataTransformer    `toml:"result_enricher,omitempty"`
 
 	Scripts []*ScriptSource `toml:"-"`
 }
