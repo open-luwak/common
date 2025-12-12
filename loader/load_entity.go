@@ -67,8 +67,8 @@ func LoadEntity(root string) (*metadata.EntityConfig, error) {
 
 		v.Validation = mergeValidation(v.Validation, vvv.Validation)
 
-		if len(v.Checking) == 0 {
-			v.Checking = vvv.Checking
+		if len(v.Checks) == 0 {
+			v.Checks = vvv.Checks
 		}
 
 		v.ConditionalRole = vvv.ConditionalRole
@@ -182,7 +182,7 @@ func UnmarshalEntityFiles(dir string) (*metadata.EntityConfig, error) {
 			PrimaryKey: v.Entities[0].PrimaryKey,
 			UniqueKeys: v.Entities[0].UniqueKeys,
 			Validation: v.Entities[0].Validation,
-			Checking:   v.Entities[0].Checking,
+			Checks:     v.Entities[0].Checks,
 		}
 
 		config.Entities = append(config.Entities, entity)

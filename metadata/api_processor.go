@@ -38,9 +38,9 @@ type AutoPopulate struct {
 	Value    any      `toml:"value"`
 }
 
-type CheckItem struct {
+type CheckExpression struct {
 	Name    string `toml:"name,omitempty"`
-	Check   string `toml:"check"`
+	Check   string `toml:"check"` // expression
 	Message string `toml:"message,omitempty"`
 	Error   *Error `toml:"error,omitempty"`
 }

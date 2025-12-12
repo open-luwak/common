@@ -15,7 +15,7 @@ type Bundle struct {
 type TomlBundle struct {
 	InputValidator   []*metadata.ValidationRule
 	Preloader        []*metadata.DataAccessOperator
-	Checkpoint       []*metadata.CheckItem
+	Checkpoint       []*metadata.CheckExpression
 	DataPreprocessor []*metadata.DataTransformer
 	BusinessExecutor []*metadata.DataAccessOperator
 	DBInserter       []*metadata.DataAccessOperator
@@ -79,5 +79,5 @@ type AutoPopulateProvider interface {
 
 type ValidationProvider interface {
 	ValidationRule(entity string) []*metadata.ValidationRule
-	Checking(entity string) []*metadata.CheckItem
+	Checks(entity string) []*metadata.CheckExpression
 }
