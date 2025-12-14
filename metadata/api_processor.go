@@ -53,6 +53,7 @@ type Error struct {
 type FieldMasker struct {
 	Name   string `toml:"name,omitempty"`
 	When   string `toml:"when,omitempty"`
+	Error  *Error `toml:"error,omitempty"`
 	Field  string `toml:"field"`
 	Masker string `toml:"masker,omitempty"`
 	Value  string `toml:"value,omitempty"`
