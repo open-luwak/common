@@ -1,9 +1,5 @@
 package metadata
 
-type TableConfig struct {
-	Tables []*Table `toml:"table,omitempty"`
-}
-
 type Table struct {
 	DbType     string `toml:"db_type"`
 	DbName     string `toml:"db_name"`

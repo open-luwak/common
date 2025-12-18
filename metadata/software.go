@@ -1,9 +1,5 @@
 package metadata
 
-type SoftwareConfig struct {
-	SoftwareCollection []*Software `toml:"software"`
-}
-
 type Software struct {
 	Name        string        `toml:"name"`
 	Description string        `toml:"description"`

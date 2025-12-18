@@ -1,9 +1,5 @@
 package metadata
 
-type AclConfig struct {
-	Roles []*Role `toml:"role"`
-}
-
 type Role struct {
 	Name        string        `toml:"name"`
 	Description string        `toml:"description"`

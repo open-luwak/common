@@ -1,9 +1,5 @@
 package metadata
 
-type EntityConfig struct {
-	Entities []*Entity `toml:"entity,omitempty"`
-}
-
 type Entity struct {
 	Name              string `toml:"name,omitempty"`
 	LogicalDbName     string `toml:"logical_db_name,omitempty"`

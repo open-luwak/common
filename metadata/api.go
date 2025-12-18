@@ -1,9 +1,5 @@
 package metadata
 
-type ApiConfig struct {
-	Apis []*Api `toml:"api,omitempty"`
-}
-
 type Api struct {
 	Name                string `toml:"name"`
 	Status              string `toml:"status"`
