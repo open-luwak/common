@@ -18,30 +18,30 @@ type Error interface {
 	Detailer
 }
 
-type defaultError struct {
+type DefaultError struct {
 	code    string
 	message string
 	data    any
 	cause   error
 }
 
-type Option func(*defaultError)
+type Option func(*DefaultError)
 
 func WithData(data any) Option {
-	return func(e *defaultError) {
+	return func(e *DefaultError) {
 		e.data = data
 	}
 }
 
 func WithCause(cause error) Option {
-	return func(e *defaultError) {
+	return func(e *DefaultError) {
 		e.cause = cause
 	}
 }
 
 // New creates a new Error instance.
-func New(code string, message string, opts ...Option) Error {
-	err := &defaultError{
+func New(code string, message string, opts ...Option) *DefaultError {
+	err := &DefaultError{
 		code:    code,
 		message: message,
 	}
@@ -53,7 +53,7 @@ func New(code string, message string, opts ...Option) Error {
 	return err
 }
 
-func (e *defaultError) Error() string {
+func (e *DefaultError) Error() string {
 	if e.cause != nil {
 		if e.message != "" {
 			return fmt.Sprintf("%s, cause: %v", e.message, e.cause)
@@ -64,14 +64,21 @@ func (e *defaultError) Error() string {
 	return e.message
 }
 
-func (e *defaultError) Unwrap() error {
+func (e *DefaultError) Unwrap() error {
 	return e.cause
 }
 
-func (e *defaultError) Code() string {
+func (e *DefaultError) Code() string {
 	return string(e.code)
 }
 
-func (e *defaultError) Data() any {
+func (e *DefaultError) Data() any {
 	return e.data
+}
+
+func (e *DefaultError) SetData(data any) {
+	e.data = data
+}
+func (e *DefaultError) SetCause(cause error) {
+	e.cause = cause
 }
