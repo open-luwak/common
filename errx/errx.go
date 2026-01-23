@@ -4,11 +4,18 @@ import (
 	"fmt"
 )
 
-type Error interface {
+type Coder interface {
 	Code() string
-	Data() any
+}
 
+type Detailer interface {
+	Data() any
+}
+
+type Error interface {
 	error
+	Coder
+	Detailer
 }
 
 type defaultError struct {
