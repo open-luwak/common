@@ -1,9 +1,8 @@
 package metadata
 
 type ValidationRule struct {
+	Name  string      `toml:"name" json:"name"`
 	Field string      `toml:"field" json:"field"`
-	Type  string      `toml:"type,omitempty" json:"type,omitempty"`
-	Label string      `toml:"label,omitempty" json:"label,omitempty"`
 	Rules []*RuleItem `toml:"rules,omitempty" json:"rules,omitempty"`
 }
 
@@ -11,7 +10,7 @@ type RuleItem struct {
 	Name      string `toml:"name,omitempty" json:"name,omitempty"`
 	Message   string `toml:"message,omitempty" json:"message,omitempty"`
 	Validator string `toml:"validator" json:"validator"`
-	Value     any    `toml:"value,omitempty" json:"value,omitempty"`
+	Param     any    `toml:"param,omitempty" json:"param,omitempty"`
 }
 
 type ValidationResult struct {
