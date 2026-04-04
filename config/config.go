@@ -70,6 +70,10 @@ type Cache struct {
 }
 
 type General struct {
+	AppRoot    string `toml:"app_root"`
+	PluginsDir string `toml:"plugins_dir"`
+	HealthFile string `toml:"health_file"`
+
 	EnableGzip            bool `toml:"enable_gzip"`
 	ScriptTimeout         int  `toml:"script_timeout"`
 	TimestampRange        int  `toml:"timestamp_range"`
