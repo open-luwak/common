@@ -8,8 +8,8 @@ type AsmParam struct {
 	Api   string
 	Param []any
 
-	AutoFilter   []*metadata.AutoFilter
-	AutoPopulate []*metadata.AutoPopulate
+	AutoFilter   []metadata.AutoFilter
+	AutoPopulate []metadata.AutoPopulate
 }
 
 type PreparedQuery struct {
