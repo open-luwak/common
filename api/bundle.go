@@ -69,13 +69,13 @@ type ConditionalRoleProvider interface {
 }
 
 type AutoFilterProvider interface {
-	ApiFilter(software string, method string) []*metadata.AutoFilter
-	EntityFilter(software string, entity string) []*metadata.AutoFilter
+	ApiFilter(software string, method string) []metadata.AutoFilter
+	EntityFilter(software string, entity string) []metadata.AutoFilter
 }
 
 type AutoPopulateProvider interface {
-	ApiPopulate(software string, method string) []*metadata.AutoPopulate
-	EntityPopulate(software string, entity string) []*metadata.AutoPopulate
+	ApiPopulate(software string, method string) []metadata.AutoPopulate
+	EntityPopulate(software string, entity string) []metadata.AutoPopulate
 }
 
 type ValidationProvider interface {
