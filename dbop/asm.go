@@ -26,6 +26,6 @@ type PreparedQuery struct {
 	// For FK checks: foreign key fields
 	Column []string `json:"columns,omitempty"`
 
-	CheckPoint     []*PreparedQuery `json:"checkPoint,omitempty"`
-	ResultEnricher []*PreparedQuery `json:"resultEnricher,omitempty"`
+	CheckPoint     []PreparedQuery `json:"checkPoint,omitempty"`
+	ResultEnricher []PreparedQuery `json:"resultEnricher,omitempty"`
 }
