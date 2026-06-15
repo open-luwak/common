@@ -11,8 +11,8 @@ type Entity struct {
 	Label             string `toml:"label,omitempty"`
 	IsView            bool   `toml:"is_view,omitempty"`
 
-	CaptionColumn []string  `toml:"caption_column,omitempty"`
-	Columns       []*Column `toml:"columns,omitempty"`
+	CaptionColumns []string  `toml:"caption_column,omitempty"`
+	Columns        []*Column `toml:"columns,omitempty"`
 
 	PrimaryKey string     `toml:"primary_key,omitempty"`
 	UniqueKeys [][]string `toml:"unique_keys,omitempty"`
