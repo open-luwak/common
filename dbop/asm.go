@@ -4,10 +4,15 @@ import (
 	"github.com/open-luwak/common/metadata"
 )
 
-type AsmParam struct {
-	Api   string
-	Param []any
+type SessionContext struct {
+	UserID   string
+	Language string
+}
 
+type AsmParam struct {
+	Api          string
+	Param        []any
+	Session      SessionContext
 	AutoFilter   []metadata.AutoFilter
 	AutoPopulate []metadata.AutoPopulate
 }

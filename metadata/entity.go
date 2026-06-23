@@ -1,28 +1,40 @@
 package metadata
 
 type Entity struct {
-	Name              string `toml:"name,omitempty"`
+	// entity path
 	LogicalDbName     string `toml:"logical_db_name,omitempty"`
 	RealDbName        string `toml:"real_db_name"`
 	LogicalSchemaName string `toml:"logical_schema_name,omitempty"`
 	RealSchemaName    string `toml:"real_schema_name"`
 	LogicalTableName  string `toml:"logical_table_name,omitempty"`
 	RealTableName     string `toml:"real_table_name"`
-	Label             string `toml:"label,omitempty"`
-	IsView            bool   `toml:"is_view,omitempty"`
 
-	CaptionColumns []string  `toml:"caption_column,omitempty"`
-	Columns        []*Column `toml:"columns,omitempty"`
+	// table / view type
+	IsView bool `toml:"is_view,omitempty"`
 
-	PrimaryKey string     `toml:"primary_key,omitempty"`
-	UniqueKeys [][]string `toml:"unique_keys,omitempty"`
-	NormalKeys [][]string `toml:"normal_keys,omitempty"`
+	// display name
+	Name  string `toml:"name,omitempty"`
+	Label string `toml:"label,omitempty"`
 
-	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
+	// column meta
+	Columns             []*Column  `toml:"columns,omitempty"`
+	PrimaryKey          string     `toml:"primary_key,omitempty"`
+	UniqueKeys          [][]string `toml:"unique_keys,omitempty"`
+	NormalKeys          [][]string `toml:"normal_keys,omitempty"`
+	DefaultTenantColumn string     `toml:"default_tenant_column,omitempty"`
+	DefaultSortColumn   string     `toml:"default_sort_column,omitempty"`
+	DefaultSortOrder    string     `toml:"default_sort_order,omitempty"`
+	CaptionColumns      []string   `toml:"caption_column,omitempty"`
 
+	// auto context
 	AutoFilter      []*AutoFilter      `toml:"auto_filter,omitempty"`
 	AutoPopulate    []*AutoPopulate    `toml:"auto_populate,omitempty"`
-	Validation      []*ValidationRule  `toml:"validation,omitempty"`
-	Checks          []*CheckExpression `toml:"checks,omitempty"`
 	ConditionalRole []*ConditionalRole `toml:"conditional_role,omitempty"`
+
+	// relation
+	ForeignKeys []*ForeignKey `toml:"foreign_keys,omitempty"`
+
+	// validation
+	Validation []*ValidationRule  `toml:"validation,omitempty"`
+	Checks     []*CheckExpression `toml:"checks,omitempty"`
 }
