@@ -63,6 +63,7 @@ type Session struct {
 }
 
 type Cache struct {
+	KeyPrefix  string   `toml:"key_prefix"`
 	MasterName string   `toml:"master_name"`
 	Password   string   `toml:"password"`
 	Db         int      `toml:"db"`
