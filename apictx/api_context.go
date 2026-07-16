@@ -1,9 +1,10 @@
-package api
+package apictx
 
 import (
 	"net/http"
 
 	"github.com/open-luwak/common/metadata"
+	"github.com/open-luwak/common/method"
 )
 
 var CtxKey = ContextKey{}
@@ -56,8 +57,8 @@ type ServerEnvReadWriter interface {
 }
 
 type MethodNameParser interface {
-	ParsedName() *ParsedName
-	SetParsedName(*ParsedName)
+	ParsedName() *method.ParsedName
+	SetParsedName(*method.ParsedName)
 }
 
 type AppReadWriter interface {

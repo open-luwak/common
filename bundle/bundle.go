@@ -1,4 +1,4 @@
-package api
+package bundle
 
 import (
 	"github.com/open-luwak/common/metadata"
