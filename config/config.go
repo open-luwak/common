@@ -5,24 +5,23 @@ import (
 )
 
 type Config struct {
-	Server   Server     `toml:"server"`
-	Console  Console    `toml:"console"`
-	Log      Log        `toml:"log"`
+	Server  Server  `toml:"server"`
+	Console Console `toml:"console"`
+	General General `toml:"general"`
+	Log     Log     `toml:"log"`
+
 	Database []Database `toml:"database"`
-	ZeroCrud ZeroCrud   `toml:"zero_crud"`
 	Session  Session    `toml:"session"`
+	Cache    Cache      `toml:"cache"`
+
+	ZeroCrud      ZeroCrud      `toml:"zero_crud"`
+	ColumnMapping ColumnMapping `toml:"column_mapping"`
+	Dal           Dal           `toml:"dal"`
 
 	MqRabbitmq []MqRabbitmq `toml:"mq_rabbitmq"`
 	MqKafka    []MqKafka    `toml:"mq_kafka"`
 	MqRedis    []MqRedis    `toml:"mq_redis"`
 	MqTopic    []MqTopic    `toml:"mq_topic"`
-
-	Cache   Cache   `toml:"cache"`
-	General General `toml:"general"`
-
-	ColumnMapping ColumnMapping `toml:"column_mapping"`
-
-	Dal Dal `toml:"dal"`
 }
 
 type Server struct {
@@ -34,9 +33,19 @@ type Console struct {
 	ApiKey string `toml:"api_key"`
 }
 
-type Database struct {
-	DriverName     string `toml:"driver_name"`
-	DataSourceName string `toml:"data_source_name"`
+type General struct {
+	AppRoot    string `toml:"app_root"`
+	PluginsDir string `toml:"plugins_dir"`
+	HealthFile string `toml:"health_file"`
+
+	EnableGzip            bool `toml:"enable_gzip"`
+	ScriptTimeout         int  `toml:"script_timeout"`
+	TimestampRange        int  `toml:"timestamp_range"`
+	EnableVerifySignature bool `toml:"enable_verify_signature"`
+
+	CorsAllowOrigin  []string `toml:"cors_allow_origin"`
+	CorsAllowMethods []string `toml:"cors_allow_methods"`
+	CorsAllowHeaders []string `toml:"cors_allow_headers"`
 }
 
 type Log struct {
@@ -49,8 +58,9 @@ type Log struct {
 	Level      string `toml:"level"`
 }
 
-type ZeroCrud struct {
-	ThrowErrorWhenRowNotFound bool `toml:"throw_error_when_row_not_found"`
+type Database struct {
+	DriverName     string `toml:"driver_name"`
+	DataSourceName string `toml:"data_source_name"`
 }
 
 type Duration struct {
@@ -87,6 +97,14 @@ type SessionFile struct {
 }
 
 type Cache struct {
+	Driver string      `toml:"driver"`
+	Memory CacheMemory `toml:"memory"`
+	Redis  CacheRedis  `toml:"redis"`
+}
+type CacheMemory struct {
+	Path string `toml:"path"`
+}
+type CacheRedis struct {
 	Prefix     string   `toml:"prefix"`
 	MasterName string   `toml:"master_name"`
 	Password   string   `toml:"password"`
@@ -94,19 +112,8 @@ type Cache struct {
 	AddrList   []string `toml:"addr_list"`
 }
 
-type General struct {
-	AppRoot    string `toml:"app_root"`
-	PluginsDir string `toml:"plugins_dir"`
-	HealthFile string `toml:"health_file"`
-
-	EnableGzip            bool `toml:"enable_gzip"`
-	ScriptTimeout         int  `toml:"script_timeout"`
-	TimestampRange        int  `toml:"timestamp_range"`
-	EnableVerifySignature bool `toml:"enable_verify_signature"`
-
-	CorsAllowOrigin  []string `toml:"cors_allow_origin"`
-	CorsAllowMethods []string `toml:"cors_allow_methods"`
-	CorsAllowHeaders []string `toml:"cors_allow_headers"`
+type ZeroCrud struct {
+	ThrowErrorWhenRowNotFound bool `toml:"throw_error_when_row_not_found"`
 }
 
 type ColumnMapping struct {
