@@ -1,13 +1,16 @@
 package config
 
+import (
+	"time"
+)
+
 type Config struct {
-	Server       Server       `toml:"server"`
-	Console      Console      `toml:"console"`
-	Log          Log          `toml:"log"`
-	Database     []Database   `toml:"database"`
-	ZeroCrud     ZeroCrud     `toml:"zero_crud"`
-	Session      Session      `toml:"session"`
-	RedisSession RedisSession `toml:"redis_session"`
+	Server   Server     `toml:"server"`
+	Console  Console    `toml:"console"`
+	Log      Log        `toml:"log"`
+	Database []Database `toml:"database"`
+	ZeroCrud ZeroCrud   `toml:"zero_crud"`
+	Session  Session    `toml:"session"`
 
 	MqRabbitmq []MqRabbitmq `toml:"mq_rabbitmq"`
 	MqKafka    []MqKafka    `toml:"mq_kafka"`
@@ -35,12 +38,6 @@ type Database struct {
 	DriverName     string `toml:"driver_name"`
 	DataSourceName string `toml:"data_source_name"`
 }
-type RedisSession struct {
-	MasterName string   `toml:"master_name"`
-	Password   string   `toml:"password"`
-	Db         int      `toml:"db"`
-	AddrList   []string `toml:"addr_list"`
-}
 
 type Log struct {
 	MaxSize    int    `toml:"max_size"`
@@ -56,14 +53,41 @@ type ZeroCrud struct {
 	ThrowErrorWhenRowNotFound bool `toml:"throw_error_when_row_not_found"`
 }
 
+type Duration struct {
+	time.Duration
+}
+
+func (d *Duration) UnmarshalText(text []byte) error {
+	var err error
+	d.Duration, err = time.ParseDuration(string(text))
+	return err
+}
+
 type Session struct {
-	KeyPrefix         string `toml:"key_prefix"`
-	SerializationType string `toml:"serialization_type"`
-	TTL               int    `toml:"ttl"`
+	Lifetime Duration `toml:"lifetime"`
+	Driver   string   `toml:"driver"`
+
+	Redis  SessionRedis  `toml:"redis"`
+	Sqlite SessionSqlite `toml:"sqlite"`
+	File   SessionFile   `toml:"file"`
+}
+type SessionRedis struct {
+	MasterName    string   `toml:"master_name"`
+	Password      string   `toml:"password"`
+	Db            int      `toml:"db"`
+	AddrList      []string `toml:"addr_list"`
+	Prefix        string   `toml:"prefix"`
+	StorageFormat string   `toml:"storage_format"`
+}
+type SessionSqlite struct {
+	Dsn string `toml:"dsn"`
+}
+type SessionFile struct {
+	Path string `toml:"path"`
 }
 
 type Cache struct {
-	KeyPrefix  string   `toml:"key_prefix"`
+	Prefix     string   `toml:"prefix"`
 	MasterName string   `toml:"master_name"`
 	Password   string   `toml:"password"`
 	Db         int      `toml:"db"`
