@@ -53,8 +53,14 @@ func (c *Context) Value(key any) any {
 	}
 }
 
-func New() *Context {
-	return &Context{}
+func New(ctx context.Context) *Context {
+	return &Context{
+		Context:   ctx,
+		Metas:     make(map[string]any),
+		ServerEnv: make(map[string]any),
+		Session:   make(map[string]any),
+		DebugInfo: make([]map[string]any, 0),
+	}
 }
 
 func WithApiContext(ctx context.Context, val *Context) context.Context {
