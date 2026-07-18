@@ -1,77 +1,67 @@
 package apictx
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/open-luwak/common/metadata"
 	"github.com/open-luwak/common/method"
 )
 
-var CtxKey = ContextKey{}
+type ctxKey int
 
-type ContextKey struct{}
+const (
+	apiCtxKey ctxKey = iota
+	RequestIdKey
+	TenantIdKey
+	AppIdKey
+)
 
-// Context combines request and response contexts
-type Context interface {
-	RequestReadWriter
-	ResponseReadWriter
-	ServerEnvReadWriter
-	MethodNameParser
-	AppReadWriter
-	SessionReadWriter
-	DebugInfoReadWriter
+type Context struct {
+	context.Context
+
+	RequestID   string
+	TenantID    string
+	AppID       string
+	Method      string
+	RawParams   []byte
+	Params      any
+	Metas       map[string]any
+	ServerEnv   map[string]string
+	Session     map[string]string
+	AppInstance *metadata.AppInstance
+	ParsedName  *method.ParsedName
+
+	RequestHeaders http.Header
+	ResponseHeader http.Header
+
+	Result    any
+	Error     error
+	DebugInfo []map[string]any
 }
 
-// RequestReadWriter contains request-related information
-type RequestReadWriter interface {
-	RequestID() string
-	SetRequestID(string)
-
-	Method() string
-	SetMethod(string)
-
-	Params() any
-	SetParams(any)
-
-	RawParams() []byte
-	SetRawParams([]byte)
-
-	Metas() map[string]any
-	SetMetas(map[string]any)
+func (c *Context) Value(key any) any {
+	switch key {
+	case RequestIdKey:
+		return c.RequestID
+	case TenantIdKey:
+		return c.TenantID
+	case AppIdKey:
+		return c.AppID
+	default:
+		return c.Context.Value(key)
+	}
 }
 
-// ResponseReadWriter contains response-related information
-type ResponseReadWriter interface {
-	ResponseHeader() http.Header
-
-	Result() any
-	SetResult(any)
-
-	Err() error
-	SetErr(error)
+func New() *Context {
+	return &Context{}
 }
 
-type ServerEnvReadWriter interface {
-	ServerEnv() map[string]any
-	SetServerEnv(map[string]any)
+func WithApiContext(ctx context.Context, val *Context) context.Context {
+	return context.WithValue(ctx, apiCtxKey, val)
 }
 
-type MethodNameParser interface {
-	ParsedName() *method.ParsedName
-	SetParsedName(*method.ParsedName)
-}
-
-type AppReadWriter interface {
-	AppInstance() *metadata.AppInstance
-	SetAppInstance(*metadata.AppInstance)
-}
-
-type SessionReadWriter interface {
-	Session() map[string]any
-	SetSession(map[string]any)
-}
-
-type DebugInfoReadWriter interface {
-	DebugInfo() []map[string]any
-	AppendDebugInfo([]map[string]any)
+func FromApiContext(ctx context.Context) (*Context, bool) {
+	val, ok := ctx.Value(apiCtxKey).(*Context)
+	return val, ok
 }

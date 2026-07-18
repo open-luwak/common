@@ -1,6 +1,7 @@
 package dbop
 
 import (
+	"context"
 	"sync"
 )
 
@@ -122,6 +123,8 @@ func (t OperationType) String() string {
 }
 
 type DalContext struct {
+	context.Context
+
 	// Container for transaction management.
 	// Ensures that accessing the same database during a single API request uses the same connection,
 	// and automatically commits or rolls back transactions when the request ends.
