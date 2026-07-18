@@ -73,3 +73,13 @@ func FromApiContext(ctx context.Context) (*Context, bool) {
 	val, ok := ctx.Value(apiCtxKey).(*Context)
 	return val, ok
 }
+
+func GetTenantId(ctx context.Context) (string, bool) {
+	val, ok := ctx.Value(TenantIdKey).(string)
+	return val, ok
+}
+
+func GetAppId(ctx context.Context) (string, bool) {
+	val, ok := ctx.Value(AppIdKey).(string)
+	return val, ok
+}
