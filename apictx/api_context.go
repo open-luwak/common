@@ -27,8 +27,8 @@ type Context struct {
 	RawParams   []byte
 	Params      any
 	Metas       map[string]any
-	ServerEnv   map[string]string
-	Session     map[string]string
+	ServerEnv   map[string]any
+	Session     map[string]any
 	AppInstance *metadata.AppInstance
 	ParsedName  *method.ParsedName
 
