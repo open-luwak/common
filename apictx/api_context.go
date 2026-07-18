@@ -55,11 +55,13 @@ func (c *Context) Value(key any) any {
 
 func New(ctx context.Context) *Context {
 	return &Context{
-		Context:   ctx,
-		Metas:     make(map[string]any),
-		ServerEnv: make(map[string]any),
-		Session:   make(map[string]any),
-		DebugInfo: make([]map[string]any, 0),
+		Context:        ctx,
+		Metas:          make(map[string]any),
+		ServerEnv:      make(map[string]any),
+		Session:        make(map[string]any),
+		RequestHeaders: make(http.Header),
+		ResponseHeader: make(http.Header),
+		DebugInfo:      make([]map[string]any, 0),
 	}
 }
 
