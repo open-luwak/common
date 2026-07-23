@@ -76,18 +76,19 @@ func (d *Duration) UnmarshalText(text []byte) error {
 type Session struct {
 	Lifetime Duration `toml:"lifetime"`
 	Driver   string   `toml:"driver"`
+	Codec    string   `toml:"codec"` // gob | json
 
 	Redis  SessionRedis  `toml:"redis"`
 	Sqlite SessionSqlite `toml:"sqlite"`
 	File   SessionFile   `toml:"file"`
 }
 type SessionRedis struct {
-	MasterName    string   `toml:"master_name"`
-	Password      string   `toml:"password"`
-	Db            int      `toml:"db"`
-	AddrList      []string `toml:"addr_list"`
-	Prefix        string   `toml:"prefix"`
-	StorageFormat string   `toml:"storage_format"`
+	MasterName string   `toml:"master_name"`
+	Password   string   `toml:"password"`
+	Db         int      `toml:"db"`
+	AddrList   []string `toml:"addr_list"`
+	Prefix     string   `toml:"prefix"`
+	StoreAs    string   `toml:"store_as"` // string | hash
 }
 type SessionSqlite struct {
 	Dsn string `toml:"dsn"`
