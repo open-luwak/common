@@ -130,9 +130,5 @@ type DalContext struct {
 	// and automatically commits or rolls back transactions when the request ends.
 	Container *sync.Map
 
-	TraceID  string
-	ParentID string
-	SpanID   string
-
 	DebugInfo []map[string]any
 }
