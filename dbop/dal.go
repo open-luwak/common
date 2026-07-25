@@ -123,7 +123,7 @@ func (t OperationType) String() string {
 }
 
 type DalContext struct {
-	context.Context
+	ctx context.Context
 
 	// Container for transaction management.
 	// Ensures that accessing the same database during a single API request uses the same connection,
@@ -131,4 +131,19 @@ type DalContext struct {
 	Container *sync.Map
 
 	DebugInfo []map[string]any
+}
+
+func (d *DalContext) Context() context.Context {
+	if d.ctx != nil {
+		return d.ctx
+	}
+	return context.Background()
+}
+
+func NewDalContext(ctx context.Context) *DalContext {
+	return &DalContext{
+		ctx:       ctx,
+		Container: new(sync.Map),
+		DebugInfo: make([]map[string]any, 0),
+	}
 }

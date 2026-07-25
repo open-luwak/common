@@ -9,7 +9,7 @@ import (
 )
 
 type RunnerContext struct {
-	context.Context
+	ctx context.Context
 
 	ParsedName   *method.ParsedName
 	MetaProvider *bundle.MetaProvider
@@ -17,4 +17,19 @@ type RunnerContext struct {
 
 	GlobalThis map[string]any
 	DebugInfo  map[string]any
+}
+
+func (r *RunnerContext) Context() context.Context {
+	if r.ctx != nil {
+		return r.ctx
+	}
+	return context.Background()
+}
+
+func NewRunnerContext(ctx context.Context) *RunnerContext {
+	return &RunnerContext{
+		ctx:        ctx,
+		GlobalThis: make(map[string]any),
+		DebugInfo:  make(map[string]any),
+	}
 }

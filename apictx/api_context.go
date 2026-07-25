@@ -18,7 +18,7 @@ const (
 )
 
 type Context struct {
-	context.Context
+	ctx context.Context
 
 	RequestID   string
 	TenantID    string
@@ -49,13 +49,20 @@ func (c *Context) Value(key any) any {
 	case AppIdKey:
 		return c.AppID
 	default:
-		return c.Context.Value(key)
+		return c.ctx.Value(key)
 	}
+}
+
+func (c *Context) Context() context.Context {
+	if c.ctx != nil {
+		return c.ctx
+	}
+	return context.Background()
 }
 
 func New(ctx context.Context) *Context {
 	return &Context{
-		Context:        ctx,
+		ctx:            ctx,
 		Metas:          make(map[string]any),
 		ServerEnv:      make(map[string]any),
 		Session:        make(map[string]any),
