@@ -60,6 +60,10 @@ func (c *Context) Context() context.Context {
 	return context.Background()
 }
 
+func (c *Context) UpdateContext(ctx context.Context) {
+	c.ctx = ctx
+}
+
 func New(ctx context.Context) *Context {
 	return &Context{
 		ctx:            ctx,
