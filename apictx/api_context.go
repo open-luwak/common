@@ -13,7 +13,10 @@ type ctxKey int
 const (
 	apiCtxKey ctxKey = iota
 	RequestIdKey
+	NamespaceKey
+	// TenantIdKey Deprecated
 	TenantIdKey
+	// AppIdKey Deprecated
 	AppIdKey
 )
 
@@ -80,16 +83,28 @@ func WithApiContext(ctx context.Context, val *Context) context.Context {
 	return context.WithValue(ctx, apiCtxKey, val)
 }
 
+// FromApiContext Deprecated
 func FromApiContext(ctx context.Context) (*Context, bool) {
 	val, ok := ctx.Value(apiCtxKey).(*Context)
 	return val, ok
 }
+func APIContextFromContext(ctx context.Context) (*Context, bool) {
+	val, ok := ctx.Value(apiCtxKey).(*Context)
+	return val, ok
+}
 
+func NamespaceFromContext(ctx context.Context) (string, bool) {
+	val, ok := ctx.Value(NamespaceKey).(string)
+	return val, ok
+}
+
+// GetTenantId Deprecated
 func GetTenantId(ctx context.Context) (string, bool) {
 	val, ok := ctx.Value(TenantIdKey).(string)
 	return val, ok
 }
 
+// GetAppId Deprecated
 func GetAppId(ctx context.Context) (string, bool) {
 	val, ok := ctx.Value(AppIdKey).(string)
 	return val, ok
