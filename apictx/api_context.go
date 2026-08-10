@@ -13,19 +13,12 @@ type ctxKey int
 const (
 	apiCtxKey ctxKey = iota
 	namespaceKey
-	RequestIdKey
-	// TenantIdKey Deprecated
-	TenantIdKey
-	// AppIdKey Deprecated
-	AppIdKey
+	requestIdKey
 )
 
 type Context struct {
 	ctx context.Context
 
-	RequestID   string
-	TenantID    string
-	AppID       string
 	Method      string
 	RawParams   []byte
 	Params      any
@@ -41,19 +34,6 @@ type Context struct {
 	Result    any
 	Error     error
 	DebugInfo []map[string]any
-}
-
-func (c *Context) Value(key any) any {
-	switch key {
-	case RequestIdKey:
-		return c.RequestID
-	case TenantIdKey:
-		return c.TenantID
-	case AppIdKey:
-		return c.AppID
-	default:
-		return c.ctx.Value(key)
-	}
 }
 
 func (c *Context) Context() context.Context {
@@ -82,33 +62,23 @@ func New(ctx context.Context) *Context {
 func WithApiContext(ctx context.Context, val *Context) context.Context {
 	return context.WithValue(ctx, apiCtxKey, val)
 }
-
-// FromApiContext Deprecated
-func FromApiContext(ctx context.Context) (*Context, bool) {
-	val, ok := ctx.Value(apiCtxKey).(*Context)
-	return val, ok
-}
-func APIContextFromContext(ctx context.Context) (*Context, bool) {
+func APIContextFrom(ctx context.Context) (*Context, bool) {
 	val, ok := ctx.Value(apiCtxKey).(*Context)
 	return val, ok
 }
 
-func WithNamespaceContext(ctx context.Context, val *Context) context.Context {
+func WithNamespace(ctx context.Context, val string) context.Context {
 	return context.WithValue(ctx, namespaceKey, val)
 }
-func NamespaceFromContext(ctx context.Context) (string, bool) {
+func NamespaceFrom(ctx context.Context) (string, bool) {
 	val, ok := ctx.Value(namespaceKey).(string)
 	return val, ok
 }
 
-// GetTenantId Deprecated
-func GetTenantId(ctx context.Context) (string, bool) {
-	val, ok := ctx.Value(TenantIdKey).(string)
-	return val, ok
+func WithRequestId(ctx context.Context, val string) context.Context {
+	return context.WithValue(ctx, requestIdKey, val)
 }
-
-// GetAppId Deprecated
-func GetAppId(ctx context.Context) (string, bool) {
-	val, ok := ctx.Value(AppIdKey).(string)
+func RequestIdFrom(ctx context.Context) (string, bool) {
+	val, ok := ctx.Value(requestIdKey).(string)
 	return val, ok
 }
