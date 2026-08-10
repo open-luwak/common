@@ -12,8 +12,8 @@ type ctxKey int
 
 const (
 	apiCtxKey ctxKey = iota
+	namespaceKey
 	RequestIdKey
-	NamespaceKey
 	// TenantIdKey Deprecated
 	TenantIdKey
 	// AppIdKey Deprecated
@@ -93,8 +93,11 @@ func APIContextFromContext(ctx context.Context) (*Context, bool) {
 	return val, ok
 }
 
+func WithNamespaceContext(ctx context.Context, val *Context) context.Context {
+	return context.WithValue(ctx, namespaceKey, val)
+}
 func NamespaceFromContext(ctx context.Context) (string, bool) {
-	val, ok := ctx.Value(NamespaceKey).(string)
+	val, ok := ctx.Value(namespaceKey).(string)
 	return val, ok
 }
 
