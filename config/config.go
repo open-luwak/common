@@ -74,7 +74,7 @@ func (d *Duration) UnmarshalText(text []byte) error {
 
 type Session struct {
 	Lifetime Duration `toml:"lifetime"`
-	Driver   string   `toml:"driver"`
+	Adapter  string   `toml:"adapter"`
 	Codec    string   `toml:"codec"` // gob | json
 
 	Redis  SessionRedis  `toml:"redis"`
@@ -97,9 +97,9 @@ type SessionFile struct {
 }
 
 type Cache struct {
-	Driver string      `toml:"driver"`
-	Memory CacheMemory `toml:"memory"`
-	Redis  CacheRedis  `toml:"redis"`
+	Adapter string      `toml:"adapter"`
+	Memory  CacheMemory `toml:"memory"`
+	Redis   CacheRedis  `toml:"redis"`
 }
 type CacheMemory struct {
 	Path string `toml:"path"`
