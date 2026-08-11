@@ -34,7 +34,6 @@ type Console struct {
 }
 
 type General struct {
-	AppRoot    string `toml:"app_root"`
 	PluginsDir string `toml:"plugins_dir"`
 	HealthFile string `toml:"health_file"`
 
