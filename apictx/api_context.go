@@ -12,7 +12,6 @@ type ctxKey int
 
 const (
 	apiCtxKey ctxKey = iota
-	namespaceKey
 	requestIdKey
 )
 
@@ -64,14 +63,6 @@ func WithApiContext(ctx context.Context, val *Context) context.Context {
 }
 func APIContextFrom(ctx context.Context) (*Context, bool) {
 	val, ok := ctx.Value(apiCtxKey).(*Context)
-	return val, ok
-}
-
-func WithNamespace(ctx context.Context, val string) context.Context {
-	return context.WithValue(ctx, namespaceKey, val)
-}
-func NamespaceFrom(ctx context.Context) (string, bool) {
-	val, ok := ctx.Value(namespaceKey).(string)
 	return val, ok
 }
 
