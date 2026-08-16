@@ -65,17 +65,17 @@ type MetaProvider struct {
 }
 
 type ConditionalRoleProvider interface {
-	EntityRole(software string, entity string) []*metadata.ConditionalRole
+	EntityRole(prefix string, software string, entity string) []*metadata.ConditionalRole
 }
 
 type AutoFilterProvider interface {
-	ApiFilter(software string, method string) []metadata.AutoFilter
-	EntityFilter(software string, entity string) []metadata.AutoFilter
+	ApiFilter(prefix string, software string, method string) []metadata.AutoFilter
+	EntityFilter(prefix string, software string, entity string) []metadata.AutoFilter
 }
 
 type AutoPopulateProvider interface {
-	ApiPopulate(software string, method string) []metadata.AutoPopulate
-	EntityPopulate(software string, entity string) []metadata.AutoPopulate
+	ApiPopulate(prefix string, software string, method string) []metadata.AutoPopulate
+	EntityPopulate(prefix string, software string, entity string) []metadata.AutoPopulate
 }
 
 type ValidationProvider interface {
