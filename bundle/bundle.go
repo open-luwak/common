@@ -79,6 +79,6 @@ type AutoPopulateProvider interface {
 }
 
 type ValidationProvider interface {
-	ValidationRule(entity string) []*metadata.ValidationRule
-	Checks(entity string) []*metadata.CheckExpression
+	ValidationRule(prefix string, entity string) []*metadata.ValidationRule
+	Checks(prefix string, entity string) []*metadata.CheckExpression
 }
